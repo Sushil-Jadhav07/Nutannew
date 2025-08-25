@@ -1,0 +1,76 @@
+@custom-variant dark (&:where(.dark, .dark *));
+/* styles/globals.css */
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+
+/* Your custom styles can follow here */
+@import "./styles/variables.css";
+@import "./styles/themes.css";
+@import "./styles/rc-drawer.css";
+@import "./styles/swiper-carousel.css";
+
+/* HTML Content Styling for Firebase Descriptions */
+.html-content {
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.html-content p {
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+.html-content p:last-child {
+  margin-bottom: 0;
+}
+
+.html-content h1,
+.html-content h2,
+.html-content h3,
+.html-content h4,
+.html-content h5,
+.html-content h6 {
+  color: #1a202c;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.html-content h1:first-child,
+.html-content h2:first-child,
+.html-content h3:first-child,
+.html-content h4:first-child,
+.html-content h5:first-child,
+.html-content h6:first-child {
+  margin-top: 0;
+}
+
+.html-content strong,
+.html-content b {
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.html-content em,
+.html-content i {
+  font-style: italic;
+}
+
+.html-content ul,
+.html-content ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.html-content li {
+  margin-bottom: 0.5rem;
+}
+
+.html-content a {
+  color: #3182ce;
+  text-decoration: underline;
+}
+
+.html-content a:hover {
+  color: #2c5aa0;
+}

@@ -1,0 +1,36 @@
+import { FC } from "react";
+import { Globe } from 'lucide-react';
+import cn from 'classnames';
+import { useIsMounted } from "@/utils/use-is-mounted";
+import usePanelColor from "@/hooks/use-panel-color";
+import { usePanel } from "@/contexts/usePanel";
+import { colorMap } from "@/data/color-settings";
+
+interface IProps {
+    className?: string;
+};
+
+const Direction:FC<IProps> = (className) => {
+    const { toggleThemeDirection,selectedDirection } = usePanelColor();
+    const mounted = useIsMounted();
+    const { selectedColor } = usePanel();
+
+    return (
+        <div className={cn("menuItem group cursor-pointer mx-2 md:mx-3",className)}>
+            <div className="flex items-center h-full">
+                <button
+                    onClick={toggleThemeDirection}
+                    className={cn(
+                        "flex items-center justify-center h-6 gap-1 transition-colors  font-base",
+                        colorMap[selectedColor].hoverLink
+                    )}
+                >
+                    <Globe size={15} /> 
+                    {mounted && selectedDirection === "rtl" ? 'AR' : 'EN'}
+                </button>
+            </div>
+        </div>
+    )
+};
+
+export default Direction;

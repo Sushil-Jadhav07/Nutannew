@@ -1,0 +1,25 @@
+{
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Credentials", "value": "true" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,PUT,DELETE,OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" },
+        {"key": "Content-Security-Policy", "value": "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'"}
+      ]
+    }
+  ],
+  "env": {
+    "VITE_PUBLIC_API_BASE_URL": "https://react19-uminex.vercel.app/api",
+    "VITE_PUBLIC_WEBSITE_URL": "https://react19-uminex.vercel.app/"
+  },
+  "build": {
+    "env": {
+      "VITE_PUBLIC_API_BASE_URL": "https://react19-uminex.vercel.app/api",
+      "VITE_PUBLIC_WEBSITE_URL": "https://react19-uminex.vercel.app"
+    }
+  },
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}

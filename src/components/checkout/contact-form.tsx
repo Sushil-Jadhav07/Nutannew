@@ -1,7 +1,7 @@
 import {useForm} from 'react-hook-form';
 
 import Input from "@/components/shared/form/input";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Switch from "@/components/shared/switch";
 import Button from "@/components/shared/button";
 import Link from "@/components/shared/link";
@@ -12,24 +12,48 @@ type ContactFormData = {
     receiveNews: boolean
 }
 
-interface ContactFormProps {
-    onComplete: (data: ContactFormData) => void
+interface UserProfileData {
+    userName: string;
+    email: string;
+    address: string;
+    city: string;
+    pincode: string;
+    state: string;
+    country: string;
+    dateOfBirth: string;
+    gender: string;
+    phoneNumber: string;
+    message: string;
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({onComplete}) => {
+interface ContactFormProps {
+    onComplete: (data: ContactFormData) => void
+    userProfile: UserProfileData | null
+}
+
+const ContactForm: React.FC<ContactFormProps> = ({onComplete, userProfile}) => {
     const {
         register,
         handleSubmit,
         formState: {errors},
+        setValue
     } = useForm<ContactFormData>({
         defaultValues: {
-            phone: "+8553456644",
-            email: "yourexample@email.com",
+            phone: userProfile?.phoneNumber || "+8553456644",
+            email: userProfile?.email || "yourexample@email.com",
             receiveNews: false,
         },
     })
     
     const [receiveNews, setReceiveNews] = useState(true);
+    
+    // Update form values when userProfile changes
+    useEffect(() => {
+        if (userProfile) {
+            setValue('phone', userProfile.phoneNumber || '');
+            setValue('email', userProfile.email || '');
+        }
+    }, [userProfile, setValue]);
     
     
     return (

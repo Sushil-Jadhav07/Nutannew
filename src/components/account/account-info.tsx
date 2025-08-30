@@ -24,6 +24,10 @@ interface UserProfileData {
     userName: string;
     email: string;
     address: string;
+    city: string;
+    pincode: string;
+    state: string;
+    country: string;
     dateOfBirth: string;
     gender: string;
     phoneNumber: string;
@@ -34,6 +38,10 @@ const defaultValues: UserProfileData = {
     userName: '',
     email: '',
     address: '',
+    city: '',
+    pincode: '',
+    state: '',
+    country: '',
     dateOfBirth: '',
     gender: 'Male',
     phoneNumber: '',
@@ -71,6 +79,10 @@ const AccountInfo: React.FC = () => {
                         userName: data.name || data.userName || user.displayName || user.email?.split('@')[0] || '',
                         email: data.email || user.email || '',
                         address: data.address || '',
+                        city: data.city || '',
+                        pincode: data.pincode || '',
+                        state: data.state || '',
+                        country: data.country || '',
                         dateOfBirth: data.dateOfBirth || '',
                         gender: data.gender || 'Male',
                         phoneNumber: data.contact || data.phoneNumber || '',
@@ -89,6 +101,10 @@ const AccountInfo: React.FC = () => {
                         userName: user.displayName || user.email?.split('@')[0] || '',
                         email: user.email || '',
                         address: '',
+                        city: '',
+                        pincode: '',
+                        state: '',
+                        country: '',
                         dateOfBirth: '',
                         gender: 'Male',
                         phoneNumber: '',
@@ -129,6 +145,10 @@ const AccountInfo: React.FC = () => {
                 name: input.userName,
                 email: input.email,
                 address: input.address,
+                city: input.city,
+                pincode: input.pincode,
+                state: input.state,
+                country: input.country,
                 dateOfBirth: input.dateOfBirth,
                 gender: input.gender,
                 contact: input.phoneNumber,
@@ -163,6 +183,7 @@ const AccountInfo: React.FC = () => {
         { id: 2, name: 'Female' },
         { id: 3, name: 'Other' },
     ]
+    
     const [selected, setSelected] = useState(people[0])
     
     // Update selected gender when form value changes
@@ -291,6 +312,18 @@ const AccountInfo: React.FC = () => {
                                 error={errors.address?.message}
                             />
                             <Input
+                                label={"Country"}
+                                {...register('country', {
+                                    required: 'Country is required',
+                                })}
+                                variant="solid"
+                                className="w-full sm:w-1/2 px-1.5 md:px-2.5"
+                                error={errors.country?.message}
+                            />
+                        </div>
+                        
+                        <div className="flex flex-col sm:flex-row -mx-1.5 md:-mx-2.5 space-y-4 sm:space-y-0">
+                            <Input
                                 label={"Date of birth"}
                                 {...register('dateOfBirth', {
                                     required: 'Date of birth is required',
@@ -300,9 +333,45 @@ const AccountInfo: React.FC = () => {
                                 className="w-full sm:w-1/2 px-1.5 md:px-2.5"
                                 error={errors.dateOfBirth?.message}
                             />
+                            <Input
+                                label={"State"}
+                                {...register('state', {
+                                    required: 'State is required',
+                                })}
+                                variant="solid"
+                                className="w-full sm:w-1/2 px-1.5 md:px-2.5"
+                                error={errors.state?.message}
+                            />
                         </div>
                         
                         <div className="flex flex-col sm:flex-row -mx-1.5 md:-mx-2.5 space-y-4 sm:space-y-0">
+                            <Input
+                                label={"City"}
+                                {...register('city', {
+                                    required: 'City is required',
+                                })}
+                                variant="solid"
+                                className="w-full sm:w-1/2 px-1.5 md:px-2.5"
+                                error={errors.city?.message}
+                            />
+                            <Input
+                                label={"Pincode"}
+                                {...register('pincode', {
+                                    required: 'Pincode is required',
+                                    pattern: {
+                                        value: /^[0-9]{5,6}$/,
+                                        message: 'Please enter a valid pincode (5-6 digits)',
+                                    },
+                                })}
+                                variant="solid"
+                                className="w-full sm:w-1/2 px-1.5 md:px-2.5"
+                                error={errors.pincode?.message}
+                            />
+                        </div>
+                        
+                        <div className="flex flex-col sm:flex-row -mx-1.5 md:-mx-2.5 space-y-4 sm:space-y-0">
+                            
+                            
                             <div className="w-full sm:w-1/2 px-1.5 md:px-2.5">
                                 <label
                                     htmlFor={"gender"}
@@ -343,7 +412,6 @@ const AccountInfo: React.FC = () => {
                                     </ListboxOptions>
                                 </Listbox>
                             </div>
-                            
                             
                             <Input
                                 type="tel"

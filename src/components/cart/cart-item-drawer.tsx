@@ -48,7 +48,16 @@ const CartItemDrawer: React.FC<CartItemProps> = ({item}) => {
                         to={`${ROUTES.PRODUCT}/${item?.slug}`}
                         className="block leading-5 transition-all text-brand-dark text-sm lg:text-15px hover:text-brand"
                     >
-                        {item?.name}
+                        <div className="flex items-center gap-2">
+                            <span>{item?.name}</span>
+                            {/* Show color circle if the item has color variation */}
+                            {item?.color && (
+                                <span
+                                    className="inline-block w-4 h-4 rounded-full border border-brand-dark/10"
+                                    style={{ backgroundColor: item.color.toLowerCase() }}
+                                />
+                            )}
+                        </div>
                     </Link>
                     <div className="text-sm font-semibold text-brand-dark mt-2 block mb-2">
                         {totalPrice}

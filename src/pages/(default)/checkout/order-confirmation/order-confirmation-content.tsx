@@ -1,6 +1,5 @@
 
 
-import OrderInformation from '@/components/orders/order-information';
 import Container from '@/components/shared/container';
 import { useResetCart } from '@/contexts/cart/cartActions';
 import { useEffect } from 'react';
@@ -12,7 +11,7 @@ export default function OrderConfirmationContent() {
   }, [resetCart]);
   return (
       <Container>
-          <OrderInformation />
+         
       </Container>
   );
 }

@@ -1,62 +1,115 @@
 
-import {useState} from 'react';
+import {useState, useContext, useEffect} from 'react';
 import Heading from '@/components/shared/heading';
 import ShippingAddress from './shipping-address';
 import ContactForm from "@/components/checkout/contact-form";
 import PaymentMethod from "@/components/checkout/payment-method";
 import { CircleUserRound, MapPinHouse, CreditCard} from 'lucide-react';
 import {ROUTES} from "@/utils/routes";
+import { AuthContext } from '@/contexts/AuthProvider';
+import { useCheckout } from '@/contexts/CheckoutContext';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '@/config/firebase';
+
 // Define the type for our checkout steps
 type CheckoutStep = "contact" | "shipping" | "payment"
 
+interface UserProfileData {
+    userName: string;
+    email: string;
+    address: string;
+    city: string;
+    pincode: string;
+    state: string;
+    country: string;
+    dateOfBirth: string;
+    gender: string;
+    phoneNumber: string;
+    message: string;
+}
+
 const CheckoutDetails: React.FC = () => {
+	const { user, isAuthenticated } = useContext(AuthContext);
+	const { updateContact, updateShipping, updatePayment } = useCheckout();
+	const [userProfile, setUserProfile] = useState<UserProfileData | null>(null);
 	const [activeStep, setActiveStep] = useState<CheckoutStep>("contact")
-	const [formData, setFormData] = useState({
-		contact: null,
-		shipping: null,
-		payment: null,
-	})
+	
+	// Fetch user profile data from Firestore
+	useEffect(() => {
+		const fetchUserProfile = async () => {
+			if (!user?.uid) return;
+			
+			try {
+				const userDoc = await getDoc(doc(db, 'users', user.uid));
+				if (userDoc.exists()) {
+					const data = userDoc.data();
+					const profileData: UserProfileData = {
+						userName: data.name || data.userName || user.displayName || user.email?.split('@')[0] || '',
+						email: data.email || user.email || '',
+						address: data.address || '',
+						city: data.city || '',
+						pincode: data.pincode || '',
+						state: data.state || '',
+						country: data.country || '',
+						dateOfBirth: data.dateOfBirth || '',
+						gender: data.gender || 'Male',
+						phoneNumber: data.contact || data.phoneNumber || '',
+						message: data.message || ''
+					};
+					
+					setUserProfile(profileData);
+				}
+			} catch (error) {
+				console.error('Error fetching user profile:', error);
+			}
+		};
+		
+		if (isAuthenticated && user) {
+			fetchUserProfile();
+		}
+	}, [user, isAuthenticated]);
 	
 	// Handle completion of each step
 	const handleContactComplete = (data: any) => {
-		setFormData({...formData, contact: data})
+		updateContact(data);
 		setActiveStep("shipping")
 	}
 	
 	const handleShippingComplete = (data: any) => {
-		setFormData({...formData, shipping: data})
+		updateShipping(data);
 		setActiveStep("payment")
 	}
 	
 	const handlePaymentComplete = (data: any) => {
-		setFormData({...formData, payment: data})
-		console.log("Order completed!", formData, data)
-		window.location.href = ROUTES.ORDER;
+		updatePayment(data);
+		console.log("Order completed!", data)
+		// Removed redirect to order confirmation page
 		// Here you would typically submit the order
 	}
+	
 	// Define the data for each step
 	const data = [
 		{
 			id: 1,
 			icon: <CircleUserRound strokeWidth={1} size={30}/>,
 			title: 'Contact infomation',
-			sub: 'Luhan Nguyen +855 - 445 - 6644',
-			component: <ContactForm onComplete={handleContactComplete}/>,
+			sub: userProfile ? `${userProfile.userName} ${userProfile.phoneNumber ? `+${userProfile.phoneNumber}` : ''}` : 'Luhan Nguyen +855 - 445 - 6644',
+			component: <ContactForm onComplete={handleContactComplete} userProfile={userProfile}/>,
 			key: "contact" as CheckoutStep,
 		},
 		{
 			id: 2,
 			icon: <MapPinHouse strokeWidth={1} size={30}/>,
 			title: 'Shipping Address',
-			sub: 'Sunset Blvd, Los Angeles, CA 90046, USA',
-			component: <ShippingAddress onComplete={handleShippingComplete}/>,
+			sub: userProfile ? `${userProfile.address}, ${userProfile.city}, ${userProfile.state} ${userProfile.pincode}, ${userProfile.country}` : 'Sunset Blvd, Los Angeles, CA 90046, USA',
+			component: <ShippingAddress onComplete={handleShippingComplete} userProfile={userProfile}/>,
 			key: "shipping" as CheckoutStep,
 		},
 		{
 			id: 3,
 			icon: <CreditCard strokeWidth={1} size={30}/>,
 			title: 'Payment Method',
-			sub: 'Mastercard / Visa xxx-xxx-xx45',
+			sub: '',
 			component: <PaymentMethod onComplete={handlePaymentComplete}/>,
 			key: "payment" as CheckoutStep,
 		},
@@ -78,12 +131,7 @@ const CheckoutDetails: React.FC = () => {
 								{step?.sub}
 							</div>
 						</div>
-						{formData[step.key] && (
-							<button
-								onClick={() => formData[step.key] && setActiveStep(step.key)}
-								className="py-2 px-4 bg-slate-100 hover:bg-slate-200 dark:bg-slate-200  mt-5 sm:mt-0 sm:ms-auto text-sm  rounded-lg">Change
-							</button>
-						)}
+						{/* Removed the "Change" button as formData is no longer managed locally */}
 					
 					</div>
 					

@@ -1,17 +1,16 @@
 import OrderDetails from '@/components/orders/order-details';
-import {useOrderQuery} from '@/services/order/get-order';
 import cn from "classnames";
-import Loading from "@/components/shared/loading";
 import Link from '@/components/shared/link';
 import {colorMap} from "@/data/color-settings";
 import {usePanel} from "@/contexts/usePanel";
+import { OrderData } from '@/store/orderSlice';
 
-export default function OrderInformation() {
+interface OrderInformationProps {
+	orderData: OrderData;
+}
+
+export default function OrderInformation({ orderData }: OrderInformationProps) {
 	const { selectedColor } = usePanel();
-	const {data, isLoading} = useOrderQuery('1');
-	
-	
-	if (isLoading) return <Loading/>;
 	
 	return (
 		<div className="py-10  lg:py-10">
@@ -19,10 +18,10 @@ export default function OrderInformation() {
 				{/* Left Section - Thank You Message */}
 				<div className="bg-white w-full px-5 md:px-8 py-8 rounded-lg space-y-6 border border-border-base">
 					<h2 className="text-base md:text-lg xl:text-[20px] font-semibold text-brand-dark  lg:pt-0">
-						Thank you Luhan!
+						Thank you for your order!
 					</h2>
 					<p >
-						Your order number is <span className="font-medium">{data?.tracking_number}</span>
+						Your order number is <span className="font-medium">{orderData.OrderID}</span>
 					</p>
 					
 					<p className="leading-8">
@@ -43,7 +42,7 @@ export default function OrderInformation() {
 						<Link
 							to="/"
                             variant="button-black"
-                            className="sm:inline-block"
+							className="sm:inline-block"
 						>
 							CONTINUE SHOPPING
 						</Link>
@@ -53,7 +52,7 @@ export default function OrderInformation() {
 				</div>
 				{/* Right Section - Order Summary */}
 				<div className="bg-white  rounded-lg border border-border-base">
-					<OrderDetails/>
+					<OrderDetails orderData={orderData} />
 				</div>
 			</div>
 		

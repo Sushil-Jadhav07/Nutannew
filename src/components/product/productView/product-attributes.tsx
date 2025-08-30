@@ -52,10 +52,22 @@ const ProductAttributes: React.FC<Props> = ({
         <>
             {Object.entries(variations).map(([variationName, variation], index) => (
                 <div className={cn(className)} key={index}>
-                    <h4 className="mb-3 capitalize text-sm text-brand-dark">
+                    <h4 className="mb-3 flex flex-row items-center capitalize text-sm text-brand-dark">
                         {getVariationDisplayName(variationName)}
                         <span className="font-medium">
-                          {attributes[variationName] ? `: ${attributes[variationName]}` : ":"}
+                          {attributes[variationName] ? (
+                            variationName === 'color' ? (
+                              <span className="flex items-center gap-2">
+                                <span>:</span>
+                                <span
+                                  className="inline-block w-4 h-4 rounded-full border border-brand-dark/10"
+                                  style={{ backgroundColor: attributes[variationName].toLowerCase() }}
+                                />
+                              </span>
+                            ) : (
+                              `: ${attributes[variationName]}`
+                            )
+                          ) : ":"}
                         </span>
                     </h4>
                     {variation.type === "swatch" && (

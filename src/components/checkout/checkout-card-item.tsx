@@ -20,7 +20,17 @@ export const CheckoutItem: React.FC<{ item: Item }> = ({ item }) => {
         />
       </div>
         <h6 className="font-normal text-15px text-brand-dark ltr:pl-3 rtl:pr-3">
-            <span className="font-medium">{item.quantity} x </span> {item.name}
+            <span className="font-medium">{item.quantity} x </span>
+            <div className="flex items-center gap-2">
+                <span>{item.name}</span>
+                {/* Show color circle if the item has color variation */}
+                {item?.color && (
+                    <span
+                        className="inline-block w-3 h-3 rounded-full border border-brand-dark/10"
+                        style={{ backgroundColor: item.color.toLowerCase() }}
+                    />
+                )}
+            </div>
         </h6>
         <div className="w-24 text-end font-semibold ltr:ml-auto rtl:mr-auto text-15px text-brand-dark ltr:pl-2 rtl:pr-2 shrink-0">
         {price}

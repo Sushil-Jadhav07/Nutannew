@@ -26,10 +26,10 @@ createRoot(document.getElementById('root')!).render(
 				<ManagedUI>
 					<AuthProvider>
 						<ToastProvider>
-							<App/>
-							{/* <PanelManaged/> */}
-							<ModalManaged/>
-							<DrawerManaged/>
+								<App/>
+								{/* <PanelManaged/> */}
+								<ModalManaged/>
+								<DrawerManaged/>
 						</ToastProvider>
 					</AuthProvider>
 				</ManagedUI>

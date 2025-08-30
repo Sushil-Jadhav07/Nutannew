@@ -312,7 +312,7 @@ export const siteNavigation = {
         // Categories 1
         {
             id: 1,
-            path: '/',
+            path: '/categories',
             label: 'Bags & Carry Items',
             type: 'mega',
             mega_categoryCol: 5,

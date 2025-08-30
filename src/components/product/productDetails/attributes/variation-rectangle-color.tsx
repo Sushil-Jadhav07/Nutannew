@@ -27,13 +27,12 @@ const VariationRectangleColor: React.FC<VariationRectangleColorProps> = ({
                         : "bg-white border-gray-300 hover:border-brand-dark"
                 )}
             >
-        <span
-            className="block w-4 h-4 rounded-full border border-brand-dark/10"
-            style={{ backgroundColor: option.value.toLowerCase() }}
-        >
-          <span className="sr-only">{option.value}</span>
-        </span>
-                <span>{option.value}</span>
+                <span
+                    className="block w-4 h-4 rounded-full border border-brand-dark/10"
+                    style={{ backgroundColor: option.value.toLowerCase() }}
+                >
+                    <span className="sr-only">{option.value}</span>
+                </span>
             </button>
         ))}
     </div>

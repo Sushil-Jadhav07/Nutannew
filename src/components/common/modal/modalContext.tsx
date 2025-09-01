@@ -6,7 +6,9 @@ type MODAL_VIEWS =
     |'SIGNUP_VIEW'
   |'FORGET_PASSWORD'
   |'PRODUCT_VIDEO'
-  |'PRODUCT_VIEW';
+  |'PRODUCT_VIEW'
+  |'ORDER_DETAILS'
+  |'CONFIRM_CANCEL_ORDER';
 
 interface State {
   view?: MODAL_VIEWS;

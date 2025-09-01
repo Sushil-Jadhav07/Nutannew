@@ -4,12 +4,41 @@ import Heading from '@/components/shared/heading';
 import {IoClose} from 'react-icons/io5';
 import OrderStatus from './order-status';
 import {DeliveryFee, DiscountPrice, SubTotalPrice, TotalPrice,} from '@/components/orders/price';
+import usePrice from '@/services/product/use-price';
 
 import {useUI} from '@/contexts/useUI';
 
 const OrderDrawer: React.FC = () => {
     const {data, closeDrawer} = useUI();
     const {shipping_address} = data;
+    // Build a robust address string from possible dropoff_location shapes
+    const buildDropoffAddress = (dl: any): string => {
+        if (!dl) return '';
+        // If dl.address is a string, use it as street line
+        const street = typeof dl.address === 'string'
+            ? dl.address
+            : (dl.address?.address || dl.address?.line || dl.address?.street || '');
+        // City/region/zip may live under dl.address or at root of dl
+        const city = (typeof dl.address === 'object' ? dl.address?.city : undefined) || dl.city || '';
+        const region = (typeof dl.address === 'object' ? dl.address?.region : undefined) || dl.region || '';
+        const zip = (typeof dl.address === 'object' ? dl.address?.zip : undefined) || dl.zip || '';
+        const parts = [street, city, region, zip].filter(Boolean);
+        return parts.join(', ');
+    };
+
+    const addressLine =
+        buildDropoffAddress(data?.dropoff_location) ||
+        (typeof shipping_address === 'string'
+            ? shipping_address
+            : formatLocation(shipping_address));
+
+    // Subtotal should reflect orderTotal from order (fallback to total)
+    const orderSubtotalAmount =
+        typeof data?.orderTotal === 'number' ? data.orderTotal : (typeof data?.total === 'number' ? data.total : 0);
+    const { price: orderSubtotal } = usePrice({ amount: orderSubtotalAmount, currencyCode: 'USD' });
+    const deliveryCostAmount = typeof data?.deliveryCost === 'number' ? data.deliveryCost : (typeof data?.delivery_fee === 'number' ? data.delivery_fee : 0);
+    const totalCostAmount = orderSubtotalAmount + deliveryCostAmount;
+    const { price: totalCost } = usePrice({ amount: totalCostAmount, currencyCode: 'USD' });
     
     return (
         <>
@@ -35,11 +64,9 @@ const OrderDrawer: React.FC = () => {
                             </div>
                             <div
                                 className="rounded border border-solid min-h-[90px] bg-gray-100 p-4 border-border-two text-[12px] md:text-[14px]">
-                                <p className="text-brand-dark opacity-70">
-                                    {formatLocation(shipping_address)}
-                                </p>
+                                <p className="text-brand-dark opacity-70">{addressLine}</p>
                             </div>
-                            <OrderStatus status={data?.status?.serial}/>
+                            <OrderStatus status={typeof data?.status?.serial === 'number' ? data.status.serial : undefined} statusStr={data?.orderStatus}/>
                             <div
                                 className="grid grid-cols-12 bg-gray-300 py-3 rounded-[3px] text-brand-dark text-[12px] md:text-[14px]">
                                 <div className="col-span-2"></div>
@@ -57,9 +84,7 @@ const OrderDrawer: React.FC = () => {
                                     <div className="pb-1 mb-2 border-b border-border-base ltr:pl-20 rtl:pr-20">
                                         <p className="flex justify-between mb-1">
                                             <span className="ltr:mr-8 rtl:ml-8">Sub total: </span>
-                                            <span className="font-medium">
-                        <SubTotalPrice items={data?.products}/>
-                      </span>
+                                            <span className="font-medium">{orderSubtotal}</span>
                                         </p>
                                         {typeof data?.discount === 'number' && (
                                             <p className="flex justify-between mb-2">
@@ -80,9 +105,7 @@ const OrderDrawer: React.FC = () => {
                                     </div>
                                     <p className="flex justify-between mb-2 ltr:pl-20 rtl:pr-20">
                                         <span className="ltr:mr-8 rtl:ml-8">Total Cost:</span>
-                                        <span className="font-medium">
-                      <TotalPrice items={data}/>
-                    </span>
+                                        <span className="font-medium">{totalCost}</span>
                                     </p>
                                 </div>
                             </div>

@@ -10,6 +10,8 @@ import React from "react";
 // const ForgetPasswordForm = React.lazy(() => import('@/components/auth/forget-password-form'));
 const ProductQuickview = React.lazy(() => import('@/components/product/product-quickview'));
 const ProductVideo = React.lazy(() => import('@/components/product/productDetails/product-video'));
+const OrderDetailsModal = React.lazy(() => import('@/components/orders/order-details-modal'));
+const ConfirmCancelOrderModal = React.lazy(() => import('@/components/orders/confirm-cancel-modal'));
 
 export default function ModalManaged() {
   const { isOpen, view } = useModalState();
@@ -22,6 +24,8 @@ export default function ModalManaged() {
       {view === 'FORGET_PASSWORD' && <ForgetPasswordForm />} */}
       {view === 'PRODUCT_VIEW' && <ProductQuickview/>}
       {view === 'PRODUCT_VIDEO' && <ProductVideo/>}
+      {view === 'ORDER_DETAILS' && <OrderDetailsModal/>}
+      {view === 'CONFIRM_CANCEL_ORDER' && <ConfirmCancelOrderModal/>}
     </Modal>
   );
 }

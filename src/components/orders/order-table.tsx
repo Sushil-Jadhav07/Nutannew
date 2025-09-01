@@ -1,6 +1,6 @@
 import { TableRC} from '@/components/shared/table-rc';
 import Input from '@/components/shared/form/input';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Pagination from '@/components/shared/pagination';
 import ActionsButton from '@/components/shared/action-button';
 import { TotalPrice } from '@/components/orders/price';
@@ -10,6 +10,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import timezone from 'dayjs/plugin/timezone';
 import { GrNext, GrPrevious } from 'react-icons/gr';
 import { BsSearch } from 'react-icons/bs';
+import usePrice from '@/services/product/use-price';
 
 export const CreatedAt: React.FC<{ createdAt?: any }> = ({ createdAt }) => {
   dayjs.extend(relativeTime);
@@ -23,15 +24,29 @@ export const CreatedAt: React.FC<{ createdAt?: any }> = ({ createdAt }) => {
 };
 
 export const Status: React.FC<{ item?: any }> = ({ item }) => {
+  const statusName: string | undefined = item?.orderStatus || item?.status?.name;
+  const colorFromData = item?.status?.color as string | undefined;
+  const fallbackColorMap: Record<string, string> = {
+    delivered: '#02B290',
+    'on the way': '#FED030',
+    cancelled: '#F35C5C',
+    'order placed': '#A6B1BD',
+    pending: '#A6B1BD',
+  };
+  const key = (statusName || '').toLowerCase();
+  const bulletColor = colorFromData || fallbackColorMap[key] || '#A6B1BD';
   return (
-    <span className={item?.status?.name?.replace(/\s/g, '_').toLowerCase()}>
-      <span
-        className="bullet"
-        style={{ backgroundColor: item?.status?.color }}
-      />
-      {item?.status?.name}
+    <span className={(statusName || '').replace(/\s/g, '_').toLowerCase()}>
+      <span className="bullet" style={{ backgroundColor: bulletColor }} />
+      {statusName}
     </span>
   );
+};
+
+const OrderTotalCell: React.FC<{ item: any }> = ({ item }) => {
+  const amount = typeof item?.orderTotal === 'number' ? item.orderTotal : (typeof item?.total === 'number' ? item.total : 0);
+  const { price } = usePrice({ amount, currencyCode: 'USD' });
+  return <span className="whitespace-nowrap">{price}</span>;
 };
 
 const columns = [
@@ -62,15 +77,21 @@ const columns = [
   },
   {
     title: 'Delivery Time',
-    dataIndex: 'delivery_time',
     key: 'delivery_time',
-    width: 140,
+    width: 160,
+    render: function delivery() {
+      const date = dayjs().add(7, 'day').format('D MMM, YYYY');
+      return <span className="whitespace-nowrap">{date}</span>;
+    },
   },
   {
     title: 'Total Price',
     key: 'total',
     width: 130,
     render: function totalPrice(items: any) {
+      if (typeof items?.orderTotal === 'number') {
+        return <OrderTotalCell item={items} />;
+      }
       return <TotalPrice items={items} />;
     },
   },
@@ -85,13 +106,19 @@ const columns = [
   },
 ];
 
-const OrderTable: React.FC<{ orders?: any; }> = ({
-  orders,
+const OrderTable: React.FC<{ orders?: any[]; }> = ({
+  orders = [],
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [value, setValue] = useState('');
   const countPerPage = 5;
   const [filterData, setDataValue] = useState(orders.slice(0, countPerPage));
+
+  // Update paged data when orders prop changes
+  useEffect(() => {
+    setCurrentPage(1);
+    setDataValue(orders.slice(0, countPerPage));
+  }, [orders]);
 
   const updatePage = (p: any) => {
     setCurrentPage(p);

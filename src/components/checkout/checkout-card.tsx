@@ -12,6 +12,7 @@ import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/config/firebase';
 import {useIsMounted} from '@/utils/use-is-mounted';
 import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Loading from "@/components/shared/loading";
 import {ROUTES} from "@/utils/routes";
 
@@ -28,6 +29,7 @@ interface UsePriceReturn {
 
 // Define the component with TypeScript
 const CheckoutCard: React.FC = () => {
+    const navigate = useNavigate();
     const { user } = useContext(AuthContext);
     const { formData, isCheckoutComplete } = useCheckout();
     const cartState = useCart();
@@ -109,12 +111,14 @@ const CheckoutCard: React.FC = () => {
                     // Remove size from product name (e.g., "Giftset Product - M" -> "Giftset Product")
                     const cleanName = item.name?.replace(/- [A-Z]+$/, '').trim() || 'Unknown Product';
                     
+                    const imgThumb = item?.image?.thumbnail || item?.image?.url || item?.imageUrl || item?.thumbnail || (Array.isArray(item?.images) ? (item.images[0]?.thumbnail || item.images[0]?.url) : undefined) || (typeof item?.image === 'string' ? item.image : undefined) || '';
                     return {
                         p_name: cleanName,
                         p_price: item.price.toString(),
                         p_qty: (item.quantity || 1).toString(),
                         p_size: size,
-                        p_color: item.color || '#000000'
+                        p_color: item.color || '#000000',
+                        image: imgThumb ? { thumbnail: imgThumb, original: imgThumb } : undefined,
                     };
                 }),
                 
@@ -179,11 +183,8 @@ const CheckoutCard: React.FC = () => {
             
             console.log('Order created successfully with ID:', orderData.OrderID);
             
-            // Show success message
-            alert('Order placed successfully! Order ID: ' + orderData.OrderID);
-            
-            // Redirect to order confirmation or home page
-            window.location.href = ROUTES.HOME;
+            // Navigate to order confirmation with order in state
+            navigate(ROUTES.ORDER, { state: { order: orderData } });
             
         } catch (error) {
             console.error('Error creating order:', error);

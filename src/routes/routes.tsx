@@ -54,6 +54,8 @@ const Privacypage = React.lazy(() => import("@/pages/(default)/privacy/page"));
 const Termspage = React.lazy(() => import("@/pages/(default)/terms/page"));
 const Searchpage = React.lazy(() => import("@/pages/(default)/search/page"));
 const Comparepage = React.lazy(() => import("@/pages/(default)/compare/page"));
+const Aboutpage = React.lazy(() => import("@/pages/(default)/about-us/page"));
+const Returnpage = React.lazy(() => import("@/pages/(default)/return-policy/page"));
 
 //Categories and Product
 const Categoriespage = React.lazy(() => import("@/pages/(default)/categories/page"));
@@ -115,6 +117,16 @@ const routesConfig = [
     {
         path: ROUTES.CONTACT,
         component: Contactpage,
+        layout: DefaultLayout,
+    },
+    {
+        path: ROUTES.ABOUT,
+        component: Aboutpage,
+        layout: DefaultLayout,
+    },
+    {
+        path: ROUTES.RETURN,
+        component: Returnpage,
         layout: DefaultLayout,
     },
     {

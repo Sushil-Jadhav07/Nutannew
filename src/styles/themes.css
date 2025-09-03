@@ -38,6 +38,10 @@
         list-style: decimal;
         @apply ltr:pl-4 rtl:pr-4 lg:ltr:pl-8 lg:rtl:pr-8 space-y-1.5;
     }
+    .order-list-enable ul {
+        list-style: disc;
+        @apply ltr:pl-4 rtl:pr-4 lg:ltr:pl-8 lg:rtl:pr-8 space-y-1.5;
+    }
 
     button {
         @apply cursor-pointer;

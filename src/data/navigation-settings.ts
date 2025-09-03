@@ -1165,8 +1165,8 @@ export const siteNavigation = {
         // },
         {
             id: 9,
-            path: '/contact-us',
-            label: 'Contact Us',
+            path: '/about-us',
+            label: 'About Us',
         },
     ],
 }

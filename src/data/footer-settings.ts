@@ -21,16 +21,21 @@ export const footerSettings = {
                 },
                 {
                     id: 4,
+                    title: 'Return Policy',
+                    path: '/return-policy',
+                },
+                {
+                    id: 5,
                     title: 'Terms & Condition',
                     path: '/terms',
                 },
                 {
-                    id: 5,
+                    id: 6,
                     title: 'Checkout',
                     path: '/checkout',
                 },
                 {
-                    id: 6,
+                    id: 7,
                     title: 'Faq',
                     path: '/faq',
                 },
@@ -117,20 +122,21 @@ export const footerSettings = {
                     title: 'About us',
                     path: '/about-us',
                 },
+                
                 {
                     id: 2,
-                    title: 'About The Store',
-                    path: '/contact-us',
-                },
-                {
-                    id: 3,
                     title: 'Privacy Policy',
                     path: '/privacy',
                 },
                 {
-                    id: 4,
+                    id: 3,
                     title: 'Terms & Condition',
                     path: '/terms',
+                },
+                {
+                    id: 4,
+                    title: 'Return Policy',
+                    path: '/return-policy',
                 },
                 {
                     id: 5,
@@ -140,7 +146,7 @@ export const footerSettings = {
                 {
                     id: 6,
                     title: 'Faq',
-                    path: '/faq',
+                    path: '/faq-2',
                 },
             ],
         }

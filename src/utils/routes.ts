@@ -28,6 +28,8 @@ export const ROUTES : Record<string, RouteType> = {
   TERMS: '/terms',
   PRIVACY: '/privacy',
   FAQ: '/faq',
+  ABOUT: '/about-us',
+  RETURN: '/return-policy',
   FORGET_PASSWORD: '/forget-password',
   CHANGE_PASSWORD: '/change-password',
   ACCOUNT: '/account',

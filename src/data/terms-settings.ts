@@ -1,17 +1,39 @@
 export const termsCondition = [
   {
     id: '1',
-    title: 'Neque porro quisquam est qui dolorem ipsum',
-    description: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mauris dui, porta non sapien lacinia, cursus feugiat purus. Nulla in lectus massa. Aenean a sem convallis, aliquet ligula vitae, rutrum libero. Donec vitae tincidunt metus. \n\n</p><p>Donec sed justo quis elit malesuada tempor. Phasellus cursus tempus placerat. Ut non sapien ullamcorper, bibendum neque at, lobortis enim. Integer urna nisi, iaculis in varius sed, tincidunt sed metus. Quisque iaculis nibh non sem tincidunt facilisis. Maecenas pulvinar urna ac elit placerat imperdiet. Etiam quam nisi, blandit ac magna sit amet, bibendum porttitor nisi.</p>\n<p>\n    Quisque est quam, eleifend nec quam eu, fringilla cursus orci. Curabitur eu cursus libero. Sed gravida non elit sed venenatis. Fusce scelerisque imperdiet metus, at elementum leo commodo vitae. Aliquam ut augue diam. Mauris nec arcu commodo, luctus arcu vitae, viverra nisl.\n</p><p>Pellentesque placerat metus non risus tempor, vel dignissim nulla vulputate. Aenean eu consectetur lorem.</p>',
+    title: '1. Orders & Pricing',
+    description:
+      '<ul>'+
+      '<li>Images/descriptions for reference only</li>'+
+      '<li><strong>Prices shown in your local currency</strong> for convenience</li>'+
+      '<li>Final billing may be in AED, INR, or USD depending on your location/payment method</li>'+
+      '<li>Prices subject to change without notice</li>'+
+      '<li>Orders confirmed only upon payment</li>'+
+      '</ul>',
   },
   {
     id: '2',
-    title: 'Fusce condimentum erat non pretium posuere',
-    description: '<p>We may automatically track certain information about you based upon your behavior on the website. We use this information to do internal research on our users’ demographics, interests, and behavior to better understand, protect and serve our users. This information is compiled and analyzed on an aggregated basis. This information may include the URL that you just came from (whether this URL is on the website or not), which URL you next go to (whether this URL is on the website or not), your computer browser information, your IP address, and other information associated with your interaction with the website. <strong>We may also share your Mobile IP/Device IP with third party(ies) and to the best of our knowledge, be-life and representations given to us by these third party(ies) this information is not stored.</strong></p> <ol><li>Identifiers (e.g. name, mailing address, email address, phone number, credit/debit card number)</li><li>Characteristics of protected classifications (e.g. gender, age)</li><li>Commercial information (e.g. products or services purchased, purchase history)</li><li>Internet or other electronic network activity (e.g. browse or search history)</li><li>Geo location data (e.g. latitude or longitude)</li><li>Audio, electronic, visual, or similar information (e.g. recording of Guest service calls)</li><li>Inferences drawn from any of the above (e.g. preferences or characteristics)</li></ol>',
+    title: '2. IP & Usage',
+    description:
+      '<ul>'+
+      '<li>Site content is the property of Nutan Overseas FZE</li>'+
+      '<li>Cannot be copied or reused without permission</li>'+
+      '</ul>',
   },
   {
     id: '3',
-    title: 'Class aptent taciti sociosqu ad litora torquent',
-    description: '<p>To protect against the loss, misuse and alteration of the information under its control, the Company has in place appropriate physical, electronic and managerial procedures. For example, the Company servers are accessible only to authorized personnel and your information is shared with employees and authorized personnel on a need to know basis to complete the transaction and to provide the services requested by you. Although the Company endeavour to safeguard the confidentiality of your personally identifiable information, transmissions made by means of the Internet cannot be made absolutely secure. By using the website, you agree that the Company will have no liability for disclosure of your information due to errors in transmission and/or unauthorized acts of third parties.</p>\n\n<ol>\n  <li>Performing services, including maintaining or servicing accounts, providing customer service, processing or fulfilling orders and transactions, verifying customer information, processing payments, providing advertising or marketing services, providing analytics services, or providing similar services;</li>\n  <li>Auditing related to a current interaction with you and concurrent transactions, including, but not limited to, counting ad impressions to unique visitors, verifying positioning and quality of ad impressions, and auditing compliance;</li>\n  <li>Short-term, transient use, including, but not limited to, the contextual customization of ads shown as part of the same interaction;</li>\n  <li>Detecting security incidents, protecting against malicious, deceptive, fraudulent, or illegal activity, and prosecuting those responsible for that activity;</li>\n  <li>Debugging to identify and repair errors that impair existing intended functionality;</li>\n  <li>Undertaking internal research for technological development and demonstration; and</li>\n  <li>Undertaking activities to verify or maintain the quality or safety of a service or device that is owned, manufactured, manufactured for, or controlled by us, and to improve, upgrade, or enhance the service or device that is owned, manufactured, manufactured for, or controlled by us.</li>\n</ol>',
+    title: '3. Liability',
+    description:
+      '<ul>'+
+      '<li>We\'re not liable for indirect losses from website use or products</li>'+
+      '</ul>',
+  },
+  {
+    id: '4',
+    title: '4. Jurisdiction',
+    description:
+      '<ul>'+
+      '<li>Governed by laws of the United Arab Emirates</li>'+
+      '</ul><p>Support: <a href="mailto:support@nutanoverseas.com">support@nutanoverseas.com</a></p>',
   },
 ];

@@ -3,13 +3,8 @@ import cn from "classnames";
 import Link from '@/components/shared/link';
 import {colorMap} from "@/data/color-settings";
 import {usePanel} from "@/contexts/usePanel";
-import { OrderData } from '@/store/orderSlice';
 
-interface OrderInformationProps {
-	orderData: OrderData;
-}
-
-export default function OrderInformation({ orderData }: OrderInformationProps) {
+export default function OrderInformation() {
 	const { selectedColor } = usePanel();
 	
 	return (
@@ -20,8 +15,8 @@ export default function OrderInformation({ orderData }: OrderInformationProps) {
 					<h2 className="text-base md:text-lg xl:text-[20px] font-semibold text-brand-dark  lg:pt-0">
 						Thank you for your order!
 					</h2>
-					<p >
-						Your order number is <span className="font-medium">{orderData.OrderID}</span>
+					<p>
+						Your order number will be emailed to you.
 					</p>
 					
 					<p className="leading-8">
@@ -52,7 +47,7 @@ export default function OrderInformation({ orderData }: OrderInformationProps) {
 				</div>
 				{/* Right Section - Order Summary */}
 				<div className="bg-white  rounded-lg border border-border-base">
-					<OrderDetails orderData={orderData} />
+					<OrderDetails />
 				</div>
 			</div>
 		

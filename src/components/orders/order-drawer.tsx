@@ -3,13 +3,15 @@ import {formatLocation} from '@/utils/format-location';
 import Heading from '@/components/shared/heading';
 import {IoClose} from 'react-icons/io5';
 import OrderStatus from './order-status';
-import {DeliveryFee, DiscountPrice, SubTotalPrice, TotalPrice,} from '@/components/orders/price';
+import {DeliveryFee, DiscountPrice} from '@/components/orders/price';
 import usePrice from '@/services/product/use-price';
 
 import {useUI} from '@/contexts/useUI';
+import { useModalAction } from '@/components/common/modal/modalContext';
 
 const OrderDrawer: React.FC = () => {
     const {data, closeDrawer} = useUI();
+    const { openModal } = useModalAction();
     const {shipping_address} = data;
     // Build a robust address string from possible dropoff_location shapes
     const buildDropoffAddress = (dl: any): string => {
@@ -111,6 +113,7 @@ const OrderDrawer: React.FC = () => {
                             </div>
                             <div className="mt-12 ltr:text-right rtl:text-left">
                 <span
+                    onClick={() => { closeDrawer(); openModal('REPORT_ORDER', data); }}
                     className="py-3 px-5 cursor-pointer inline-block text-[12px] md:text-[14px] text-black font-medium bg-white rounded border border-solid border-[#DEE5EA] ltr:mr-4 rtl:ml-4   hover:border-[#333] transition-all capitalize">
                   Report order
                 </span>

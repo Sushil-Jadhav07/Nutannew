@@ -5,6 +5,7 @@ import {useCart} from '@/contexts/useCart';
 import Button from '@/components/shared/button';
 import {CheckoutItem} from '@/components/checkout/checkout-card-item';
 import {CheckoutCardFooterItem} from './checkout-card-footer-item';
+import CouponSuggestions from '@/components/checkout/coupon-suggestions';
 import { useCheckout } from '@/contexts/CheckoutContext';
 import { AuthContext } from '@/contexts/AuthProvider';
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
@@ -15,29 +16,15 @@ import Loading from "@/components/shared/loading";
 import {ROUTES} from "@/utils/routes";
 
 // Define interfaces for TypeScript
-interface CartItem {
-    id: string | number;
-    price: number;
-    name: string;
-    quantity: number;
-    [key: string]: any;
-}
+// Cart item type inferred from cart context
 
-interface FooterItem {
-    id: number;
-    name: string;
-    price: string;
-}
+// Footer item type removed; footer built inline
 
 interface UsePriceReturn {
     price: string;
 }
 
-interface UseCartReturn {
-    items: CartItem[];
-    total: number;
-    isEmpty: boolean;
-}
+// (kept for reference) UseCartReturn
 
 // Define the component with TypeScript
 const CheckoutCard: React.FC = () => {
@@ -45,14 +32,59 @@ const CheckoutCard: React.FC = () => {
     const { formData, isCheckoutComplete } = useCheckout();
     const cartState = useCart();
     const { items, total, isEmpty } = cartState;
+    const [couponCode, setCouponCode] = useState('');
+    const [appliedCoupon, setAppliedCoupon] = useState<any | null>(null);
+    const [couponError, setCouponError] = useState<string>('');
     const [isCreatingOrder, setIsCreatingOrder] = useState(false);
     
     // UsePrice hook with typed props and return
+    const discountAmount = (() => {
+        if (!appliedCoupon) return 0;
+        const type = String(appliedCoupon.couponAmountDetails || '').toLowerCase();
+        const amt = Number(appliedCoupon.couponAmount || 0);
+        if (!isFinite(amt) || amt <= 0) return 0;
+        if (type === 'percentage' || type === 'percent') return Math.max(0, Math.min(total, (total * amt) / 100));
+        return Math.max(0, Math.min(total, amt));
+    })();
+
+    const payable = Math.max(0, total - discountAmount);
+
     const { price: subtotal } = usePrice({
+        amount: payable,
+        currencyCode: 'USD',
+    }) as UsePriceReturn;
+    const { price: originalTotalPrice } = usePrice({
         amount: total,
         currencyCode: 'USD',
     }) as UsePriceReturn;
+    const { price: discountPrice } = usePrice({
+        amount: -discountAmount,
+        currencyCode: 'USD',
+    }) as UsePriceReturn;
     
+    // Apply coupon
+    const onApplyCoupon = async () => {
+        setCouponError('');
+        setAppliedCoupon(null);
+        if (!couponCode.trim()) return;
+        try {
+            const { fetchCouponByCode, isCouponActive } = await import('@/services/coupon/firebase-coupon');
+            const c = await fetchCouponByCode(couponCode.trim());
+            if (!c || !isCouponActive(c)) {
+                setCouponError('Invalid or inactive coupon');
+                return;
+            }
+            setAppliedCoupon(c);
+        } catch (e) {
+            setCouponError('Unable to validate coupon');
+        }
+    };
+
+    const onRemoveCoupon = () => {
+        setAppliedCoupon(null);
+        setCouponError('');
+    };
+
     // Create order in Firebase
     const createOrder = async () => {
         if (!isCheckoutComplete || !user?.uid) {
@@ -132,7 +164,13 @@ const CheckoutCard: React.FC = () => {
                 customerPhone: formData.contact?.phone || '',
                 paymentMethod: formData.payment?.paymentMethod || 'cod',
                 shippingType: formData.shipping?.addressType || 'home',
-                orderTotal: total,
+                orderTotal: payable,
+                discount: discountAmount,
+                coupon: appliedCoupon ? {
+                    code: appliedCoupon.couponCode,
+                    amount: appliedCoupon.couponAmount,
+                    type: appliedCoupon.couponAmountDetails,
+                } : undefined,
                 itemsCount: items.length
             };
 
@@ -155,24 +193,7 @@ const CheckoutCard: React.FC = () => {
         }
     };
     
-    // Mock checkout footer data
-    const checkoutFooter: FooterItem[] = [
-        {
-            id: 1,
-            name: 'Subtotal',
-            price: subtotal,
-        },
-        {
-            id: 2,
-            name: 'Shipping',
-            price: '$0',
-        },
-        {
-            id: 3,
-            name: 'Order total',
-            price: subtotal,
-        },
-    ];
+    // Removed old static footer; totals computed dynamically below
     
     // Custom hook to check if component is mounted
     const mounted = useIsMounted();
@@ -205,10 +226,49 @@ const CheckoutCard: React.FC = () => {
             
             {!isEmpty && (
                 <>
+                    {/* Coupon */}
+                    <div className="mt-2 py-4 rounded-lg">
+                        <h4 className="font-medium text-gray-900 mb-2">Have a coupon?</h4>
+                        <div className="flex gap-2">
+                            <input
+                                type="text"
+                                value={couponCode}
+                                onChange={(e) => setCouponCode(e.target.value)}
+                                placeholder="Enter coupon code"
+                                className="flex-1 border border-[#E3E8EC] rounded px-3 py-2 text-sm focus:outline-none focus:border-[#3B3310] focus:ring-1 focus:ring-[#3B3310]"
+                            />
+                            {!appliedCoupon ? (
+                                <button
+                                    type="button"
+                                    className="px-4 py-2 text-sm rounded bg-[#333] text-white hover:bg-[#333]/90"
+                                    onClick={onApplyCoupon}
+                                >
+                                    Apply
+                                </button>
+                            ) : (
+                                <button
+                                    type="button"
+                                    className="px-4 py-2 text-sm rounded bg-[#F35C5C] text-white hover:bg-[#e14e4e]"
+                                    onClick={onRemoveCoupon}
+                                >
+                                    Remove
+                                </button>
+                            )}
+                        </div>
+                        {couponError && <p className="text-xs text-[#F35C5C] mt-2">{couponError}</p>}
+                        {appliedCoupon && (
+                            <div className="text-xs text-green-700 mt-2">
+                                Applied {appliedCoupon.couponName} ({appliedCoupon.couponCode}) — {String(appliedCoupon.couponAmountDetails).toLowerCase()==='percentage' ? `${appliedCoupon.couponAmount}%` : `$${appliedCoupon.couponAmount}`} off
+                            </div>
+                        )}
+                        <CouponSuggestions onApply={(code) => { setCouponCode(code); onApplyCoupon(); }} appliedCode={appliedCoupon?.couponCode} />
+                    </div>
                     <div className="space-y-2 pt-5 border-t border-border-base">
-                        {checkoutFooter.map((item) => (
-                            <CheckoutCardFooterItem item={item} key={item.id} />
-                        ))}
+                        <CheckoutCardFooterItem item={{ id: 1, name: 'Subtotal', price: originalTotalPrice }} />
+                        {appliedCoupon && (
+                          <CheckoutCardFooterItem item={{ id: 2, name: 'Discount', price: discountPrice }} />
+                        )}
+                        <CheckoutCardFooterItem item={{ id: 3, name: 'Order total', price: subtotal }} />
                     </div>
                     
                     {/* Checkout Status */}

@@ -1,11 +1,21 @@
 import { useModalAction, useModalState } from '@/components/common/modal/modalContext';
+import { cancelOrder } from '@/services/order/firebase-orders';
+import { useQueryClient } from '@tanstack/react-query';
 
 const ConfirmCancelOrderModal: React.FC = () => {
   const { data } = useModalState();
   const { closeModal } = useModalAction();
+  const queryClient = useQueryClient();
 
-  const onConfirm = () => {
-    // TODO: Implement cancel order action (update Firestore or call API)
+  const onConfirm = async () => {
+    const id: string | undefined = data?.id;
+    if (!id) return closeModal();
+    const ok = await cancelOrder(id);
+    if (ok) {
+      // Refresh both firebase order queries
+      queryClient.invalidateQueries({ queryKey: ['firebase-user-orders'] });
+      queryClient.invalidateQueries({ queryKey: ['firebase-user-orders-by-email'] });
+    }
     closeModal();
   };
 

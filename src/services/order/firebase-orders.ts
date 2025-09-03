@@ -1,4 +1,4 @@
-import { collection, getDocs, query, where, orderBy, DocumentData, QuerySnapshot } from 'firebase/firestore';
+import { collection, getDocs, query, where, DocumentData, QuerySnapshot, doc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/config/firebase';
 
 // Types expected by UI components (order-table and order-drawer)
@@ -34,6 +34,7 @@ export interface UserOrder {
   orderStatus?: string;
   dropoff_location?: any;
   deliveryCost?: number;
+  hiddenForUser?: boolean;
 }
 
 // Transform a Firestore order doc to the shape our UI expects
@@ -105,6 +106,7 @@ const transformOrder = (doc: DocumentData): UserOrder => {
     customer: data.customer ?? { id: data.userId, email: data.userEmail },
     orderStatus,
     dropoff_location: data.dropoff_location,
+    hiddenForUser: data.hiddenForUser === true,
   };
 };
 
@@ -127,7 +129,10 @@ export const fetchOrdersByUser = async (userId: string): Promise<UserOrder[]> =>
       return tb - ta;
     });
 
-    return orders;
+    // Hide orders that user cancelled
+    const visibleOrders = orders.filter((o) => o.hiddenForUser !== true);
+
+    return visibleOrders;
   } catch (err) {
     console.error('Error fetching user orders from Firebase:', err);
     return [];
@@ -164,9 +169,57 @@ export const fetchOrdersByCustomerEmail = async (email: string): Promise<UserOrd
       return tb - ta;
     });
 
-    return orders;
+    const visibleOrders = orders.filter((o) => o.hiddenForUser !== true);
+
+    return visibleOrders;
   } catch (err) {
     console.error('Error fetching orders by customerEmail from Firebase:', err);
     return [];
+  }
+};
+
+// Mark an order as cancelled and hide it from the user's list (but keep in Firestore)
+export const cancelOrder = async (orderId: string): Promise<boolean> => {
+  try {
+    const ref = doc(db, 'Order', orderId);
+    await updateDoc(ref, {
+      orderStatus: 'cancelled',
+      status: { name: 'cancelled', color: '#F35C5C', serial: 999 },
+      hiddenForUser: true,
+      cancelledAt: serverTimestamp(),
+    });
+    return true;
+  } catch (err) {
+    console.error('Error cancelling order in Firebase:', err);
+    return false;
+  }
+};
+
+// Create a return/report request for an order
+export const createOrderReturnRequest = async (payload: {
+  orderId: string;
+  tracking_number: string;
+  reason: string;
+  notes?: string;
+  images?: string[];
+  type?: 'return' | 'issue';
+}): Promise<boolean> => {
+  try {
+    const col = collection(db, 'OrderReturnRequests');
+    // We use add with auto-id
+    const docRef = await import('firebase/firestore').then(m => m.addDoc(col, {
+      createdAt: serverTimestamp(),
+      orderId: payload.orderId,
+      tracking_number: payload.tracking_number,
+      reason: payload.reason,
+      notes: payload.notes ?? '',
+      images: Array.isArray(payload.images) ? payload.images : [],
+      status: 'requested',
+      type: payload.type ?? 'return',
+    }));
+    return !!docRef;
+  } catch (err) {
+    console.error('Error creating OrderReturnRequests entry:', err);
+    return false;
   }
 };

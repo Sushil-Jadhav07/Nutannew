@@ -12,6 +12,7 @@ const ProductQuickview = React.lazy(() => import('@/components/product/product-q
 const ProductVideo = React.lazy(() => import('@/components/product/productDetails/product-video'));
 const OrderDetailsModal = React.lazy(() => import('@/components/orders/order-details-modal'));
 const ConfirmCancelOrderModal = React.lazy(() => import('@/components/orders/confirm-cancel-modal'));
+const ReportOrderModal = React.lazy(() => import('@/components/orders/report-order-modal'));
 
 export default function ModalManaged() {
   const { isOpen, view } = useModalState();
@@ -26,6 +27,7 @@ export default function ModalManaged() {
       {view === 'PRODUCT_VIDEO' && <ProductVideo/>}
       {view === 'ORDER_DETAILS' && <OrderDetailsModal/>}
       {view === 'CONFIRM_CANCEL_ORDER' && <ConfirmCancelOrderModal/>}
+      {view === 'REPORT_ORDER' && <ReportOrderModal/>}
     </Modal>
   );
 }

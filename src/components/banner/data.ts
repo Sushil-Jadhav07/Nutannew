@@ -6,12 +6,12 @@ export const homeBannerSlider = [
     slug: '/',
     image: {
       mobile: {
-        url: '/assets/images/banner/home1/slider-1.png',
+        url: '/assets/images/banner/home1/slider-3.jpeg',
         width: 541,
         height: 220,
       },
       desktop: {
-        url: '/assets/images/banner/home1/slider-1.png',
+        url: '/assets/images/banner/home1/slider-3.jpeg',
         width: 441,
         height: 185,
       },
@@ -23,12 +23,12 @@ export const homeBannerSlider = [
     slug: '/',
     image: {
       mobile: {
-        url: '/assets/images/banner/home1/slider-2.png',
+        url: '/assets/images/banner/home1/slider-3.jpeg',
         width: 541,
         height: 220,
       },
       desktop: {
-        url: '/assets/images/banner/home1/slider-2.png',
+        url: '/assets/images/banner/home1/slider-3.jpeg',
         width: 441,
         height: 185,
       },
@@ -43,12 +43,12 @@ export const homeGridSlider = [
     slug: '/',
     image: {
       mobile: {
-        url: '/assets/images/banner/home1/slider-1.png',
+        url: '/assets/images/banner/home1/slider-2.png',
         width: 441,
         height: 185,
       },
       desktop: {
-        url: '/assets/images/banner/home1/slider-1.png',
+        url: '/assets/images/banner/home1/slider-2.png',
         width: 441,
         height: 185,
       },
@@ -60,12 +60,12 @@ export const homeGridSlider = [
     slug: '/',
     image: {
       mobile: {
-        url: '/assets/images/banner/home1/slider-2.png',
+        url: '/assets/images/banner/home1/slider-1.jpeg',
         width: 441,
         height: 185,
       },
       desktop: {
-        url: '/assets/images/banner/home1/slider-2.png',
+        url: '/assets/images/banner/home1/slider-1.jpeg',
         width: 441,
         height: 185,
       },

@@ -94,6 +94,7 @@ const transformFirebaseProduct = (doc: DocumentData): Product => {
       name: data.productCategory || 'Uncategorized',
       slug: data.productCategory?.toLowerCase() || 'uncategorized'
     }],
+    subcategory: data.productSubCategory || '',
     tag: [],
     meta: [],
     brand: data.productType || '',
@@ -310,5 +311,92 @@ export const fetchProductsByCategoryFromFirebase = async (
   } catch (error) {
     console.error(`❌ Error fetching products for category ${category} from Firebase:`, error);
     return [];
+  }
+};
+
+// Fetch products by subcategory from Firebase
+export const fetchProductsBySubCategoryFromFirebase = async (
+  subcategory: string,
+  limitCount: number = 20
+): Promise<Product[]> => {
+  try {
+    console.log(`🔍 Fetching products from Firebase for subcategory: "${subcategory}"`);
+    const productsRef = collection(db, 'Product');
+    
+    // Query products by subcategory (at root level)
+    const q = query(
+      productsRef, 
+      where('productSubCategory', '==', subcategory),
+      limit(limitCount)
+    );
+    
+    const querySnapshot: QuerySnapshot = await getDocs(q);
+    console.log(`📊 Found ${querySnapshot.size} products for subcategory: "${subcategory}"`);
+    
+    if (querySnapshot.empty) {
+      console.log(`⚠️ No products found for subcategory: "${subcategory}"`);
+      console.log(`🔍 Let's check what subcategories exist in Firebase...`);
+      
+      // Debug: Let's see what subcategories actually exist
+      const allProductsRef = collection(db, 'Product');
+      const allQuery = query(allProductsRef, limit(20));
+      const allSnapshot = await getDocs(allQuery);
+      
+      console.log(`🔍 Sample of existing productSubCategory values:`);
+      const subcategories = new Set();
+      allSnapshot.forEach((doc) => {
+        const data = doc.data();
+        if (data.productSubCategory) {
+          subcategories.add(data.productSubCategory);
+        }
+      });
+      
+      console.log(`📋 Available subcategories:`, Array.from(subcategories).sort());
+      return [];
+    }
+    
+    const products: Product[] = [];
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      console.log(`🔍 Raw Firebase data for ${doc.id}:`, {
+        productName: data.productName,
+        productSubCategory: data.productSubCategory,
+        productCategory: data.productCategory
+      });
+      
+      const product = transformFirebaseProduct(doc);
+      console.log(`✅ Transformed product: ${product.name} (Subcategory: ${subcategory})`);
+      products.push(product);
+    });
+    
+    console.log(`🎯 Returning ${products.length} products for subcategory: "${subcategory}"`);
+    return products;
+    
+  } catch (error) {
+    console.error(`❌ Error fetching products for subcategory "${subcategory}" from Firebase:`, error);
+    
+    // Fallback: Get all products and filter client-side
+    try {
+      console.log(`🔄 Trying fallback approach - fetching all products and filtering client-side...`);
+      const allProductsRef = collection(db, 'Product');
+      const allQuery = query(allProductsRef, limit(100)); // Get more products for filtering
+      const allSnapshot = await getDocs(allQuery);
+      
+      const matchingProducts: Product[] = [];
+      allSnapshot.forEach((doc) => {
+        const data = doc.data();
+        if (data.productSubCategory === subcategory) {
+          const product = transformFirebaseProduct(doc);
+          matchingProducts.push(product);
+        }
+      });
+      
+      console.log(`🎯 Fallback found ${matchingProducts.length} products for subcategory: "${subcategory}"`);
+      return matchingProducts;
+      
+    } catch (fallbackError) {
+      console.error(`❌ Fallback also failed:`, fallbackError);
+      return [];
+    }
   }
 };

@@ -72,6 +72,16 @@ export const useFirebaseProductsByBrand = (brand: string, limitCount: number = 2
   });
 };
 
+// Hook for products by subcategory
+export const useFirebaseProductsBySubCategory = (subcategory: string, limitCount: number = 20) => {
+  return useQuery<Product[], Error>({
+    queryKey: ['firebase-products-by-subcategory', subcategory, limitCount],
+    queryFn: () => import('@/services/product/firebase-products').then(module => module.fetchProductsBySubCategoryFromFirebase(subcategory, limitCount)),
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    gcTime: 10 * 60 * 1000, // 10 minutes
+  });
+};
+
 // Hook for categories
 export const useFirebaseCategories = () => {
   return useQuery({

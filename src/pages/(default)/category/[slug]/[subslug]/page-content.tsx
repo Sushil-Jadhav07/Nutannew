@@ -5,24 +5,79 @@ import Filters from '@/components/filter/filters';
 import DrawerFilter from '@/components/category/drawer-filter';
 import { LIMITS } from '@/services/utils/limits';
 import { ProductMain } from '@/components/product/productListing/product-main';
-import { useProductsQuery } from '@/services/product/get-all-products';
-import { useLocation, useParams } from 'react-router-dom';
-import useQueryParam from '@/utils/use-query-params';
+import { useFirebaseProductsBySubCategory } from '@/hooks/useFirebaseProducts';
+import { useParams } from 'react-router-dom';
 
 export default function SubCategoryContent() {
   const [viewAs, setViewAs] = useState(Boolean(true));
-  const { pathname, search } = useLocation();
   const { slug, subslug } = useParams();
-  const { getParams } = useQueryParam(`${pathname}${search}`);
 
-  const newQuery: { sort_by?: string } = getParams(
-    `${import.meta.env.VITE_PUBLIC_WEBSITE_URL}${pathname}${search}`,
-  );
+  // Map subslug to Firebase productSubCategory
+  const slugToSubCategory: Record<string, string> = {
+    // Bags & Carry Items subcategories
+    'laptop-bags': 'laptopbags',
+    'tote-bags': 'totebags',
+    'tech-organizers': 'techorganizers',
+    'drawstring-pouches': 'drawstringpouches',
+    'welcome-kit-bags': 'welcomekitbags',
+    
+    // Tech & Gadgets subcategories
+    'wireless-chargers': 'wirelesschargers',
+    'charging-cables': 'chargingcables',
+    'wireless-mice': 'wirelessmice',
+    'tech-gift-sets': 'techgiftsets',
+    'usb-essentials': 'usbessentials',
+    
+    // Office & Stationery subcategories
+    'eco-notebooks': 'econotebooks',
+    'leather-folders': 'leatherfolders',
+    'sticky-notes-memo-pads': 'stickynotesmemopads',
+    'eco-pens-writing-tools': 'ecopenswritingtools',
+    'executive-stationery': 'executivestationery',
+    
+    // Drinkware subcategories
+    'reusable-bottles': 'reusablebottles',
+    'eco-mugs-with-lids': 'ecomugswithlids',
+    'stainless-steel-tumblers': 'stainlesssteeltumblers',
+    'sippers-with-straps': 'sipperswithstraps',
+    
+    // Gift Sets & Kits subcategories
+    'welcome-kits': 'welcomekits',
+    'festive-gift-sets': 'festivegiftsets',
+    'corporate-combo-packs': 'corporatecombopacks',
+    'custom-bundles': 'custombundles',
+    
+    // Eco Lifestyle subcategories
+    'bamboo-cutlery-sets': 'bamboocutlerysets',
+    'eco-coasters': 'ecocoasters',
+    'cork-wheat-straw-accessories': 'corkwheatstrawaccessories',
+    'recycled-material-goods': 'recycledmaterialgoods',
+    
+    // Events & Conference Essentials subcategories
+    'biodegradable-lanyards': 'biodegradablelanyards',
+    'name-card-holders': 'namecardholders',
+    'eco-folders': 'ecofolders',
+    'conference-giveaways': 'conferencegiveaways',
+  };
 
+  const firebaseSubCategory = slugToSubCategory[String(subslug || '').toLowerCase()] || '';
   const limit = LIMITS.PRODUCTS_LIMITS;
-  const { data, isLoading } = useProductsQuery({
-    limit,
-    sort_by: newQuery.sort_by,
+  
+  // Debug logging
+  console.log('🔍 Subcategory Page Debug:', {
+    slug,
+    subslug,
+    firebaseSubCategory,
+    limit
+  });
+  
+  const { data, isLoading } = useFirebaseProductsBySubCategory(firebaseSubCategory, limit);
+  
+  // Debug the data
+  console.log('🔍 Subcategory Data:', {
+    data,
+    isLoading,
+    dataLength: data?.length || 0
   });
 
   return (

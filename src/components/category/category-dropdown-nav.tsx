@@ -14,13 +14,13 @@ interface CategoryDropdownProps {
 function CategoryDropdownMenu() {
     // Static category data
     const categories = [
-        { name: "Bags & Carry Items", link: "/category/audio-music", hasArrow: false },
-        { name: "Tech & Gadgets", link: "/category/phones-tablets", hasArrow: false },
-        { name: "Office & Stationery", link: "/category/fashion-clothing", hasArrow: false },
-        { name: "Drinkware", link: "/category/garden-kitchen", hasArrow: false },
-        { name: "Gift Sets & Kits", link: "/category/tv-video", hasArrow: false },
-        { name: "Eco Lifestyle", link: "/category/beauty-health", hasArrow: false },
-        { name: "Events & Conference Essentials", link: "/category/jewelry-watches", hasArrow: false },
+        { name: "Bags & Carry Items", link: "/category/bags-carry-items", hasArrow: false },
+        { name: "Tech & Gadgets", link: "/category/tech-gadgets", hasArrow: false },
+        { name: "Office & Stationery", link: "/category/office-stationery", hasArrow: false },
+        { name: "Drinkware", link: "/category/drinkware", hasArrow: false },
+        { name: "Gift Sets & Kits", link: "/category/gift-sets-kits", hasArrow: false },
+        { name: "Eco Lifestyle", link: "/category/eco-lifestyle", hasArrow: false },
+        { name: "Events & Conference Essentials", link: "/category/events-conference-essentials", hasArrow: false },
 
     ];
 

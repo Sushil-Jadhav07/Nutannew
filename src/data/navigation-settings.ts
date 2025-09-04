@@ -312,7 +312,7 @@ export const siteNavigation = {
         // Categories 1
         {
             id: 1,
-            path: '/categories',
+            path: '/category/bags-carry-items',
             label: 'Bags & Carry Items',
             type: 'mega',
             mega_categoryCol: 5,
@@ -323,7 +323,7 @@ export const siteNavigation = {
             subMenu: [
                 {
                     id: 1,
-                    path: '/category',
+                    path: '/category/bags-carry-items/laptop-bags',
                     label: 'Laptop Bags',
                     image: {
                         id: 1,
@@ -341,7 +341,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 2,
-                    path: '/categories',
+                    path: '/category/bags-carry-items/tote-bags',
                     label: 'Tote Bags',
                     image: {
                         id: 1,
@@ -359,7 +359,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 3,
-                    path: '/categories',
+                    path: '/category/bags-carry-items/tech-organizers',
                     label: 'Tech Organizers',
                     image: {
                         id: 1,
@@ -396,7 +396,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 4,
-                    path: '/categories',
+                    path: '/category/bags-carry-items/drawstring-pouches',
                     label: 'Drawstring Pouches',
                     image: {
                         id: 1,
@@ -433,7 +433,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 5,
-                    path: '/categories',
+                    path: '/category/bags-carry-items/welcome-kit-bags',
                     label: 'Welcome Kit Bags',
                     image: {
                         id: 1,
@@ -474,7 +474,7 @@ export const siteNavigation = {
         // Categories
         {
             id: 2,
-            path: '/',
+            path: '/category/tech-gadgets',
             label: 'Tech & Gadgets',
             type: 'mega',
             mega_categoryCol: 5,
@@ -485,7 +485,7 @@ export const siteNavigation = {
             subMenu: [
                 {
                     id: 1,
-                    path: '/category',
+                    path: '/category/tech-gadgets/wireless-chargers',
                     label: 'Wireless Chargers',
                     image: {
                         id: 1,
@@ -496,7 +496,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 2,
-                    path: '/categories',
+                    path: '/category/tech-gadgets/charging-cables',
                     label: 'Charging Cables',
                     image: {
                         id: 1,
@@ -507,7 +507,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 3,
-                    path: '/categories',
+                    path: '/category/tech-gadgets/wireless-mice',
                     label: 'Wireless Mice',
                     image: {
                         id: 1,
@@ -518,7 +518,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 4,
-                    path: '/categories',
+                    path: '/category/tech-gadgets/tech-gift-sets',
                     label: 'Tech Gift Sets',
                     image: {
                         id: 1,
@@ -529,7 +529,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 5,
-                    path: '/categories',
+                    path: '/category/tech-gadgets/usb-essentials',
                     label: 'USB Essentials',
                     image: {
                         id: 1,
@@ -544,7 +544,7 @@ export const siteNavigation = {
         // Categories
         {
             id: 3,
-            path: '/',
+            path: '/category/office-stationery',
             label: 'Office & Stationery',
             type: 'mega',
             mega_categoryCol: 5,
@@ -555,7 +555,7 @@ export const siteNavigation = {
             subMenu: [
                 {
                     id: 1,
-                    path: '/category',
+                    path: '/category/office-stationery/eco-notebooks',
                     label: 'Eco Notebooks',
                     image: {
                         id: 1,
@@ -566,7 +566,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 2,
-                    path: '/categories',
+                    path: '/category/office-stationery/leather-folders',
                     label: 'Leather Folders',
                     image: {
                         id: 1,
@@ -577,7 +577,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 3,
-                    path: '/categories',
+                    path: '/category/office-stationery/sticky-notes-memo-pads',
                     label: 'Sticky Notes & Memo Pads',
                     image: {
                         id: 1,
@@ -588,7 +588,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 4,
-                    path: '/categories',
+                    path: '/category/office-stationery/eco-pens-writing-tools',
                     label: 'Eco Pens & Writing Tools',
                     image: {
                         id: 1,
@@ -599,7 +599,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 5,
-                    path: '/categories',
+                    path: '/category/office-stationery/executive-stationery',
                     label: 'Executive Stationery',
                     image: {
                         id: 1,
@@ -614,7 +614,7 @@ export const siteNavigation = {
         // Categories
         {
             id: 4,
-            path: '/',
+            path: '/category/drinkware',
             label: 'Drinkware',
             type: 'mega',
             mega_categoryCol: 5,
@@ -625,7 +625,7 @@ export const siteNavigation = {
             subMenu: [
                 {
                     id: 1,
-                    path: '/category',
+                    path: '/category/drinkware/reusable-bottles',
                     label: 'Reusable Bottles',
                     image: {
                         id: 1,
@@ -636,7 +636,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 2,
-                    path: '/categories',
+                    path: '/category/drinkware/eco-mugs-with-lids',
                     label: 'Eco Mugs with Lids',
                     image: {
                         id: 1,
@@ -647,7 +647,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 3,
-                    path: '/categories',
+                    path: '/category/drinkware/stainless-steel-tumblers',
                     label: 'Stainless Steel Tumblers',
                     image: {
                         id: 1,
@@ -658,7 +658,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 4,
-                    path: '/categories',
+                    path: '/category/drinkware/sippers-with-straps',
                     label: 'Sippers with Straps',
                     image: {
                         id: 1,
@@ -684,7 +684,7 @@ export const siteNavigation = {
         // Categories
         {
             id: 5,
-            path: '/',
+            path: '/category/gift-sets-kits',
             label: 'Gift Sets & Kits',
             type: 'mega',
             mega_categoryCol: 5,
@@ -695,7 +695,7 @@ export const siteNavigation = {
             subMenu: [
                 {
                     id: 1,
-                    path: '/category',
+                    path: '/category/gift-sets-kits/welcome-kits',
                     label: 'Welcome Kits',
                     image: {
                         id: 1,
@@ -706,7 +706,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 2,
-                    path: '/categories',
+                    path: '/category/gift-sets-kits/festive-gift-sets',
                     label: 'Festive Gift Sets',
                     image: {
                         id: 1,
@@ -717,7 +717,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 3,
-                    path: '/categories',
+                    path: '/category/gift-sets-kits/corporate-combo-packs',
                     label: 'Corporate Combo Packs',
                     image: {
                         id: 1,
@@ -728,7 +728,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 4,
-                    path: '/categories',
+                    path: '/category/gift-sets-kits/custom-bundles',
                     label: 'Custom Bundles (Build Your Own)',
                     image: {
                         id: 1,
@@ -754,7 +754,7 @@ export const siteNavigation = {
         // Categories
         {
             id: 6,
-            path: '/',
+            path: '/category/eco-lifestyle',
             label: 'Eco Lifestyle',
             type: 'mega',
             mega_categoryCol: 5,
@@ -765,7 +765,7 @@ export const siteNavigation = {
             subMenu: [
                 {
                     id: 1,
-                    path: '/category',
+                    path: '/category/eco-lifestyle/bamboo-cutlery-sets',
                     label: 'Bamboo Cutlery Sets',
                     image: {
                         id: 1,
@@ -776,7 +776,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 2,
-                    path: '/categories',
+                    path: '/category/eco-lifestyle/eco-coasters',
                     label: 'Eco Coasters',
                     image: {
                         id: 1,
@@ -787,7 +787,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 3,
-                    path: '/categories',
+                    path: '/category/eco-lifestyle/cork-wheat-straw-accessories',
                     label: 'Cork & Wheat Straw Accessories',
                     image: {
                         id: 1,
@@ -798,7 +798,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 4,
-                    path: '/categories',
+                    path: '/category/eco-lifestyle/recycled-material-goods',
                     label: 'Recycled Material Goods',
                     image: {
                         id: 1,
@@ -824,7 +824,7 @@ export const siteNavigation = {
         // Categories
         {
             id: 7,
-            path: '/',
+            path: '/category/events-conference-essentials',
             label: 'Events & Conference Essentials',
             type: 'mega',
             mega_categoryCol: 5,
@@ -835,7 +835,7 @@ export const siteNavigation = {
             subMenu: [
                 {
                     id: 1,
-                    path: '/category',
+                    path: '/category/events-conference-essentials/biodegradable-lanyards',
                     label: 'Biodegradable Lanyards',
                     image: {
                         id: 1,
@@ -846,7 +846,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 2,
-                    path: '/categories',
+                    path: '/category/events-conference-essentials/name-card-holders',
                     label: 'Name Card Holders (future)',
                     image: {
                         id: 1,
@@ -857,7 +857,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 3,
-                    path: '/categories',
+                    path: '/category/events-conference-essentials/eco-folders',
                     label: 'Eco Folders',
                     image: {
                         id: 1,
@@ -868,7 +868,7 @@ export const siteNavigation = {
                 },
                 {
                     id: 4,
-                    path: '/categories',
+                    path: '/category/events-conference-essentials/conference-giveaways',
                     label: 'Conference Giveaways',
                     image: {
                         id: 1,

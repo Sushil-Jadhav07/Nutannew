@@ -21,6 +21,7 @@ export const ROUTES : Record<string, RouteType> = {
   CATEGORY_HORI: '/category/category-hori',
   CATEGORY_CANVAS: '/category/category-canvas',
   CATEGORY_SLUG: '/category/:slug',
+  CATEGORY_SUB_SLUG: '/category/:slug/:subslug',
   
   CHECKOUT: '/checkout',
   CART : '/cart',

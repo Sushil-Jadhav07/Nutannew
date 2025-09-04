@@ -1,8 +1,8 @@
 [
     {
       "id": 1,
-      "name": "Audio Music",
-      "slug": "audio",
+      "name": "Bags & Carry Items",
+      "slug": "bags-carry-items",
       "type": "mega",
       "productCount": "125",
       "image": {
@@ -207,8 +207,8 @@
     },
     {
       "id": 2,
-      "name": "Phones & Tablets",
-      "slug": "phone-tablets",
+      "name": "Tech & Gadgets",
+      "slug": "tech-gadgets",
       "type": "mega",
       "productCount": "255",
       "image": {
@@ -318,8 +318,8 @@
     },
     {
       "id": 3,
-      "name": "Fashion & Clothing",
-      "slug": "fashion-clothing",
+      "name": "Office & Stationery",
+      "slug": "office-stationery",
       "productCount": "250",
       "image": {
         "id": 1,
@@ -523,8 +523,8 @@
     },
     {
       "id": 4,
-      "name": "Garden & Kitchen",
-      "slug": "garden-kitchen",
+      "name": "Drinkware",
+      "slug": "drinkware",
       "productCount": "120",
       "image": {
         "id": 1,
@@ -561,8 +561,8 @@
     },
     {
       "id": 5,
-      "name": "TV & Video",
-      "slug": "tv-video",
+      "name": "Gift Sets & Kits",
+      "slug": "gift-sets-kits",
       "productCount": "250",
       "image": {
         "id": 1,
@@ -599,8 +599,8 @@
     },
     {
       "id": 6,
-      "name": "Beauty & Health",
-      "slug": "beauty-health",
+      "name": "Eco Lifestyle",
+      "slug": "eco-lifestyle",
       "productCount": "450",
       "image": {
         "id": 1,
@@ -637,8 +637,8 @@
     },
     {
       "id": 7,
-      "name": "Jewelry & Watches",
-      "slug": "jewelry-watches",
+      "name": "Events & Conference Essentials",
+      "slug": "events-conference-essentials",
       "productCount": "320",
       "image": {
         "id": 1,
@@ -709,45 +709,5 @@
           "slug": "bedside"
         }
       ]
-    },
-    {
-      "id": 9,
-      "name": "Accessories",
-      "slug": "accessories",
-      "productCount": "350",
-      "image": {
-        "id": 1,
-        "thumbnail": "/assets/images/category/cate2.png"
-      }
-    },
-    {
-      "id": 10,
-      "name": "Beaf Steak",
-      "slug": "beaf-steak",
-      "productCount": "620",
-      "image": {
-        "id": 1,
-        "thumbnail": "/assets/images/category/cate2.png"
-      }
-    },
-    {
-      "id": 11,
-      "name": "Vitamin Items",
-      "slug": "vitamin-items",
-      "productCount": "420",
-      "image": {
-        "id": 1,
-        "thumbnail": "/assets/images/category/cate2.png"
-      }
-    },
-    {
-      "id": 12,
-      "name": "Raw Chicken",
-      "slug": "raw-chicken",
-      "productCount": "430",
-      "image": {
-        "id": 1,
-        "thumbnail": "/assets/images/category/cate2.png"
-      }
     }
 ]

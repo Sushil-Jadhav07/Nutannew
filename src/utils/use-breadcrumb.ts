@@ -27,10 +27,14 @@ export default function useBreadcrumb(): Breadcrumb[] | null {
       const linkPath = location.pathname.split('/').filter(Boolean); // Filter removes empty strings
       
       const pathArray = linkPath.map((path, i) => {
-        return {
-          breadcrumb: path,
-          href: '/' + linkPath.slice(0, i + 1).join('/'),
-        };
+        const isCategoryRoot = i === 0 && path.toLowerCase() === 'category';
+        const breadcrumb = isCategoryRoot ? 'categories' : path;
+        const segments = linkPath.slice(0, i + 1);
+        if (isCategoryRoot) {
+          segments[0] = 'categories';
+        }
+        const href = '/' + segments.join('/');
+        return { breadcrumb, href };
       });
       
       setBreadcrumbs(pathArray);

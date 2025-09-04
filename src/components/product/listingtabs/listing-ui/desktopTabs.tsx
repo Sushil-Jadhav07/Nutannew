@@ -8,8 +8,8 @@ const DesktopTabs = ({ childrenData, activeTab, onNavClick }: { childrenData: Ca
     const { selectedColor } = usePanel();
 
     return (
-        <div className="ltabs-tabs-wrap flex flex-wrap justify-end xl:basis-[70%]">
-            <ul className="flex text-sm flex-wrap gap-2">
+        <div className="ltabs-tabs-wrap flex justify-end xl:basis-[70%] overflow-x-auto">
+            <ul className="flex text-sm gap-2 whitespace-nowrap">
                 {childrenData.map((currentItem, idx) => (
                     <li
                         className={`ps-2 ${activeTab === currentItem.id ? 'text-skin-primary' : 'text-fill-base '}`}

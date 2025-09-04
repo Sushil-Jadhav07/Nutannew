@@ -1163,10 +1163,10 @@ export const siteNavigation = {
         //         },
         //     ],
         // },
-        {
-            id: 9,
-            path: '/about-us',
-            label: 'About Us',
-        },
+        // {
+        //     id: 9,
+        //     path: '/about-us',
+        //     label: 'About Us',
+        // },
     ],
 }

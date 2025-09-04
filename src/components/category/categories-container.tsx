@@ -82,7 +82,7 @@ export const CategoriesContainer: FC<blogGridProps> = ({categories, className = 
                 })
                 }
             </div>
-            <Pagination
+            {/* <Pagination
                 current={currentPage}
                 onChange={updatePage}
                 pageSize={countPerPage}
@@ -90,7 +90,7 @@ export const CategoriesContainer: FC<blogGridProps> = ({categories, className = 
                 prevIcon={<GrPrevious size={14}  className={`m-auto my-1.5 rtl:rotate-180`}/>}
                 nextIcon={<GrNext size={14}  className={`m-auto my-1.5 rtl:rotate-180`}/>}
                 className="blog-pagination bg-white rounded xs:mt-2"
-            />
+            /> */}
         </>
     );
 };

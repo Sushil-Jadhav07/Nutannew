@@ -64,6 +64,7 @@ const Categorypage = React.lazy(() => import("@/pages/(default)/category/page"))
 const CategoryHoripage = React.lazy(() => import("@/pages/(default)/category/category-hori/page"));
 const CategoryCanvaspage = React.lazy(() => import("@/pages/(default)/category/category-canvas/page"));
 const CategorySlug = React.lazy(() => import("@/pages/(default)/category/[slug]/page"));
+const CategorySubSlug = React.lazy(() => import("@/pages/(default)/category/[slug]/[subslug]/page"));
 const Productpage = React.lazy(() => import("@/pages/(default)/products/page"));
 const ProductSlug = React.lazy(() => import("@/pages/(default)/products/[slug]/page"));
 
@@ -229,6 +230,11 @@ const routesConfig = [
     {
         path: ROUTES.CATEGORY_SLUG,
         component: CategorySlug,
+        layout: DefaultLayout,
+    },
+    {
+        path: ROUTES.CATEGORY_SUB_SLUG,
+        component: CategorySubSlug,
         layout: DefaultLayout,
     },
     {

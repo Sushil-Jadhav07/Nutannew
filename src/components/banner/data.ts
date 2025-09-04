@@ -108,7 +108,7 @@ export const homeGridHero2 = [
       desktop: {
         url: '/assets/images/banner/home1/banner-4.jpeg',
         width: 467,
-        height: 180,
+        height: 200,
       },
     },
   },
@@ -126,7 +126,7 @@ export const homeGridHero2 = [
       desktop: {
         url: '/assets/images/banner/home1/banner-5.jpeg',
         width: 467,
-        height: 180,
+        height: 200,
       },
     },
   },

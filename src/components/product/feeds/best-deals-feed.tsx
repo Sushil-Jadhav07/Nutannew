@@ -77,7 +77,7 @@ const BestDealsFeed: React.FC<ProductFeedProps> = ({className = '',uniqueKey,sho
 
     return (
         <div className={`mb-8 lg:mb-12 ${className}`}>
-            <div className={cn('md:flex justify-between mb-1.5  py-2.5 rounded ',
+            {/* <div className={cn('md:flex justify-between mb-1.5  py-2.5 rounded ',
                 showBanner && 'bg-white px-5'
             )}>
                 <div className='flex items-center gap-2'>
@@ -92,7 +92,7 @@ const BestDealsFeed: React.FC<ProductFeedProps> = ({className = '',uniqueKey,sho
                     <ProductCountdownTimer date={date} variant={"heading"} />
                 </div>
 
-            </div>
+            </div> */}
             <div className="xl:flex gap-1 relative heightFull">
                 {showBanner && (
                     <div className={`xl:max-w-[466px] relative overflow-hidden flex items-center`}>

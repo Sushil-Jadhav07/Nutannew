@@ -101,7 +101,7 @@ export const homeGridHero2 = [
     type: 'medium',
     image: {
       mobile: {
-        url: '/assets/images/banner/home1/banner-1.png',
+        url: '/assets/images/banner/home1/banner-4.jpeg',
         width: 467,
         height: 180,
       },
@@ -119,7 +119,7 @@ export const homeGridHero2 = [
     type: 'medium',
     image: {
       mobile: {
-        url: '/assets/images/banner/home1/banner-2.png',
+        url: '/assets/images/banner/home1/banner-5.jpeg',
         width: 467,
         height: 180,
       },
@@ -137,7 +137,7 @@ export const homeGridHero2 = [
     type: 'medium',
     image: {
       mobile: {
-        url: '/assets/images/banner/home1/banner-3.png',
+        url: '/assets/images/banner/home1/banner-6.jpeg',
         width: 467,
         height: 180,
       },

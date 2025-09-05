@@ -44,15 +44,13 @@ const Homepage: React.FC = () => {
                     <BestDealsFeed className={'navSlider'}/>
                     <BestSellerFeed className="mb-8 lg:mb-12"/>
                     <BannerGrid
-                        useFirebase={true}
-                        fallbackData={gridHero}
+                        data={gridHero}
                         grid={1}
                         className="mb-8 lg:mb-12"
                     />
                     <ListingElectronic variant={"horizontal"}/>
                     <BannerGrid
-                        useFirebase={true}
-                        fallbackData={gridHero2}
+                        data={gridHero2}
                         grid={3}
                         className="mb-8 lg:mb-12"
                     />

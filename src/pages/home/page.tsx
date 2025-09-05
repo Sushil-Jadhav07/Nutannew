@@ -29,7 +29,8 @@ const Homepage: React.FC = () => {
                         contentClassName="p-7 sm:py-18 xl:py-16 sm:px-16 xl:px-24 md:min-h-[270px] xl:min-h-[375px] rounded"
                     />
                     <BannerGrid
-                        data={bannerSlider}
+                        useFirebase={true}
+                        fallbackData={bannerSlider}
                         grid={1}
                         girdClassName="xl:gap-[5px]"
                         className="xl:col-span-4 mb-5 xl:mb-12"
@@ -43,13 +44,15 @@ const Homepage: React.FC = () => {
                     <BestDealsFeed className={'navSlider'}/>
                     <BestSellerFeed className="mb-8 lg:mb-12"/>
                     <BannerGrid
-                        data={gridHero}
+                        useFirebase={true}
+                        fallbackData={gridHero}
                         grid={1}
                         className="mb-8 lg:mb-12"
                     />
                     <ListingElectronic variant={"horizontal"}/>
                     <BannerGrid
-                        data={gridHero2}
+                        useFirebase={true}
+                        fallbackData={gridHero2}
                         grid={3}
                         className="mb-8 lg:mb-12"
                     />

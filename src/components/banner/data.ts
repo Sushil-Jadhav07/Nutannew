@@ -6,12 +6,12 @@ export const homeBannerSlider = [
     slug: '/',
     image: {
       mobile: {
-        url: '/assets/images/banner/home1/slider-3.jpeg',
+        url: '/assets/images/banner/home1/slider-4.png',
         width: 541,
         height: 220,
       },
       desktop: {
-        url: '/assets/images/banner/home1/slider-3.jpeg',
+        url: '/assets/images/banner/home1/slider-4.png',
         width: 441,
         height: 185,
       },
@@ -23,12 +23,12 @@ export const homeBannerSlider = [
     slug: '/',
     image: {
       mobile: {
-        url: '/assets/images/banner/home1/slider-3.jpeg',
+        url: '/assets/images/banner/home1/slider-5.png',
         width: 541,
         height: 220,
       },
       desktop: {
-        url: '/assets/images/banner/home1/slider-3.jpeg',
+        url: '/assets/images/banner/home1/slider-5.png',
         width: 441,
         height: 185,
       },

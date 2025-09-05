@@ -114,6 +114,7 @@ const transformFirebaseProduct = (doc: any): Product => {
     min_price: parseFloat(data.productPrice || '0'),
     max_price: variationPrice || parseFloat(data.productPrice || '0'),
     variation_options: variationOptions,
+    variation: data.variation, // Also include raw variation data
     variations: transformedVariations,
     image: {
       id: productID,

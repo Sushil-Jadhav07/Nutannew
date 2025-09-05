@@ -7,6 +7,7 @@ import { ROUTES } from "@/utils/routes";
 import cn from "classnames";
 import { colorMap } from "@/data/color-settings";
 import Container from "@/components/shared/container";
+import { DEFAULT_CURRENCY } from "@/utils/currency";
 import Image from "@/components/shared/image";
 import Link from "@/components/shared/link";
 import Button from "@/components/shared/button";
@@ -25,15 +26,15 @@ const StickyCart: React.FC<Props> = ({ product, addToCartLoader, handleAddToCart
     const { price, basePrice } = usePrice({
         amount: product?.sale_price ?? product?.price ?? 0,
         baseAmount: product?.price ?? undefined,
-        currencyCode: 'USD'
+        currencyCode: DEFAULT_CURRENCY
     });
     const { price: minPrice } = usePrice({
         amount: product?.min_price ?? 0,
-        currencyCode: 'USD',
+        currencyCode: DEFAULT_CURRENCY,
     });
     const { price: maxPrice } = usePrice({
         amount: product?.max_price ?? 0,
-        currencyCode: 'USD',
+        currencyCode: DEFAULT_CURRENCY,
     });
     
     const { selectedColor } = usePanel();

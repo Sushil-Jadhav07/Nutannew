@@ -8,6 +8,7 @@ import Link from '@/components/shared/link';
 import {ROUTES} from '@/utils/routes';
 import Heading from '@/components/shared/heading';
 import Text from '@/components/shared/text';
+import { DEFAULT_CURRENCY } from '@/utils/currency';
 import {X} from "lucide-react";
 
 export default function CartDrawer() {
@@ -15,7 +16,7 @@ export default function CartDrawer() {
     const {items, total, isEmpty} = useCart();
     const {price: cartTotal} = usePrice({
         amount: total,
-        currencyCode: 'USD',
+        currencyCode: DEFAULT_CURRENCY,
     });
     return (
         <div className="flex flex-col  w-full h-full px-5 md:px-8 pt-0">

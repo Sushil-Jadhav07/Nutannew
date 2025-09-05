@@ -5,8 +5,8 @@ export const termsCondition = [
     description:
       '<ul>'+
       '<li>Images/descriptions for reference only</li>'+
-      '<li><strong>Prices shown in your local currency</strong> for convenience</li>'+
-      '<li>Final billing may be in AED, INR, or USD depending on your location/payment method</li>'+
+      '<li><strong>Prices shown in AED (UAE Dirham)</strong> for all transactions</li>'+
+      '<li>Final billing will be processed in AED as per UAE regulations</li>'+
       '<li>Prices subject to change without notice</li>'+
       '<li>Orders confirmed only upon payment</li>'+
       '</ul>',

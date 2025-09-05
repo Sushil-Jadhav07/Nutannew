@@ -6,6 +6,7 @@ import ActionsButton from '@/components/shared/action-button';
 import { TotalPrice } from '@/components/orders/price';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
+import { DEFAULT_CURRENCY } from '@/utils/currency';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import timezone from 'dayjs/plugin/timezone';
 import { GrNext, GrPrevious } from 'react-icons/gr';
@@ -45,7 +46,7 @@ export const Status: React.FC<{ item?: any }> = ({ item }) => {
 
 const OrderTotalCell: React.FC<{ item: any }> = ({ item }) => {
   const amount = typeof item?.orderTotal === 'number' ? item.orderTotal : (typeof item?.total === 'number' ? item.total : 0);
-  const { price } = usePrice({ amount, currencyCode: 'USD' });
+  const { price } = usePrice({ amount, currencyCode: DEFAULT_CURRENCY });
   return <span className="whitespace-nowrap">{price}</span>;
 };
 

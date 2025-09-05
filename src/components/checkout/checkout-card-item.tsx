@@ -1,12 +1,13 @@
 import { Item } from '@/contexts/cart/cartUtils';
 import Image from '@/components/shared/image';
 import usePrice from '@/services/product/use-price';
+import { DEFAULT_CURRENCY } from '@/utils/currency';
 import React from "react";
 
 export const CheckoutItem: React.FC<{ item: Item }> = ({ item }) => {
   const { price } = usePrice({
     amount: item.itemTotal,
-    currencyCode: 'USD',
+    currencyCode: DEFAULT_CURRENCY,
   });
   return (
     <div className="flex items-center  ">

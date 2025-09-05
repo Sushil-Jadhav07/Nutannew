@@ -6,6 +6,7 @@ import usePrice from "@/services/product/use-price";
 import { usePanel } from "@/contexts/usePanel";
 import { colorMap } from "@/data/color-settings";
 import cn from "classnames";
+import { DEFAULT_CURRENCY } from "@/utils/currency";
 
 type SearchProductProps = {
   product: any;
@@ -16,15 +17,15 @@ const SearchCard: React.FC<SearchProductProps> = ({ product }) => {
   const { price, basePrice } = usePrice({
     amount: product?.sale_price ? product?.sale_price : product?.price,
     baseAmount: product?.price,
-    currencyCode: 'USD',
+    currencyCode: DEFAULT_CURRENCY,
   });
   const { price: minPrice } = usePrice({
     amount: product?.min_price ?? 0,
-    currencyCode: 'USD',
+    currencyCode: DEFAULT_CURRENCY,
   });
   const { price: maxPrice } = usePrice({
     amount: product?.max_price ?? 0,
-    currencyCode: 'USD',
+    currencyCode: DEFAULT_CURRENCY,
   });
   
   const { selectedColor } = usePanel();

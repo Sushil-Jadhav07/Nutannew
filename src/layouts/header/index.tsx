@@ -78,7 +78,7 @@ const Header: React.FC<HeaderProps> = ({className, variant}) => {
                     </div>
                     <div className="border-b border-border-base">
                         <Container>
-                            <div className="flex items-center justify-between  py-2 md:py-4">
+                            <div className="flex items-center justify-between  py-2 md:py-2">
                                 <div className="relative flex-shrink-0 lg:hidden">
                                     <button
                                         aria-label="Menu"
@@ -88,7 +88,12 @@ const Header: React.FC<HeaderProps> = ({className, variant}) => {
                                         <MenuIcon/>
                                     </button>
                                 </div>
-                                 <Logo  className="logo"/>
+                                <div className="flex items-center space-x-3">
+                                    <Logo  className="logo"/>
+                                    <Text className="text-brand-dark font-bold text-lg hidden sm:block">
+                                        Nutan Overseas
+                                    </Text>
+                                </div>
                                 {/* End of logo */}
                                 
                                 <Search
@@ -127,7 +132,7 @@ const Header: React.FC<HeaderProps> = ({className, variant}) => {
                                 
                                 <MainMenu
                                     navigations={siteNavigation.menu as MainMenuType[]}
-                                    className="flex transition-all duration-200 ease-in-out"
+                                    className="flex flex-nowrap transition-all duration-200 ease-in-out overflow-hidden"
                                 />
                                 
                                 {/* End of main menu */}

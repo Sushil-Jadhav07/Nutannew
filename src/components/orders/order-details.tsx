@@ -3,12 +3,13 @@ import usePrice from '@/services/product/use-price';
 import {OrderItem} from '@/services/types';
 import {Printer} from "lucide-react";
 import React from "react";
+import { DEFAULT_CURRENCY } from '@/utils/currency';
 import Image from '@/components/shared/image';
 
 const OrderItemCard = ({product}: { product: OrderItem }) => {
 	const {price: itemTotal} = usePrice({
 		amount: product.price * product.quantity,
-		currencyCode: 'USD',
+		currencyCode: DEFAULT_CURRENCY,
 	});
 	return (
 		<div className="flex gap-4" key={product.id}>
@@ -40,7 +41,7 @@ const OrderDetails: React.FC<{ className?: string; }> = () => {
 	const {price: subtotal} = usePrice(
 		order && {
 			amount: order.total,
-			currencyCode: 'USD',
+			currencyCode: DEFAULT_CURRENCY,
 		},
 	);
 	const {price: total} = usePrice(
@@ -48,13 +49,13 @@ const OrderDetails: React.FC<{ className?: string; }> = () => {
 			amount: order.shipping_fee
 				? order.total + order.shipping_fee
 				: order.total,
-			currencyCode: 'USD',
+			currencyCode: DEFAULT_CURRENCY,
 		},
 	);
 	const {price: shipping} = usePrice(
 		order && {
 			amount: order.shipping_fee,
-			currencyCode: 'USD',
+			currencyCode: DEFAULT_CURRENCY,
 		},
 	);
 	if (isLoading) return <p>Loading...</p>;

@@ -5,6 +5,7 @@ import {IoClose} from 'react-icons/io5';
 import OrderStatus from './order-status';
 import {DeliveryFee, DiscountPrice} from '@/components/orders/price';
 import usePrice from '@/services/product/use-price';
+import { DEFAULT_CURRENCY } from '@/utils/currency';
 
 import {useUI} from '@/contexts/useUI';
 import { useModalAction } from '@/components/common/modal/modalContext';
@@ -37,10 +38,10 @@ const OrderDrawer: React.FC = () => {
     // Subtotal should reflect orderTotal from order (fallback to total)
     const orderSubtotalAmount =
         typeof data?.orderTotal === 'number' ? data.orderTotal : (typeof data?.total === 'number' ? data.total : 0);
-    const { price: orderSubtotal } = usePrice({ amount: orderSubtotalAmount, currencyCode: 'USD' });
+    const { price: orderSubtotal } = usePrice({ amount: orderSubtotalAmount, currencyCode: DEFAULT_CURRENCY });
     const deliveryCostAmount = typeof data?.deliveryCost === 'number' ? data.deliveryCost : (typeof data?.delivery_fee === 'number' ? data.delivery_fee : 0);
     const totalCostAmount = orderSubtotalAmount + deliveryCostAmount;
-    const { price: totalCost } = usePrice({ amount: totalCostAmount, currencyCode: 'USD' });
+    const { price: totalCost } = usePrice({ amount: totalCostAmount, currencyCode: DEFAULT_CURRENCY });
     
     return (
         <>

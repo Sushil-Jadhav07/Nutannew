@@ -37,7 +37,11 @@ const Homepage: React.FC = () => {
                     />
                 </div>
                 
-                <GridBaseCarousel  className="mb-8 lg:mb-12"/>
+                <GridBaseCarousel 
+                    useStaticData={true}
+                    sectionHeading="Shop by Category"
+                    className="mb-8 lg:mb-12"
+                />
             </Container>
             <div className={"bg-zinc-100 dark:bg-zinc-800 py-10 sm:py-12"}>
                 <Container>

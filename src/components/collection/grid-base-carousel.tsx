@@ -18,9 +18,102 @@ interface CategoriesProps {
     limit?: number;
     variant?: string;
     uniqueKey?:string;
+    useStaticData?: boolean;
 }
 
 
+
+// Static category data
+const staticCategories: Category[] = [
+    {
+        id: 1,
+        name: 'Tech Organizers',
+        slug: 'tech-organizers',
+        image: { 
+            id: 1,
+            thumbnail: '/assets/images/category/cate1.png',
+            original: '/assets/images/category/cate1.png'
+        },
+        productCount: 15,
+    },
+    {
+        id: 2,
+        name: 'Tech Gift Sets',
+        slug: 'tech-gift-sets',
+        image: { 
+            id: 2,
+            thumbnail: '/assets/images/category/tech-gift-sets.jpg',
+            original: '/assets/images/category/tech-gift-sets.jpg'
+        },
+        productCount: 12,
+    },
+    {
+        id: 3,
+        name: 'Eco notebook',
+        slug: 'eco-notebook',
+        image: { 
+            id: 3,
+            thumbnail: '/assets/images/category/eco-notebook.jpg',
+            original: '/assets/images/category/eco-notebook.jpg'
+        },
+        productCount: 8,
+    },
+    {
+        id: 4,
+        name: 'Sippers & Straps',
+        slug: 'sippers-with-straps',
+        image: { 
+            id: 4,
+            thumbnail: '/assets/images/category/sippers-straps.jpg',
+            original: '/assets/images/category/sippers-straps.jpg'
+        },
+        productCount: 10,
+    },
+    {
+        id: 5,
+        name: 'Corporate Combos',
+        slug: 'corporate-combo-packs',
+        image: { 
+            id: 5,
+            thumbnail: '/assets/images/category/corporate-combo.jpg',
+            original: '/assets/images/category/corporate-combo.jpg'
+        },
+        productCount: 6,
+    },
+    {
+        id: 6,
+        name: 'Custom Bundles',
+        slug: 'custom-bundles',
+        image: { 
+            id: 6,
+            thumbnail: '/assets/images/category/custom-bundles.jpg',
+            original: '/assets/images/category/custom-bundles.jpg'
+        },
+        productCount: 20,
+    },
+    {
+        id: 7,
+        name: 'Accessories',
+        slug: 'accessories',
+        image: { 
+            id: 7,
+            thumbnail: '/assets/images/category/accessories.jpg',
+            original: '/assets/images/category/accessories.jpg'
+        },
+        productCount: 25,
+    },
+    {
+        id: 8,
+        name: 'Festive Gifts',
+        slug: 'festive-gift-set',
+        image: { 
+            id: 8,
+            thumbnail: '/assets/images/category/festive-gifts.jpg',
+            original: '/assets/images/category/festive-gifts.jpg'
+        },
+        productCount: 14,
+    },
+];
 
 const GridBaseCarousel: React.FC<CategoriesProps> = ({
                                                           sectionHeading,
@@ -28,10 +121,15 @@ const GridBaseCarousel: React.FC<CategoriesProps> = ({
                                                           limit = 8,
                                                           variant='default',
                                                          uniqueKey='grid-services',
+                                                         useStaticData = false,
                                                       }) => {
     const {data:categories, isLoading} = useCategoriesQuery({
         limit: LIMITS.CATEGORIES_LIMITS,
     });
+    
+    // Use static data if useStaticData is true, otherwise use API data
+    const finalCategories = useStaticData ? staticCategories : categories;
+    const finalLoading = useStaticData ? false : isLoading;
     const breakpoints = {
         '1480': {
             slidesPerView: limit,
@@ -77,7 +175,7 @@ const GridBaseCarousel: React.FC<CategoriesProps> = ({
                     prevActivateId={`prev${uniqueKey}`}
                     nextActivateId={`next${uniqueKey}`}
                 >
-                    {isLoading
+                    {finalLoading
                         ? Array.from({length: limit}).map((_, idx) => {
                             return (
                                 <SwiperSlide key={`category--key-${idx}`}>
@@ -87,7 +185,7 @@ const GridBaseCarousel: React.FC<CategoriesProps> = ({
                                 </SwiperSlide>
                             );
                         })
-                        : (categories as Category[])?.slice(0, limit)?.map((category: Category) => (
+                        : (finalCategories as Category[])?.slice(0, limit)?.map((category: Category) => (
                             <SwiperSlide key={`category--key-${category.id}`}>
                                 <GridBaseCard
                                     item={category}

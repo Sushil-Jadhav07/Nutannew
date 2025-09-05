@@ -23,7 +23,7 @@ const MainMenu: React.FC<MenuProps> = ({  navigations, className, bgPrimary,clas
     <nav className={cn('headerMenu flex', className)}>
       {navigations?.map((item: MainMenuType) => (
         <div
-          className={`menuItem group py-3 mx-4 xl:mx-4 2xl:mx-5 ${
+          className={`menuItem group py-3 mx-2 xl:mx-3 2xl:mx-4 flex-shrink-0 ${
             item.type == 'mega' || item.type == 'demo' ? '' : 'relative'
           }`}
           key={item.id}
@@ -31,7 +31,7 @@ const MainMenu: React.FC<MenuProps> = ({  navigations, className, bgPrimary,clas
         >
           <Link
             to={item.path}
-            className={cn('text-brand-dark inline-flex items-center text-sm  py-1 font-semibold relative ',
+            className={cn('text-brand-dark inline-flex items-center text-xs xl:text-sm py-1 font-semibold relative whitespace-nowrap',
                 classLink,
                 {
                   [`${colorMap[selectedColor].groupHoverLink} ${colorMap[selectedColor].headerMenuBefore}`]: !bgPrimary, // ✅ Fixed!

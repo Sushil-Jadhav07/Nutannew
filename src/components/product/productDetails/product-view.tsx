@@ -1,4 +1,4 @@
-import React, { useRef, useState} from "react";
+import React, { useRef, useState, useMemo} from "react";
 import { Product } from "@/services/types";
 import cn from "classnames";
 import ProductHeader from "@/components/product/productView/product-header";
@@ -8,31 +8,52 @@ import ProductQuantity from "@/components/product/productView/product-quantity";
 import ProductActions from "@/components/product/productView/product-actions";
 import ProductFooter from "@/components/product/productView/product-footer";
 import StickyCart from "@/components/product/productView/sticky-cart";
-import useProductVariations from "@/hooks/use-product-variations";
 import useCartActions from "@/hooks/use-cart-actions";
-import ProductAttributes from "@/components/product/productView/product-attributes";
 
 interface ViewProps {
 	className?: string;
 	data?: Product;
 	variant?: string;
-	onVariationChange?: (variation: any) => void; // Add callback prop
+	onColorChange?: (color: string) => void; // Simplified callback for color changes
 }
 
-const ProductView: React.FC<ViewProps> = ({ data, className, variant, onVariationChange }) => {
+const ProductView: React.FC<ViewProps> = ({ data, className, variant, onColorChange }) => {
 	const [selectedQuantity, setSelectedQuantity] = useState(1);
 	const [isCartVisible, setCartVisible] = useState<boolean>(false);
+	const [selectedColor, setSelectedColor] = useState<string>('');
 	const targetButtonRef = useRef<HTMLButtonElement>(null);
 
-	const { attributes, setAttributes,variations, selectedVariation, isSelected, errorAttributes } =
-		useProductVariations(data);
+	// Extract available colors from Firebase variation data
+	const availableColors = useMemo(() => {
+		if (!data?.variation || !Array.isArray(data.variation)) return [];
+		return data.variation.map(v => ({ value: v.color, image: v.img }));
+	}, [data?.variation]);
 
-	// Call the callback when selectedVariation changes
-	React.useEffect(() => {
-		if (onVariationChange && selectedVariation) {
-			onVariationChange(selectedVariation);
+	// Create selectedVariation object for cart functionality
+	const selectedVariation = useMemo(() => {
+		if (!selectedColor || !data?.variation) return undefined;
+		
+		const matchingVariation = data.variation.find((v: any) => v.color === selectedColor);
+		if (matchingVariation) {
+			return {
+				id: 1,
+				title: selectedColor,
+				price: matchingVariation.price || data.price,
+				sale_price: matchingVariation.price || data.price,
+				quantity: matchingVariation.quantity || 0,
+				is_disable: matchingVariation.quantity === 0 ? 1 : 0,
+				sku: data.sku || '',
+				options: [{ name: 'color', value: selectedColor }]
+			};
 		}
-	}, [selectedVariation, onVariationChange]);
+		return undefined;
+	}, [selectedColor, data]);
+
+	// Handle color selection
+	const handleColorSelect = (color: string) => {
+		setSelectedColor(color);
+		onColorChange?.(color);
+	};
 
 	const { addToCart, addToCartLoader, isInStock, isInCart, getItemFromCart } = useCartActions(
 		data,
@@ -48,12 +69,30 @@ const ProductView: React.FC<ViewProps> = ({ data, className, variant, onVariatio
 			<ProductHeader data={data} />
 			<ProductPricing data={data} selectedVariation={selectedVariation} />
 			{variant !=='quickview' && <ProductInfo data={data} />}
-			<ProductAttributes
-				variations={variations}
-				attributes={attributes}
-				setAttributes={setAttributes}
-				error={!!errorAttributes}
-			/>
+			
+			{/* Simple Color Selector */}
+			{availableColors.length > 0 && (
+				<div className="pb-4">
+					<h3 className="text-sm font-medium text-gray-900 mb-3">Color</h3>
+					<div className="flex flex-wrap gap-3">
+						{availableColors.map((colorOption, index) => (
+							<button
+								key={index}
+								onClick={() => handleColorSelect(colorOption.value)}
+								className={cn(
+									"w-8 h-8 rounded-full border-2 transition-all duration-200",
+									selectedColor === colorOption.value 
+										? "border-blue-500 ring-2 ring-blue-200" 
+										: "border-gray-300 hover:border-gray-400"
+								)}
+								style={{ backgroundColor: colorOption.value }}
+								title={colorOption.value}
+							/>
+						))}
+					</div>
+				</div>
+			)}
+			
 			<ProductQuantity
 				data={data}
 				selectedVariation={selectedVariation}
@@ -67,7 +106,7 @@ const ProductView: React.FC<ViewProps> = ({ data, className, variant, onVariatio
 				data={data}
 				addToCart={addToCart}
 				addToCartLoader={addToCartLoader}
-				isSelected={isSelected}
+				isSelected={true} // Always allow add to cart for now
 				targetButtonRef={targetButtonRef}
 			/>
 			<ProductFooter />
@@ -80,7 +119,7 @@ const ProductView: React.FC<ViewProps> = ({ data, className, variant, onVariatio
 					isCartVisible={isCartVisible}
 					setCartVisible={setCartVisible}
 					targetButtonRef={targetButtonRef}
-					isSelected={isSelected}
+					isSelected={true}
 				/>
 			)}
 		</div>

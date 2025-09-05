@@ -6,6 +6,7 @@ import {ROUTES} from "@/utils/routes";
 import Link from "@/components/shared/link";
 import Image from '@/components/shared/image';
 import {Item} from "@/contexts/cart/cartUtils";
+import { DEFAULT_CURRENCY } from "@/utils/currency";
 
 interface CartItemProps {
 	item: Item
@@ -23,21 +24,21 @@ export function CartItem({ item }: CartItemProps) {
 	const {price, basePrice} = usePrice({
 		amount: item?.sale_price ? item?.sale_price : item?.price,
 		baseAmount: item?.price,
-		currencyCode: 'USD'
+		currencyCode: DEFAULT_CURRENCY
 	});
 	
 	const {price: minPrice} = usePrice({
 		amount: item?.min_price ?? 0,
-		currencyCode: 'USD',
+		currencyCode: DEFAULT_CURRENCY,
 	});
 	const {price: maxPrice} = usePrice({
 		amount: item?.max_price ?? 0,
-		currencyCode: 'USD',
+		currencyCode: DEFAULT_CURRENCY,
 	});
 	
 	const {price: totalPrice} = usePrice({
 		amount: item?.itemTotal,
-		currencyCode: 'USD',
+		currencyCode: DEFAULT_CURRENCY,
 	});
 	const outOfStock = !isInStock(item.id);
 	

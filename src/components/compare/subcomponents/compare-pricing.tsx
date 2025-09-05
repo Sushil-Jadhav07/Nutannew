@@ -2,6 +2,7 @@ import React from "react";
 import cn from "classnames";
 import usePrice from "@/services/product/use-price";
 import { Product } from "@/services/types";
+import { DEFAULT_CURRENCY } from "@/utils/currency";
 import { usePanel } from "@/contexts/usePanel";
 import { colorMap } from "@/data/color-settings";
 
@@ -15,15 +16,15 @@ const ComparePricing: React.FC<ComparePricingProps> = ({ product }) => {
     const { price: displayPrice, basePrice } = usePrice({
         amount: sale_price ? sale_price : price,
         baseAmount: price,
-        currencyCode: "USD",
+        currencyCode: DEFAULT_CURRENCY,
     });
     const { price: minPrice } = usePrice({
         amount: min_price ?? 0,
-        currencyCode: "USD",
+        currencyCode: DEFAULT_CURRENCY,
     });
     const { price: maxPrice } = usePrice({
         amount: max_price ?? 0,
-        currencyCode: "USD",
+        currencyCode: DEFAULT_CURRENCY,
     });
 
     return (

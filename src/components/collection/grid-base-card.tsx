@@ -43,11 +43,11 @@ const GridBaseCard: React.FC<Props> = ({ item, href, className,variant}) => {
                         height={100}
                     />
                 </div>
-                <div className="category-info text-center">
-                    <h3 className={cn(colorMap?.[selectedColor]?.groupHoverLink,"font-semibold text-brand-dark truncate leading-6 group-hover:text-skin-primary")}>
+                <div className="category-info text-center max-w-[120px]">
+                    <h3 className={cn(colorMap?.[selectedColor]?.groupHoverLink,"font-semibold text-brand-dark text-sm leading-tight group-hover:text-skin-primary min-h-[40px] flex items-center justify-center")}>
                         {name}
                     </h3>
-                    {variant === 'default' && <p className={"text-gray-600 dark:text-gray-500"}>{productCount} Products</p>}
+                    {/* {variant === 'default' && <p className={"text-gray-600 dark:text-gray-500 text-xs mt-1"}>{productCount} Products</p>} */}
                     
                 </div>
                 

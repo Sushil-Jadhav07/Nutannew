@@ -8,57 +8,33 @@ import {productPlaceholder} from "@/assets/placeholders";
 interface GalleryProps {
 	className?: string;
 	data?: Product;
-	selectedVariation?: any; // Add selected variation prop
+	selectedColor?: string; // Simplified to just selected color
 }
 
-const ProductGallery: React.FC<GalleryProps> = ({data, className, selectedVariation}) => {
-	// Get the appropriate image based on selected variation
+const ProductGallery: React.FC<GalleryProps> = ({data, className, selectedColor}) => {
+	// Simple and direct image selection based on selected color
 	const getCurrentImage = () => {
-		if (selectedVariation && data?.variation_options) {
-			// Find the matching Firebase variation
-			const firebaseVariation = data.variation_options.find((v: any) => {
-				if (selectedVariation.options) {
-					return selectedVariation.options.every((opt: any) => {
-						if (opt.name === 'color') return v.color === opt.value;
-						return true;
-					});
-				}
-				return false;
-			});
-			
-			// Return the variation image if found and not empty
-			if (firebaseVariation && firebaseVariation.options && firebaseVariation.options.length > 0) {
-				const variationImage = firebaseVariation.options[0].image;
-				if (variationImage && variationImage.trim() !== "") {
-					return variationImage;
-				}
+		if (selectedColor && data?.variation) {
+			const colorVariation = data.variation.find((v: any) => v.color === selectedColor);
+			if (colorVariation?.img) {
+				return colorVariation.img;
 			}
 		}
 		
-		// Fallback to first gallery image or main image, ensuring no empty strings
-		const galleryImage = data?.gallery?.[0]?.original;
-		const mainImage = data?.image?.original;
-		
-		if (galleryImage && galleryImage.trim() !== "") {
-			return galleryImage;
-		}
-		if (mainImage && mainImage.trim() !== "") {
-			return mainImage;
-		}
-		
-		return productPlaceholder;
+		// Fallback to default image
+		return data?.image?.original || data?.gallery?.[0]?.original || productPlaceholder;
 	};
 
 	const currentImage = getCurrentImage();
 
-	// Create a dynamic gallery that prioritizes the selected variation image
+	// Create a dynamic gallery that prioritizes the selected color image
 	const getDynamicGallery = () => {
 		if (!data?.gallery || data.gallery.length === 0) {
 			return [];
 		}
 
-		// If we have a selected variation with an image, put it first
-		if (selectedVariation && currentImage && currentImage !== data.gallery[0]?.original && currentImage.trim() !== "") {
+		// If we have a selected color with an image, put it first
+		if (selectedColor && currentImage && currentImage !== data.gallery[0]?.original && currentImage.trim() !== "") {
 			const variationImage = {
 				id: 'variation-image',
 				thumbnail: currentImage,

@@ -8,6 +8,7 @@ import {CheckoutCardFooterItem} from './checkout-card-footer-item';
 import CouponSuggestions from '@/components/checkout/coupon-suggestions';
 import { useCheckout } from '@/contexts/CheckoutContext';
 import { AuthContext } from '@/contexts/AuthProvider';
+import { DEFAULT_CURRENCY } from '@/utils/currency';
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/config/firebase';
 import {useIsMounted} from '@/utils/use-is-mounted';
@@ -53,15 +54,15 @@ const CheckoutCard: React.FC = () => {
 
     const { price: subtotal } = usePrice({
         amount: payable,
-        currencyCode: 'USD',
+        currencyCode: DEFAULT_CURRENCY,
     }) as UsePriceReturn;
     const { price: originalTotalPrice } = usePrice({
         amount: total,
-        currencyCode: 'USD',
+        currencyCode: DEFAULT_CURRENCY,
     }) as UsePriceReturn;
     const { price: discountPrice } = usePrice({
         amount: -discountAmount,
-        currencyCode: 'USD',
+        currencyCode: DEFAULT_CURRENCY,
     }) as UsePriceReturn;
     
     // Apply coupon

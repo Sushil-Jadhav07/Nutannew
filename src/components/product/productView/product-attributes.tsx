@@ -30,10 +30,16 @@ const ProductAttributes: React.FC<Props> = ({
     if (!variations || Object.keys(variations).length === 0) return null;
 
     const handleSelect = (variationName: string, value: string) => {
-        setAttributes((prev) => ({
-            ...prev,
-            [variationName]: value,
-        }));
+        console.log('🎨 Color selection clicked:', variationName, '=', value);
+        console.log('🎨 Color will be stored as:', value);
+        setAttributes((prev) => {
+            const newAttributes = {
+                ...prev,
+                [variationName]: value,
+            };
+            console.log('📝 Updated attributes state:', newAttributes);
+            return newAttributes;
+        });
     };
 
     // Get display names for variations

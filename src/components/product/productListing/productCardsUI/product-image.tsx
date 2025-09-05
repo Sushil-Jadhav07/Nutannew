@@ -3,6 +3,7 @@ import cn from "classnames";
 import Image from "@/components/shared/image";
 import { Product } from "@/services/types";
 import { productPlaceholder } from "@/assets/placeholders";
+import { DEFAULT_CURRENCY } from "@/utils/currency";
 import SearchIcon from "@/components/icons/search-icon";
 import { useModalAction } from "@/components/common/modal/modalContext";
 import { usePanel } from "@/contexts/usePanel";
@@ -22,7 +23,7 @@ const ProductImage: React.FC<ProductImageProps> = ({ product, outOfStock,variant
     const { discount } = usePrice({
         amount: sale_price ? sale_price : price,
         baseAmount: price,
-        currencyCode: "USD",
+        currencyCode: DEFAULT_CURRENCY,
     });
     
     const handlePopupView = () => {

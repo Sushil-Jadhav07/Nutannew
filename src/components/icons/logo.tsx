@@ -1,8 +1,8 @@
 
 import cn from "classnames";
 const SiteLogo = ({
-                          width = '80px',
-                          height = '80px',
+                          width = '60px',
+                          height = '60px',
                           className = '',
                           variant = '',
                       }) => {

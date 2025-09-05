@@ -4,6 +4,7 @@ import { useAddToCart, useIsInStock,useRemoveFromCart,useClearItemFromCart } fro
 import usePrice from '@/services/product/use-price';
 import {ROUTES} from '@/utils/routes';
 import Counter from '@/components/shared/counter';
+import { DEFAULT_CURRENCY } from '@/utils/currency';
 
 type CartItemProps = {
     item: any;
@@ -19,7 +20,7 @@ const CartItemDrawer: React.FC<CartItemProps> = ({item}) => {
 
     const {price: totalPrice} = usePrice({
         amount: item?.itemTotal,
-        currencyCode: 'USD',
+        currencyCode: DEFAULT_CURRENCY,
     });
     const outOfStock = !isInStock(item.id);
     return (

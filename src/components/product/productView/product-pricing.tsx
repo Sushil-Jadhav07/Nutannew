@@ -6,6 +6,7 @@ import usePrice from "@/services/product/use-price";
 import { usePanel } from "@/contexts/usePanel";
 import { colorMap } from "@/data/color-settings";
 import cn from "classnames";
+import { DEFAULT_CURRENCY } from "@/utils/currency";
 
 interface ProductPricingProps {
     data: Product;
@@ -32,7 +33,7 @@ const ProductPricing: React.FC<ProductPricingProps> = ({ data, selectedVariation
         const { price, basePrice, discount } = usePrice({
             amount: selectedVariation.sale_price || selectedVariation.price,
             baseAmount: selectedVariation.price,
-            currencyCode: "USD",
+            currencyCode: DEFAULT_CURRENCY,
         });
 
         return (
@@ -65,7 +66,7 @@ const ProductPricing: React.FC<ProductPricingProps> = ({ data, selectedVariation
     const { price, basePrice, discount } = usePrice({
         amount: data.sale_price ? data.sale_price : data.price,
         baseAmount: data.price,
-        currencyCode: "USD",
+        currencyCode: DEFAULT_CURRENCY,
     });
     const variations = data.variations;
 

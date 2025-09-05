@@ -1,10 +1,11 @@
 import usePrice from '@/services/product/use-price';
+import { DEFAULT_CURRENCY } from '@/utils/currency';
 import Image from '@/components/shared/image';
 
 export const OrderDetailsContent: React.FC<{ item?: any }> = ({ item }) => {
   const { price } = usePrice({
     amount: item.price,
-    currencyCode: 'USD',
+    currencyCode: DEFAULT_CURRENCY,
   });
   return (
     <div className="relative grid grid-cols-12 py-2 pb-0 border-b border-solid border-border-base text-[12px] md:text-[14px]">

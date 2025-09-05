@@ -3,19 +3,23 @@ import { useState } from 'react';
 
 import ProductDetailsTab from "@/components/product/productDetails/description-tab";
 import RelatedProductSlider from "@/components/product/feeds/related-product-feed";
-import ProductGallery from "@/components/product/productDetails/product-gallery";
-import ProductView from "@/components/product/productDetails/product-view";
+import ProductGalleryNew from "@/components/product/productDetails/product-gallery-new";
+import ProductViewNew from "@/components/product/productDetails/product-view-new";
 import useCustomParams from "@/utils/use-custom-params";
 import Loading from '@/components/shared/loading';
 import { useFirebaseProduct } from "@/hooks/useFirebaseProduct";
 
-export default function PageContent() {
+export default function PageContentNew() {
 	const pathname = useCustomParams();
 	const { slug } = pathname;
 	const { data, isLoading, error } = useFirebaseProduct(slug as string);
 	const [selectedColor, setSelectedColor] = useState<string>('');
+	
+	console.log('📄 PageContentNew: Product data loaded:', !!data);
+	console.log('📄 PageContentNew: Selected color:', selectedColor);
 
 	const handleColorChange = (color: string) => {
+		console.log('📄 PageContentNew: Color changed to:', color);
 		setSelectedColor(color);
 	};
 
@@ -34,12 +38,12 @@ export default function PageContent() {
 		<Element name="category" className="products-category">
 			<div className="w-full">
 				<div className="grid-cols-10 lg:grid gap-7 2xl:gap-10 mb-8 lg:mb-10 bg-white p-5 md:p-7 rounded">
-					<ProductGallery 
+					<ProductGalleryNew 
 						data={data} 
 						className={"col-span-5 "}
 						selectedColor={selectedColor}
 					/>
-					<ProductView 
+					<ProductViewNew 
 						data={data} 
 						className={"col-span-5 "}
 						onColorChange={handleColorChange}

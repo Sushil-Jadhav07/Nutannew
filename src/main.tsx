@@ -5,6 +5,7 @@ import {BrowserRouter} from "react-router-dom";
 import {ManagedUI} from "@/contexts/managedUI";
 import AuthProvider from './contexts/AuthProvider';
 import { ToastProvider } from './contexts/ToastContext';
+import ScrollToTop from './components/shared/ScrollToTop';
 
 import "./index.css"
 import App from './App.tsx'
@@ -22,6 +23,7 @@ initRequest();
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
 		<BrowserRouter>
+			<ScrollToTop />
 			<QueryClientProvider client={queryClient}>
 				<ManagedUI>
 					<AuthProvider>

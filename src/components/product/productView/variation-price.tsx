@@ -3,6 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 import {usePanel} from "@/contexts/usePanel";
 import {colorMap} from "@/data/color-settings";
 import cn from "classnames";
+import { DEFAULT_CURRENCY } from "@/utils/currency";
 
 export default function VariationPrice({
   selectedVariation,
@@ -16,16 +17,16 @@ export default function VariationPrice({
         ? selectedVariation.sale_price
         : selectedVariation.price,
       baseAmount: selectedVariation.price,
-      currencyCode: 'USD',
+      currencyCode: DEFAULT_CURRENCY,
     }
   );
   const { price: min_price } = usePrice({
     amount: minPrice,
-    currencyCode: 'USD',
+    currencyCode: DEFAULT_CURRENCY,
   });
   const { price: max_price } = usePrice({
     amount: maxPrice,
-    currencyCode: 'USD',
+    currencyCode: DEFAULT_CURRENCY,
   });
   return (
     <div className="flex items-center mt-5">

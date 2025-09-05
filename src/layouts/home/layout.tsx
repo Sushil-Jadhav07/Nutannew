@@ -47,7 +47,7 @@ const HomeLayout: React.FC = ({children}: React.PropsWithChildren) => {
 				: <Footer showWidgetServices={true}/>
 			}
             <BottomNavigation/>
-            {/* <BackToTopButton/> */}
+            <BackToTopButton/>
         </div>
     );
 };

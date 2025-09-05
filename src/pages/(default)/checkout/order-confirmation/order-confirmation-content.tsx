@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 import { ROUTES } from '@/utils/routes';
 import { useLocation } from 'react-router-dom';
 import { IoPrint } from 'react-icons/io5';
+import { DEFAULT_CURRENCY, DEFAULT_LOCALE } from '@/utils/currency';
 
 export default function OrderConfirmationContent() {
   const resetCart = useResetCart();
@@ -42,7 +43,7 @@ export default function OrderConfirmationContent() {
   const shipping = typeof order?.delivery_fee === 'number' ? order.delivery_fee : 0;
   const orderTotal = typeof order?.orderTotal === 'number' ? order.orderTotal : Math.max(0, subtotal - (Number(order?.discount) || 0));
 
-  const format = (n: number) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+  const format = (n: number) => n.toLocaleString(DEFAULT_LOCALE, { style: 'currency', currency: DEFAULT_CURRENCY });
   const customerName: string = order?.dropoff_location?.consignee || 'Customer';
   const summaryRef = useRef<HTMLDivElement | null>(null);
   const onPrint = () => {

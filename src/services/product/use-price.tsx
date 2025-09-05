@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { DEFAULT_CURRENCY, DEFAULT_LOCALE } from '@/utils/currency';
 
 // Basic price formatting function
 export function formatPrice({
@@ -60,8 +61,8 @@ export default function usePrice(
   basePrice: string | null;
   discount: string | null;
 } {
-  const { amount, baseAmount, currencyCode } = data ?? {};
-  const locale = 'en';
+  const { amount, baseAmount, currencyCode = DEFAULT_CURRENCY } = data ?? {};
+  const locale = DEFAULT_LOCALE;
   
   const value = useMemo(() => {
     if (typeof amount !== 'number' || !currencyCode) return '';

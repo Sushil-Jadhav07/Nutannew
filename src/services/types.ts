@@ -20,7 +20,7 @@ export type Attachment = {
   id: string | number;
   thumbnail: string;
   original: string;
-  original2: string;
+  original2?: string; // Made optional
 };
 export type Category = {
   id: number;
@@ -56,6 +56,14 @@ export type Product = {
     color?: string; 
     status?: string;
     options?: Array<{ id: number; attribute_id: number; value: string; image?: string }>;
+  }>;
+  variation?: Array<{
+    color: string;
+    img: string;
+    price: number;
+    quantity: number;
+    size: any; // Can be string, array, or object
+    status: string;
   }>;
   variations?: Variation[];
   image: Attachment;

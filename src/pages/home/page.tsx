@@ -45,7 +45,7 @@ const Homepage: React.FC = () => {
             </Container>
             <div className={"bg-zinc-100 dark:bg-zinc-800 py-10 sm:py-12"}>
                 <Container>
-                    <BestDealsFeed className={'navSlider'}/>
+                    {/* <BestDealsFeed className={'navSlider'}/> */}
                     <BestSellerFeed className="mb-8 lg:mb-12"/>
                     <BannerGrid
                         data={gridHero}

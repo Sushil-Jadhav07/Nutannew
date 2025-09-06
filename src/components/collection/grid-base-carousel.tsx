@@ -38,87 +38,77 @@ const staticCategories: Category[] = [
     },
     {
         id: 2,
-        name: 'Tech Gift Sets',
+        name: 'Wireless Charger',
         slug: 'tech-gift-sets',
         image: { 
             id: 2,
-            thumbnail: '/assets/images/category/wireless1.jpeg',
+            thumbnail: '/assets/images/category/wireless1.png',
             original: '/assets/images/category/tech-gift-sets.jpg'
         },
         productCount: 12,
     },
     {
         id: 3,
-        name: 'Eco notebook',
-        slug: 'eco-notebook',
+        name: 'Stainless Steel Tumbler',
+        slug: 'stainless-steel-tumbler',
         image: { 
             id: 3,
-            thumbnail: '/assets/images/category/recycled-material.png',
+            thumbnail: '/assets/images/category/stainless-steel.png',
             original: '/assets/images/category/eco-notebook.jpg'
         },
         productCount: 8,
     },
     {
         id: 4,
-        name: 'Sippers & Straps',
-        slug: 'sippers-with-straps',
+        name: 'Recycled Material Goods',
+        slug: 'recycled-material-goods',
         image: { 
             id: 4,
-            thumbnail: '/assets/images/category/slipperswithstraps.jpeg',
+            thumbnail: '/assets/images/category/recycled-material.png',
             original: '/assets/images/category/sippers-straps.jpg'
         },
         productCount: 10,
     },
     {
         id: 5,
-        name: 'Corporate Combos',
-        slug: 'corporate-combo-packs',
+        name: 'USB Essential',
+        slug: 'usb-essential',
         image: { 
             id: 5,
-            thumbnail: '/assets/images/category/corporate-combopack.jpeg',
+            thumbnail: '/assets/images/category/usb-essential.png',
             original: '/assets/images/category/corporate-combopack.jpeg'
         },
         productCount: 6,
     },
     {
         id: 6,
-        name: 'Custom Bundles',
-        slug: 'custom-bundles',
+        name: 'Sticky Notes & Memo Pads',
+        slug: 'sticky-notes-memo-pads',
         image: { 
             id: 6,
-            thumbnail: '/assets/images/category/custom-build.jpeg',
+            thumbnail: '/assets/images/category/stickynotes-memopads.png',
             original: '/assets/images/category/custom-bundles.jpg'
         },
         productCount: 20,
     },
     {
         id: 7,
-        name: 'Accessories',
-        slug: 'accessories',
+        name: 'Cork Accessories',
+        slug: 'cork-accessories',
         image: { 
             id: 7,
-            thumbnail: '/assets/images/category/charging-cable.jpeg',
+            thumbnail: '/assets/images/category/corkaccessories.png',
             original: '/assets/images/category/accessories.jpg'
         },
         productCount: 25,
     },
-    {
-        id: 8,
-        name: 'Festive Gifts',
-        slug: 'festive-gift-set',
-        image: { 
-            id: 8,
-            thumbnail: '/assets/images/category/festive-giftset.jpeg',
-            original: '/assets/images/category/festive-gifts.jpg'
-        },
-        productCount: 14,
-    },
+    
 ];
 
 const GridBaseCarousel: React.FC<CategoriesProps> = ({
                                                           sectionHeading,
                                                           className = 'md:pt-3 lg:pt-0 3xl:pb-2 mb-12 sm:mb-14 md:mb-16 ',
-                                                          limit = 8,
+                                                          limit = 7,
                                                           variant='default',
                                                          uniqueKey='grid-services',
                                                          useStaticData = false,

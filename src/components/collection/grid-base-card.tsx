@@ -29,12 +29,12 @@ const GridBaseCard: React.FC<Props> = ({ item, href, className,variant}) => {
                  )}
             >
                 <div className={cn(
-                         'card-category--thumb overflow-hidden',
-                         {
-                             'rounded-full relative bg-gray-100 min-w-[100px] h-[100px] flex items-center justify-center': variant === 'default' ,
-                             'max-w-[90px] h-[95px] ': variant === 'card',
-                         }
-                     )}
+                        'card-category--thumb overflow-hidden',
+                        {
+                            'rounded-full relative bg-gray-100 min-w-[100px] h-[100px] flex items-center justify-center': variant === 'default' ,
+                            'max-w-[90px] h-[95px] ': variant === 'card',
+                        }
+                    )}
                 >
                     <Image
                         src={image?.thumbnail ?? categoryPlaceholder}

@@ -31,7 +31,7 @@ const staticCategories: Category[] = [
         slug: 'tech-organizers',
         image: { 
             id: 1,
-            thumbnail: '/assets/images/category/tech1.jpeg',
+            thumbnail: '/assets/images/category/tech1.png',
             original: '/assets/images/category/tech1.jpeg'
         },
         productCount: 15,
@@ -53,7 +53,7 @@ const staticCategories: Category[] = [
         slug: 'eco-notebook',
         image: { 
             id: 3,
-            thumbnail: '/assets/images/category/eco-notebook.jpg',
+            thumbnail: '/assets/images/category/recycled-material.png',
             original: '/assets/images/category/eco-notebook.jpg'
         },
         productCount: 8,
@@ -64,7 +64,7 @@ const staticCategories: Category[] = [
         slug: 'sippers-with-straps',
         image: { 
             id: 4,
-            thumbnail: '/assets/images/category/sippers-straps.jpg',
+            thumbnail: '/assets/images/category/slipperswithstraps.jpeg',
             original: '/assets/images/category/sippers-straps.jpg'
         },
         productCount: 10,
@@ -75,8 +75,8 @@ const staticCategories: Category[] = [
         slug: 'corporate-combo-packs',
         image: { 
             id: 5,
-            thumbnail: '/assets/images/category/corporate-combo.jpg',
-            original: '/assets/images/category/corporate-combo.jpg'
+            thumbnail: '/assets/images/category/corporate-combopack.jpeg',
+            original: '/assets/images/category/corporate-combopack.jpeg'
         },
         productCount: 6,
     },
@@ -86,7 +86,7 @@ const staticCategories: Category[] = [
         slug: 'custom-bundles',
         image: { 
             id: 6,
-            thumbnail: '/assets/images/category/custom-bundles.jpg',
+            thumbnail: '/assets/images/category/custom-build.jpeg',
             original: '/assets/images/category/custom-bundles.jpg'
         },
         productCount: 20,
@@ -97,7 +97,7 @@ const staticCategories: Category[] = [
         slug: 'accessories',
         image: { 
             id: 7,
-            thumbnail: '/assets/images/category/accessories.jpg',
+            thumbnail: '/assets/images/category/charging-cable.jpeg',
             original: '/assets/images/category/accessories.jpg'
         },
         productCount: 25,
@@ -108,7 +108,7 @@ const staticCategories: Category[] = [
         slug: 'festive-gift-set',
         image: { 
             id: 8,
-            thumbnail: '/assets/images/category/festive-gifts.jpg',
+            thumbnail: '/assets/images/category/festive-giftset.jpeg',
             original: '/assets/images/category/festive-gifts.jpg'
         },
         productCount: 14,

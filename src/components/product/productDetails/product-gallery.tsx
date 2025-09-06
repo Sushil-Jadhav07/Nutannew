@@ -1,6 +1,5 @@
 import React from "react";
 import ThumbnailCarousel from "@/components/shared/carousel/thumbnail-carousel";
-import Image from "@/components/shared/image";
 import {Product} from "@/services/types";
 import cn from "classnames";
 import {productPlaceholder} from "@/assets/placeholders";
@@ -63,12 +62,12 @@ const ProductGallery: React.FC<GalleryProps> = ({data, className, selectedColor}
 					galleryClassName="xl:w-full"
 				/>
 			) : (
-				<div className="flex items-center justify-center w-auto">
-					<Image
+				<div className="flex items-center justify-center bg-gray-50 rounded-lg min-h-[400px] lg:min-h-[480px]">
+					<img
 						src={currentImage && currentImage.trim() !== "" ? currentImage : productPlaceholder}
 						alt={data?.name ?? 'product name'}
-						width={480}
-						height={480}
+						className="max-w-full max-h-full object-contain rounded-lg"
+						style={{ maxHeight: '480px' }}
 					/>
 				</div>
 			)}

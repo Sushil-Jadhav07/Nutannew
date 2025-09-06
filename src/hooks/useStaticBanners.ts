@@ -8,6 +8,7 @@ interface FirebaseStaticBanner {
   title?: string; // Optional
   subtitle?: string; // Optional
   imageUrl: string; // Required
+  path: string; // Required for navigation
   status: string; // Required
   createdAt: any;
 }
@@ -55,13 +56,13 @@ export const useStaticBanners = () => {
           const data = doc.data() as FirebaseStaticBanner;
           console.log('Static banner data:', doc.id, data);
           
-          // Only process banners that have imageUrl and are published (title and subtitle are optional)
-          if (data.imageUrl && data.status === 'published') {
+          // Only process banners that have imageUrl, path, and are published (title and subtitle are optional)
+          if (data.imageUrl && data.path && data.status === 'published') {
             // Transform Firebase data to match the expected banner format
             const transformedBanner: TransformedStaticBanner = {
               id: doc.id,
               title: data.title || 'Banner', // Default title if not provided
-              slug: '/', // Default slug, you can modify this based on your needs
+              slug: data.path, // Use the path from Firebase for navigation
               // Transform image to match expected structure
               image: {
                 mobile: {
@@ -87,6 +88,8 @@ export const useStaticBanners = () => {
           } else {
             if (!data.imageUrl) {
               console.log('Skipping static banner due to missing imageUrl:', doc.id, data);
+            } else if (!data.path) {
+              console.log('Skipping static banner due to missing path:', doc.id, data);
             } else if (data.status !== 'published') {
               console.log('Skipping static banner due to non-published status:', doc.id, data);
             }

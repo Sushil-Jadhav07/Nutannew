@@ -1,6 +1,7 @@
 import { collection, getDocs, query, where, orderBy, limit, QuerySnapshot, DocumentData } from 'firebase/firestore';
 import { db } from '@/config/firebase';
 import { Product } from '@/services/types';
+import { parseProductName, processVariationWithColorExtraction } from '@/utils/product-name-parser';
 
 // Firebase Product interface (matching your actual Firestore structure)
 export interface FirebaseProduct {
@@ -27,6 +28,7 @@ export interface FirebaseProduct {
   }>;
   variation: Array<{
     color: string;
+    colorName?: string; // Human-readable color name
     img: string;
     price: number;
     quantity: number;
@@ -52,9 +54,16 @@ const transformFirebaseProduct = (doc: DocumentData): Product => {
   // Use document ID as the primary product identifier (productID)
   const productID = doc.id;
   
+  // Parse product name to extract color information and get clean name
+  const parsedName = parseProductName(data.productName || '');
+  const cleanProductName = parsedName.cleanName;
+  
+  // Process variations to extract color names from product name
+  const processedVariations = processVariationWithColorExtraction(data.variation, data.productName);
+  
   return {
     id: productID, // Primary identifier - Firebase document ID
-    name: data.productName || '',
+    name: cleanProductName, // Use cleaned product name without color
     slug: productID, // Use productID for slug instead of productSku for consistency
     price: parseFloat(data.productPrice || '0'),
     quantity: parseInt(data.productQuantity || '0'),
@@ -63,8 +72,9 @@ const transformFirebaseProduct = (doc: DocumentData): Product => {
     sale_price: variationPrice || parseFloat(data.productPrice || '0'),
     min_price: parseFloat(data.productPrice || '0'),
     max_price: variationPrice || parseFloat(data.productPrice || '0'),
-    variation_options: data.variation?.map((v: any) => ({ quantity: v.quantity?.toString() || '0' })) || [],
-    variations: data.variation?.map((v: any) => ({
+    variation_options: processedVariations?.map((v: any) => ({ quantity: v.quantity?.toString() || '0' })) || [],
+    variation: processedVariations, // Add processed variation data
+    variations: processedVariations?.map((v: any) => ({
       id: 1,
       attribute_id: 1,
       value: v.size || '',

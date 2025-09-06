@@ -82,6 +82,16 @@ export const useFirebaseProductsBySubCategory = (subcategory: string, limitCount
   });
 };
 
+// Hook for best deals products (using best seller data for now)
+export const useFirebaseBestDealsProducts = (limitCount: number = 10) => {
+  return useQuery<Product[], Error>({
+    queryKey: ['firebase-best-deals-products', limitCount],
+    queryFn: () => fetchBestSellerProductsFromFirebase(limitCount),
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    gcTime: 10 * 60 * 1000, // 10 minutes
+  });
+};
+
 // Hook for categories
 export const useFirebaseCategories = () => {
   return useQuery({

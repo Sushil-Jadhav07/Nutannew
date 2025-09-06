@@ -154,13 +154,14 @@ const ThumbnailCarousel: React.FC<Props> = ({
 									className="mx-auto  w-full h-[300px] lg:h-[510px]"
 								/>
 							) : (
-								<Image
-									src={item?.original ?? productGalleryPlaceholder}
-									alt={`Product gallery ${item.id}`}
-									width={600}
-									height={510}
-									className="mx-auto rounded-lg"
-								/>
+								<div className="flex items-center justify-center bg-gray-50 rounded-lg min-h-[400px] lg:min-h-[510px]">
+									<img
+										src={item?.original ?? productGalleryPlaceholder}
+										alt={`Product gallery ${item.id}`}
+										className="max-w-full max-h-full object-contain rounded-lg"
+										style={{ maxHeight: '510px' }}
+									/>
+								</div>
 							)}
 						</SwiperSlide>
 					))}

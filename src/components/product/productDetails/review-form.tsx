@@ -7,27 +7,50 @@ import Heading from '@/components/shared/heading';
 import Text from '@/components/shared/text';
 import cn from 'classnames';
 import Rate from '@/components/shared/rate';
+import { useAddReview } from '@/hooks/useProductReviews';
+import { useToast } from '@/contexts/ToastContext';
 
 interface ReviewFormProps {
   className?: string;
+  productId: string;
+  onReviewAdded?: () => void;
 }
 interface ReviewFormValues {
   name: string;
   email: string;
-  cookie: string;
   message: string;
 }
 
-const ReviewForm: React.FC<ReviewFormProps> = ({  className = '' }) => {
+const ReviewForm: React.FC<ReviewFormProps> = ({ className = '', productId, onReviewAdded }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<ReviewFormValues>();
   const [rating_custom_icon, set_rating_custom_icon] = useState(5);
-  function onSubmit(values: ReviewFormValues) {
-    console.log(values, 'review');
-  }
+  const addReviewMutation = useAddReview();
+  const { showToast } = useToast();
+
+  const onSubmit = async (values: ReviewFormValues) => {
+    try {
+      await addReviewMutation.mutateAsync({
+        name: values.name,
+        email: values.email,
+        message: values.message,
+        rating: rating_custom_icon,
+        productId: productId,
+      });
+      
+      showToast('Review submitted successfully!', 'success');
+      reset(); // Clear the form
+      set_rating_custom_icon(5); // Reset rating
+      onReviewAdded?.(); // Callback for parent component
+    } catch (error) {
+      showToast('Failed to submit review. Please try again.', 'error');
+      console.error('Error submitting review:', error);
+    }
+  };
 
   return (
     <div className={cn(className)}>
@@ -86,8 +109,10 @@ const ReviewForm: React.FC<ReviewFormProps> = ({  className = '' }) => {
             <Button
               type="submit"
               className="w-full h-12 text-sm md:mt-1 lg:text-base sm:w-auto"
+              loading={addReviewMutation.isPending}
+              disabled={addReviewMutation.isPending}
             >
-              Submit
+              {addReviewMutation.isPending ? 'Submitting...' : 'Submit'}
             </Button>
           </div>
         </div>

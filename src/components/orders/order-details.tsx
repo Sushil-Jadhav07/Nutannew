@@ -23,10 +23,24 @@ const OrderItemCard = ({product}: { product: OrderItem }) => {
 				/>
 			</div>
 			<div className="flex-1">
-				<p className="text-brand-dark text-15px">
-				<span className="font-medium">{product.quantity} x </span>
-					{product.name}
-				</p>
+				<div className="flex flex-col gap-1">
+					<p className="text-brand-dark text-15px">
+						<span className="font-medium">{product.quantity} x </span>
+						{product.name}
+					</p>
+					{/* Show color name and circle if the item has color variation */}
+					{product?.color && (
+						<div className="flex items-center gap-2">
+							<span
+								className="inline-block w-3 h-3 rounded-full border border-brand-dark/10"
+								style={{ backgroundColor: product.color.toLowerCase() }}
+							/>
+							<span className="text-xs text-gray-500">
+								{product?.colorDisplayName || product?.colorName || product.color}
+							</span>
+						</div>
+					)}
+				</div>
 			</div>
 			<div className="text-brand-dark text-end">
 				<p className="font-semibold">{itemTotal}</p>

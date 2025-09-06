@@ -32,6 +32,10 @@ export default function OrderConfirmationContent() {
       qty: isFinite(qty) ? qty : 1,
       price: isFinite(price) ? price : 0,
       image: p.image?.thumbnail || p.image?.original || p.imageUrl || p.thumbnail || '',
+      // Preserve color information from cart items
+      color: p.color || '',
+      colorName: p.colorName || '',
+      colorDisplayName: p.colorDisplayName || p.colorName || '',
     };
   });
 
@@ -107,6 +111,18 @@ export default function OrderConfirmationContent() {
                     )}
                     <div className="text-sm text-brand-dark">
                       <div className="font-medium">{p.qty} x {p.name}</div>
+                      {/* Show color name and circle if the item has color variation */}
+                      {p.color && (
+                        <div className="flex items-center gap-1 mt-1">
+                          <span
+                            className="inline-block w-2 h-2 rounded-full border border-brand-dark/10"
+                            style={{ backgroundColor: p.color.toLowerCase() }}
+                          />
+                          <span className="text-xs text-gray-500">
+                            {p.colorDisplayName || p.colorName || p.color}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="text-sm font-semibold text-brand-dark">{format(p.price * p.qty)}</div>

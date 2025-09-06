@@ -19,7 +19,21 @@ export const OrderDetailsContent: React.FC<{ item?: any }> = ({ item }) => {
         />
       </div>
       <div className="self-center col-span-5">
-        <h2 className="text-brand-dark">{item.name}</h2>
+        <div className="flex flex-col gap-1">
+          <h2 className="text-brand-dark">{item.name}</h2>
+          {/* Show color name and circle if the item has color variation */}
+          {item?.color && (
+            <div className="flex items-center gap-2">
+              <span
+                className="inline-block w-3 h-3 rounded-full border border-brand-dark/10"
+                style={{ backgroundColor: item.color.toLowerCase() }}
+              />
+              <span className="text-xs text-gray-500">
+                {item?.colorDisplayName || item?.colorName || item.color}
+              </span>
+            </div>
+          )}
+        </div>
       </div>
       <div className="self-center col-span-3 text-center md:ltr:text-left md:rtl:text-right">
         {typeof item.quantity === 'number' && <p>{item.quantity} x</p>}

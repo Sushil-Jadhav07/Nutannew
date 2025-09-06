@@ -601,7 +601,7 @@ button.yarl__thumbnails_thumbnail_active{
         transition: 0.3s all ease-in-out 0s;
     }
     &:hover{
-        > div::before{
+        > .card-category--thumb:before{
             opacity: 1;
             transform: scale(1);
         }

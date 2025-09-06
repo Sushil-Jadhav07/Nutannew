@@ -59,6 +59,7 @@ export type Product = {
   }>;
   variation?: Array<{
     color: string;
+    colorName?: string; // Human-readable color name
     img: string;
     price: number;
     quantity: number;
@@ -144,6 +145,12 @@ export interface VariationsType {
 export interface Option {
   name: string;
   value: string;
+  displayValue?: string;
+  colorInfo?: {
+    hex: string;
+    name: string;
+    displayName: string;
+  };
 }
 
 export interface VariationOption {

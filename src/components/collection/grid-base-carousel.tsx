@@ -31,8 +31,8 @@ const staticCategories: Category[] = [
         slug: 'tech-organizers',
         image: { 
             id: 1,
-            thumbnail: '/assets/images/category/cate1.png',
-            original: '/assets/images/category/cate1.png'
+            thumbnail: '/assets/images/category/tech1.jpeg',
+            original: '/assets/images/category/tech1.jpeg'
         },
         productCount: 15,
     },
@@ -42,7 +42,7 @@ const staticCategories: Category[] = [
         slug: 'tech-gift-sets',
         image: { 
             id: 2,
-            thumbnail: '/assets/images/category/tech-gift-sets.jpg',
+            thumbnail: '/assets/images/category/wireless1.jpeg',
             original: '/assets/images/category/tech-gift-sets.jpg'
         },
         productCount: 12,

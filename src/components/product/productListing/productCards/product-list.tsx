@@ -19,6 +19,30 @@ const ProductCardList: React.FC<ProductProps> = ({product, className,variant = "
     const { id, quantity, description} = product ?? {};
     const { outOfStock } = useProductStatus(String(id), quantity);
     
+    // Helper function to clean and format description text
+    const formatDescription = (htmlContent: string) => {
+        if (!htmlContent || typeof htmlContent !== 'string') {
+            return '';
+        }
+        
+        // Decode HTML entities and clean up the text
+        let cleanText = htmlContent
+            // First decode HTML entities
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&')
+            .replace(/&nbsp;/g, ' ')
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, "'")
+            // Remove HTML tags but keep the content
+            .replace(/<[^>]*>/g, '')
+            // Clean up multiple spaces and line breaks
+            .replace(/\s+/g, ' ')
+            .trim();
+            
+        return cleanText;
+    };
+    
     return (
         <article
             className={cn(
@@ -36,7 +60,7 @@ const ProductCardList: React.FC<ProductProps> = ({product, className,variant = "
                 <ProductPricing product={product} variant={variant} />
                 
                 <p className="hidden lg:block text-sm text-skin-base line-clamp-3 leading-7 opacity-80">
-                    {description}
+                    {formatDescription(description || '')}
                 </p>
                 
                 <div className="inline-block   lg:mt-6">

@@ -97,6 +97,24 @@ const CheckoutCard: React.FC = () => {
 
         setIsCreatingOrder(true);
         try {
+            // Validate required data before creating order
+            if (items.length === 0) {
+                throw new Error('Cart is empty');
+            }
+            
+            if (!formData.contact?.email && !user?.email) {
+                throw new Error('Customer email is required');
+            }
+            
+            if (!formData.shipping?.address) {
+                throw new Error('Shipping address is required');
+            }
+            
+            console.log('Creating order with cart items:', items);
+            console.log('Applied coupon:', appliedCoupon);
+            console.log('Discount amount:', discountAmount);
+            console.log('Payable amount:', payable);
+            
             // Prepare order data according to your Firebase structure
             const orderData = {
                 OrderID: Date.now().toString(), // Generate unique order ID
@@ -109,8 +127,8 @@ const CheckoutCard: React.FC = () => {
                     const sizeMatch = item.name?.match(/- ([A-Z]+)$/);
                     const size = sizeMatch ? sizeMatch[1] : 'Standard';
                     
-                    // Remove size from product name (e.g., "Giftset Product - M" -> "Giftset Product")
-                    const cleanName = item.name?.replace(/- [A-Z]+$/, '').trim() || 'Unknown Product';
+                    // Use the already clean product name (color names are now handled separately)
+                    const cleanName = item.name || 'Unknown Product';
                     
                     const imgThumb = item?.image?.thumbnail || item?.image?.url || item?.imageUrl || item?.thumbnail || (Array.isArray(item?.images) ? (item.images[0]?.thumbnail || item.images[0]?.url) : undefined) || (typeof item?.image === 'string' ? item.image : undefined) || '';
                     return {
@@ -119,6 +137,10 @@ const CheckoutCard: React.FC = () => {
                         p_qty: (item.quantity || 1).toString(),
                         p_size: size,
                         p_color: item.color || '#000000',
+                        // Preserve all color information for order confirmation
+                        color: item.color || '',
+                        colorName: item.colorName || '',
+                        colorDisplayName: item.colorDisplayName || item.colorName || '',
                         image: imgThumb ? { thumbnail: imgThumb, original: imgThumb } : undefined,
                     };
                 }),
@@ -165,18 +187,21 @@ const CheckoutCard: React.FC = () => {
                 orderStatus: 'new',
                 
                 // Additional checkout information
-                customerEmail: formData.contact?.email || '',
+                customerEmail: formData.contact?.email || user?.email || '',
                 customerPhone: formData.contact?.phone || '',
                 paymentMethod: formData.payment?.paymentMethod || 'cod',
                 shippingType: formData.shipping?.addressType || 'home',
                 orderTotal: payable,
+                total: total, // Add original total
                 discount: discountAmount,
                 coupon: appliedCoupon ? {
                     code: appliedCoupon.couponCode,
                     amount: appliedCoupon.couponAmount,
                     type: appliedCoupon.couponAmountDetails,
-                } : undefined,
-                itemsCount: items.length
+                } : null,
+                itemsCount: items.length,
+                // Add user ID for better tracking
+                userId: user?.uid || ''
             };
 
             // Add order to Firebase
@@ -189,7 +214,21 @@ const CheckoutCard: React.FC = () => {
             
         } catch (error) {
             console.error('Error creating order:', error);
-            alert('Failed to create order. Please try again.');
+            console.error('Order data that failed:', orderData);
+            
+            // Provide more specific error messages
+            let errorMessage = 'Failed to create order. Please try again.';
+            if (error instanceof Error) {
+                console.error('Error details:', error.message);
+                // You can add more specific error handling based on error types
+                if (error.message.includes('permission')) {
+                    errorMessage = 'Permission denied. Please check your login status.';
+                } else if (error.message.includes('network')) {
+                    errorMessage = 'Network error. Please check your connection.';
+                }
+            }
+            
+            alert(errorMessage);
         } finally {
             setIsCreatingOrder(false);
         }

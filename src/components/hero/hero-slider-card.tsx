@@ -25,7 +25,9 @@ export default function HeroSliderCard({
     const {title, description, image} = banner;
     const selectedImage = getImage(width!, image);
     const {selectedColor} = usePanel();
-    return heroContentCard ? (
+    
+    // Main hero card content
+    const heroContent = (
         <div
             className={cn(
                 'w-full relative bg-no-repeat bg-cover bg-center flex items-center ',
@@ -88,7 +90,7 @@ export default function HeroSliderCard({
                     {banner.btnText && (
                         <Link
                             to={banner.btnUrl}
-                            className={cn('text-sm rounded h-[44px] mt-5 md:mt-12 text-base inline-flex items-center justify-center sm:capitalize px-10 py-2 font-semibold ', {
+                            className={cn('text-base rounded h-[44px] mt-5 md:mt-12 inline-flex items-center justify-center sm:capitalize px-10 py-2 font-semibold', {
                                 [`text-brand-dark bg-white  ${colorMap[selectedColor].hoverBg} hover:sm:text-brand-light`]: variant == 'hero' ,
                                 [`text-brand-light ${colorMap[selectedColor].bg} hover:text-white hover:bg-brand-dark  `]: variant === 'hero-3',
                                 [`text-white bg-brand-dark hover:text-white ${colorMap[selectedColor].hoverBg} `]: variant === 'hero-6' || variant == 'hero-8',
@@ -102,6 +104,10 @@ export default function HeroSliderCard({
                 </div>
             </div>
         </div>
+    );
+    
+    return heroContentCard ? (
+        heroContent
     ) : (
         <Link to={banner.btnUrl}>
             <div

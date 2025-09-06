@@ -1,6 +1,7 @@
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '@/config/firebase';
 import { Product } from '@/services/types';
+import { parseProductName, processVariationWithColorExtraction } from '@/utils/product-name-parser';
 
 // Firebase Product interface (matching your actual Firestore structure)
 export interface FirebaseProduct {
@@ -35,6 +36,7 @@ export interface FirebaseProduct {
   bannerImageTwo?: string;
   variation: Array<{
     color: string;
+    colorName?: string; // Human-readable color name
     img: string;
     price: number;
     quantity: number;
@@ -67,6 +69,13 @@ const transformFirebaseProduct = (doc: any): Product => {
   
   // Use document ID as the primary product identifier (productID)
   const productID = doc.id;
+  
+  // Parse product name to extract color information and get clean name
+  const parsedName = parseProductName(data.productName || '');
+  const cleanProductName = parsedName.cleanName;
+  
+  // Process variations to extract color names from product name
+  const processedVariations = processVariationWithColorExtraction(data.variation, data.productName);
   
   // Transform variations to match the expected format
   const transformedVariations = data.variation?.map((v: any, index: number) => ({
@@ -104,7 +113,7 @@ const transformFirebaseProduct = (doc: any): Product => {
   
   const result = {
     id: productID, // Primary identifier - Firebase document ID
-    name: data.productName || '',
+    name: cleanProductName, // Use cleaned product name without color
     slug: productID, // Use productID for slug instead of productSku for consistency
     price: parseFloat(data.productPrice || '0'),
     quantity: parseInt(data.productQuantity || '0'),
@@ -114,7 +123,7 @@ const transformFirebaseProduct = (doc: any): Product => {
     min_price: parseFloat(data.productPrice || '0'),
     max_price: variationPrice || parseFloat(data.productPrice || '0'),
     variation_options: variationOptions,
-    variation: data.variation, // Also include raw variation data
+    variation: processedVariations, // Use processed variation data with extracted color names
     variations: transformedVariations,
     image: {
       id: productID,

@@ -7,6 +7,7 @@ interface FirebaseBanner {
   title: string;
   subtitle: string;
   imageUrl: string;
+  path: string;
   status: string;
   createdAt: any;
 }
@@ -51,16 +52,16 @@ export const useFirebaseBanners = () => {
           console.log('Banner data:', doc.id, data);
           
           // Only process banners that have the required fields AND are NOT active
-          if (data.title && data.subtitle && data.imageUrl && data.status !== 'active') {
+          if (data.title && data.subtitle && data.imageUrl && data.path && data.status !== 'active') {
             // Transform Firebase data to match the expected banner format
             // while preserving all existing banner functionality
             const transformedBanner: TransformedBanner = {
               id: doc.id,
               title: data.title,
               description: data.subtitle,
-              // Keep default button functionality
+              // Use the path from Firebase for navigation
               btnText: 'Shop Now',
-              btnUrl: '/',
+              btnUrl: data.path,
               // Transform image to match expected structure
               image: {
                 mobile: {
@@ -82,7 +83,7 @@ export const useFirebaseBanners = () => {
             console.log('Transformed banner:', transformedBanner);
             bannersData.push(transformedBanner);
           } else {
-            if (!data.title || !data.subtitle || !data.imageUrl) {
+            if (!data.title || !data.subtitle || !data.imageUrl || !data.path) {
               console.log('Skipping banner due to missing required fields:', doc.id, data);
             } else if (data.status === 'active') {
               console.log('Skipping banner due to active status:', doc.id, data);

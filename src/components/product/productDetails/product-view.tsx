@@ -3,12 +3,12 @@ import { Product } from "@/services/types";
 import cn from "classnames";
 import ProductHeader from "@/components/product/productView/product-header";
 import ProductPricing from "@/components/product/productView/product-pricing";
-import ProductInfo from "@/components/product/productView/product-info";
 import ProductQuantity from "@/components/product/productView/product-quantity";
 import ProductActions from "@/components/product/productView/product-actions";
 import ProductFooter from "@/components/product/productView/product-footer";
 import StickyCart from "@/components/product/productView/sticky-cart";
 import useCartActions from "@/hooks/use-cart-actions";
+import { getEnhancedVariationDisplayName, createColorInfo } from "@/utils/color-utils";
 
 interface ViewProps {
 	className?: string;
@@ -23,11 +23,16 @@ const ProductView: React.FC<ViewProps> = ({ data, className, variant, onColorCha
 	const [selectedColor, setSelectedColor] = useState<string>('');
 	const targetButtonRef = useRef<HTMLButtonElement>(null);
 
-	// Extract available colors from Firebase variation data
+	// Extract available colors from Firebase variation data with color names
 	const availableColors = useMemo(() => {
 		if (!data?.variation || !Array.isArray(data.variation)) return [];
-		return data.variation.map(v => ({ value: v.color, image: v.img }));
-	}, [data?.variation]);
+		return data.variation.map(v => ({ 
+			value: v.color, 
+			image: v.img,
+			colorName: v.colorName,
+			displayName: getEnhancedVariationDisplayName(v, data?.name)
+		}));
+	}, [data?.variation, data?.name]);
 
 	// Create selectedVariation object for cart functionality
 	const selectedVariation = useMemo(() => {
@@ -35,15 +40,21 @@ const ProductView: React.FC<ViewProps> = ({ data, className, variant, onColorCha
 		
 		const matchingVariation = data.variation.find((v: any) => v.color === selectedColor);
 		if (matchingVariation) {
+			const colorInfo = createColorInfo(matchingVariation.color, matchingVariation.colorName);
 			return {
 				id: 1,
-				title: selectedColor,
+				title: colorInfo.displayName, // Use display name instead of hex
 				price: matchingVariation.price || data.price,
 				sale_price: matchingVariation.price || data.price,
 				quantity: matchingVariation.quantity || 0,
 				is_disable: matchingVariation.quantity === 0 ? 1 : 0,
 				sku: data.sku || '',
-				options: [{ name: 'color', value: selectedColor }]
+				options: [{ 
+					name: 'color', 
+					value: selectedColor, 
+					displayValue: colorInfo.displayName,
+					colorInfo: colorInfo // Store complete color info for cart
+				}]
 			};
 		}
 		return undefined;
@@ -68,12 +79,18 @@ const ProductView: React.FC<ViewProps> = ({ data, className, variant, onColorCha
 		<div className={cn("flex flex-col shrink-0", className)}>
 			<ProductHeader data={data} />
 			<ProductPricing data={data} selectedVariation={selectedVariation} />
-			{variant !=='quickview' && <ProductInfo data={data} />}
 			
-			{/* Simple Color Selector */}
+			{/* Color Selector with Names */}
 			{availableColors.length > 0 && (
 				<div className="pb-4">
-					<h3 className="text-sm font-medium text-gray-900 mb-3">Color</h3>
+					<div className="flex items-center gap-2 mb-3">
+						<h3 className="text-sm font-medium text-gray-900">Color:</h3>
+						{selectedColor && (
+							<span className="text-sm text-gray-600 font-medium">
+								{availableColors.find(c => c.value === selectedColor)?.displayName || selectedColor}
+							</span>
+						)}
+					</div>
 					<div className="flex flex-wrap gap-3">
 						{availableColors.map((colorOption, index) => (
 							<button
@@ -86,8 +103,8 @@ const ProductView: React.FC<ViewProps> = ({ data, className, variant, onColorCha
 										: "border-gray-300 hover:border-gray-400"
 								)}
 								style={{ backgroundColor: colorOption.value }}
-								title={colorOption.value}
-							/>
+							>
+							</button>
 						))}
 					</div>
 				</div>

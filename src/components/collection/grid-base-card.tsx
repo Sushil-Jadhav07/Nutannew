@@ -29,9 +29,9 @@ const GridBaseCard: React.FC<Props> = ({ item, href, className,variant}) => {
                  )}
             >
                 <div className={cn(
-                         'card-category--thumb  ',
+                         'card-category--thumb overflow-hidden',
                          {
-                             'rounded-full relative bg-gray-100 min-w-[100px] h-[100px] ': variant === 'default' ,
+                             'rounded-full relative bg-gray-100 min-w-[100px] h-[100px] flex items-center justify-center': variant === 'default' ,
                              'max-w-[90px] h-[95px] ': variant === 'card',
                          }
                      )}
@@ -41,6 +41,9 @@ const GridBaseCard: React.FC<Props> = ({ item, href, className,variant}) => {
                         alt={name || 'Card Thumbnail'}
                         width={100}
                         height={100}
+                        className={cn('object-cover', {
+                            'rounded-full w-full h-full': variant === 'default',
+                        })}
                     />
                 </div>
                 <div className="category-info text-center max-w-[120px]">

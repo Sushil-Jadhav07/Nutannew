@@ -24,7 +24,7 @@ const ListingTabs = ({ className, data, onNavClick, activeTab, variant }: any) =
                 }
             )}
         >
-            <h3 className="text-base text-[16px] uppercase text-brand-dark font-semibold border-0  xl:basis-[30%]">
+            <h3 className="text-base text-[16px] uppercase text-brand-dark font-semibold border-0  xl:basis-[20%]">
                 <Link to={`${ROUTES.CATEGORY}/${data?.slug}`}>
                     {data?.name}
                 </Link>

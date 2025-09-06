@@ -64,14 +64,19 @@ export function CartItem({ item }: CartItemProps) {
                         to={`${ROUTES.PRODUCT}/${slug}`}
                         className="block leading-5 transition-all text-brand-dark text-sm lg:text-15px hover:text-brand"
                     >
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-col gap-1">
                             <span>{item?.name}</span>
-                            {/* Show color circle if the item has color variation */}
+                            {/* Show color name and circle if the item has color variation */}
                             {item?.color && (
-                                <span
-                                    className="inline-block w-4 h-4 rounded-full border border-brand-dark/10"
-                                    style={{ backgroundColor: item.color.toLowerCase() }}
-                                />
+                                <div className="flex items-center gap-2">
+                                    <span
+                                        className="inline-block w-4 h-4 rounded-full border border-brand-dark/10"
+                                        style={{ backgroundColor: item.color.toLowerCase() }}
+                                    />
+                                    <span className="text-xs text-gray-600">
+                                        {item?.colorDisplayName || item?.colorName || item.color}
+                                    </span>
+                                </div>
                             )}
                         </div>
                     </Link>

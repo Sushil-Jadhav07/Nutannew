@@ -31,7 +31,7 @@ const staticCategories: Category[] = [
         slug: 'tech-organizers',
         image: { 
             id: 1,
-            thumbnail: '/assets/images/category/tech1.png',
+            thumbnail: '/assets/images/category/tech1.jpg',
             original: '/assets/images/category/tech1.jpeg'
         },
         productCount: 15,
@@ -42,7 +42,7 @@ const staticCategories: Category[] = [
         slug: 'tech-gift-sets',
         image: { 
             id: 2,
-            thumbnail: '/assets/images/category/wireless1.png',
+            thumbnail: '/assets/images/category/wireless1.jpg',
             original: '/assets/images/category/tech-gift-sets.jpg'
         },
         productCount: 12,
@@ -53,7 +53,7 @@ const staticCategories: Category[] = [
         slug: 'stainless-steel-tumbler',
         image: { 
             id: 3,
-            thumbnail: '/assets/images/category/stainless-steel.png',
+            thumbnail: '/assets/images/category/stainless-steel.jpg',
             original: '/assets/images/category/eco-notebook.jpg'
         },
         productCount: 8,
@@ -64,7 +64,7 @@ const staticCategories: Category[] = [
         slug: 'recycled-material-goods',
         image: { 
             id: 4,
-            thumbnail: '/assets/images/category/recycled-material.png',
+            thumbnail: '/assets/images/category/recycled-material.jpg',
             original: '/assets/images/category/sippers-straps.jpg'
         },
         productCount: 10,
@@ -75,7 +75,7 @@ const staticCategories: Category[] = [
         slug: 'usb-essential',
         image: { 
             id: 5,
-            thumbnail: '/assets/images/category/usb-essential.png',
+            thumbnail: '/assets/images/category/usb-essential.jpg',
             original: '/assets/images/category/corporate-combopack.jpeg'
         },
         productCount: 6,
@@ -86,7 +86,7 @@ const staticCategories: Category[] = [
         slug: 'sticky-notes-memo-pads',
         image: { 
             id: 6,
-            thumbnail: '/assets/images/category/stickynotes-memopads.png',
+            thumbnail: '/assets/images/category/stickynotes-memopads.jpg',
             original: '/assets/images/category/custom-bundles.jpg'
         },
         productCount: 20,
@@ -97,7 +97,7 @@ const staticCategories: Category[] = [
         slug: 'cork-accessories',
         image: { 
             id: 7,
-            thumbnail: '/assets/images/category/corkaccessories.png',
+            thumbnail: '/assets/images/category/corkaccessories.jpg',
             original: '/assets/images/category/accessories.jpg'
         },
         productCount: 25,

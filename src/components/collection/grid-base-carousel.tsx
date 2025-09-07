@@ -28,7 +28,7 @@ const staticCategories: Category[] = [
     {
         id: 1,
         name: 'Tech Organizers',
-        slug: 'tech-organizers',
+        slug: 'bags-carry-items/tech-organizers',
         image: { 
             id: 1,
             thumbnail: '/assets/images/category/tech1.jpg',
@@ -39,7 +39,7 @@ const staticCategories: Category[] = [
     {
         id: 2,
         name: 'Wireless Charger',
-        slug: 'tech-gift-sets',
+        slug: 'tech-gadgets/wireless-chargers',
         image: { 
             id: 2,
             thumbnail: '/assets/images/category/wireless1.jpg',
@@ -50,7 +50,7 @@ const staticCategories: Category[] = [
     {
         id: 3,
         name: 'Stainless Steel Tumbler',
-        slug: 'stainless-steel-tumbler',
+        slug: 'drinkware/stainless-steel-tumblers',
         image: { 
             id: 3,
             thumbnail: '/assets/images/category/stainless-steel.jpg',
@@ -61,7 +61,7 @@ const staticCategories: Category[] = [
     {
         id: 4,
         name: 'Recycled Material Goods',
-        slug: 'recycled-material-goods',
+        slug: 'eco-lifestyle/recycled-material-goods',
         image: { 
             id: 4,
             thumbnail: '/assets/images/category/recycled-material.jpg',
@@ -72,7 +72,7 @@ const staticCategories: Category[] = [
     {
         id: 5,
         name: 'USB Essential',
-        slug: 'usb-essential',
+        slug: 'tech-gadgets/usb-essentials',
         image: { 
             id: 5,
             thumbnail: '/assets/images/category/usb-essential.jpg',
@@ -83,7 +83,7 @@ const staticCategories: Category[] = [
     {
         id: 6,
         name: 'Sticky Notes & Memo Pads',
-        slug: 'sticky-notes-memo-pads',
+        slug: 'office-stationery/sticky-notes-memo-pads',
         image: { 
             id: 6,
             thumbnail: '/assets/images/category/stickynotes-memopads.jpg',
@@ -94,7 +94,7 @@ const staticCategories: Category[] = [
     {
         id: 7,
         name: 'Cork Accessories',
-        slug: 'cork-accessories',
+        slug: 'eco-lifestyle/cork-wheat-straw-accessories',
         image: { 
             id: 7,
             thumbnail: '/assets/images/category/corkaccessories.jpg',

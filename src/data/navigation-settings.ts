@@ -127,8 +127,8 @@ export const siteNavigation = {
         //             label: 'Phones & Tablets',
         //             image: {
         //                 id: 1,
-        //                 thumbnail: '/assets/images/category/collection_1.jpg',
-        //                 original: '/assets/images/category/collection_1.jpg',
+        //                 thumbnail: '/assets/images/category/navbar/navbar/collection_1.jpg',
+        //                 original: '/assets/images/category/navbar/navbar/collection_1.jpg',
         //             },
         //             subMenu: [
         //                 {
@@ -164,8 +164,8 @@ export const siteNavigation = {
         //             label: 'Fashion & Clothing',
         //             image: {
         //                 id: 1,
-        //                 thumbnail: '/assets/images/category/collection_2.jpg',
-        //                 original: '/assets/images/category/collection_2.jpg',
+        //                 thumbnail: '/assets/images/category/navbar/navbar/collection_2.jpg',
+        //                 original: '/assets/images/category/navbar/navbar/collection_2.jpg',
         //             },
         //             subMenu: [
         //                 {
@@ -201,8 +201,8 @@ export const siteNavigation = {
         //             label: 'Garden & Kitchen',
         //             image: {
         //                 id: 1,
-        //                 thumbnail: '/assets/images/category/collection_3.jpg',
-        //                 original: '/assets/images/category/collection_3.jpg',
+        //                 thumbnail: '/assets/images/category/navbar/navbar/collection_3.jpg',
+        //                 original: '/assets/images/category/navbar/navbar/collection_3.jpg',
         //             },
         //             subMenu: [
         //                 {
@@ -238,8 +238,8 @@ export const siteNavigation = {
         //             label: 'Grocery',
         //             image: {
         //                 id: 1,
-        //                 thumbnail: '/assets/images/category/collection_4.jpg',
-        //                 original: '/assets/images/category/collection_4.jpg',
+        //                 thumbnail: '/assets/images/category/navbar/collection_4.jpg',
+        //                 original: '/assets/images/category/navbar/collection_4.jpg',
         //             },
         //             subMenu: [
         //                 {
@@ -275,8 +275,8 @@ export const siteNavigation = {
         //             label: 'TV & Video',
         //             image: {
         //                 id: 1,
-        //                 thumbnail: '/assets/images/category/collection_5.jpg',
-        //                 original: '/assets/images/category/collection_5.jpg',
+        //                 thumbnail: '/assets/images/category/navbar/collection_5.jpg',
+        //                 original: '/assets/images/category/navbar/collection_5.jpg',
         //             },
         //             subMenu: [
         //                 {
@@ -327,8 +327,8 @@ export const siteNavigation = {
                     label: 'Laptop Bags',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_1.jpg',
-                        original: '/assets/images/category/collection_1.jpg',
+                        thumbnail: '/assets/images/category/navbar/1.1.jpg',
+                        original: '/assets/images/category/navbar/1.1.jpg',
                     },
                     // subMenu: [
                     //     {
@@ -345,8 +345,8 @@ export const siteNavigation = {
                     label: 'Tote Bags',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_2.jpg',
-                        original: '/assets/images/category/collection_2.jpg',
+                        thumbnail: '/assets/images/category/navbar/1.2.jpg',
+                        original: '/assets/images/category/navbar/1.2.jpg',
                     },
                     // subMenu: [
                     //     {
@@ -363,8 +363,8 @@ export const siteNavigation = {
                     label: 'Tech Organizers',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_3.jpg',
-                        original: '/assets/images/category/collection_3.jpg',
+                        thumbnail: '/assets/images/category/navbar/1.3.jpg',
+                        original: '/assets/images/category/navbar/1.3.jpg',
                     },
                     // subMenu: [
                     //     {
@@ -400,8 +400,8 @@ export const siteNavigation = {
                     label: 'Drawstring Pouches',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_4.jpg',
-                        original: '/assets/images/category/collection_4.jpg',
+                        thumbnail: '/assets/images/category/navbar/1.4.jpg',
+                        original: '/assets/images/category/navbar/1.4.jpg',
                     },
                     // subMenu: [
                     //     {
@@ -437,8 +437,8 @@ export const siteNavigation = {
                     label: 'Welcome Kit Bags',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_5.jpg',
-                        original: '/assets/images/category/collection_5.jpg',
+                        thumbnail: '/assets/images/category/navbar/1.5.jpg',
+                        original: '/assets/images/category/navbar/1.5.jpg',
                     },
                     // subMenu: [
                     //     {
@@ -489,8 +489,8 @@ export const siteNavigation = {
                     label: 'Wireless Chargers',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_1.jpg',
-                        original: '/assets/images/category/collection_1.jpg',
+                        thumbnail: '/assets/images/category/navbar/2.1.jpg',
+                        original: '/assets/images/category/navbar/2.1.jpg',
                     },
 
                 },
@@ -500,8 +500,8 @@ export const siteNavigation = {
                     label: 'Charging Cables',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_2.jpg',
-                        original: '/assets/images/category/collection_2.jpg',
+                        thumbnail: '/assets/images/category/navbar/2.2.jpg',
+                        original: '/assets/images/category/navbar/2.2.jpg',
                     },
 
                 },
@@ -511,8 +511,8 @@ export const siteNavigation = {
                     label: 'Wireless Mice',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_3.jpg',
-                        original: '/assets/images/category/collection_3.jpg',
+                        thumbnail: '/assets/images/category/navbar/2.3.jpg',
+                        original: '/assets/images/category/navbar/2.3.jpg',
                     },
 
                 },
@@ -522,8 +522,8 @@ export const siteNavigation = {
                     label: 'Tech Gift Sets',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_4.jpg',
-                        original: '/assets/images/category/collection_4.jpg',
+                        thumbnail: '/assets/images/category/navbar/2.4.jpg',
+                        original: '/assets/images/category/navbar/2.4.jpg',
                     },
 
                 },
@@ -533,8 +533,8 @@ export const siteNavigation = {
                     label: 'USB Essentials',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_5.jpg',
-                        original: '/assets/images/category/collection_5.jpg',
+                        thumbnail: '/assets/images/category/navbar/2.5.jpg',
+                        original: '/assets/images/category/navbar/2.5.jpg',
                     },
 
                 },
@@ -559,8 +559,8 @@ export const siteNavigation = {
                     label: 'Eco Notebooks',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_1.jpg',
-                        original: '/assets/images/category/collection_1.jpg',
+                        thumbnail: '/assets/images/category/navbar/3.1.jpg',
+                        original: '/assets/images/category/navbar/3.1.jpg',
                     },
 
                 },
@@ -570,8 +570,8 @@ export const siteNavigation = {
                     label: 'Leather Folders',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_2.jpg',
-                        original: '/assets/images/category/collection_2.jpg',
+                        thumbnail: '/assets/images/category/navbar/3.2.jpg',
+                        original: '/assets/images/category/navbar/3.2.jpg',
                     },
 
                 },
@@ -581,8 +581,8 @@ export const siteNavigation = {
                     label: 'Sticky Notes & Memo Pads',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_3.jpg',
-                        original: '/assets/images/category/collection_3.jpg',
+                        thumbnail: '/assets/images/category/navbar/3.3.jpg',
+                        original: '/assets/images/category/navbar/3.3.jpg',
                     },
 
                 },
@@ -592,8 +592,8 @@ export const siteNavigation = {
                     label: 'Eco Pens & Writing Tools',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_4.jpg',
-                        original: '/assets/images/category/collection_4.jpg',
+                        thumbnail: '/assets/images/category/navbar/3.4.jpg',
+                        original: '/assets/images/category/navbar/3.4.jpg',
                     },
 
                 },
@@ -603,8 +603,8 @@ export const siteNavigation = {
                     label: 'Executive Stationery',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_5.jpg',
-                        original: '/assets/images/category/collection_5.jpg',
+                        thumbnail: '/assets/images/category/navbar/3.5.jpg',
+                        original: '/assets/images/category/navbar/3.5.jpg',
                     },
 
                 },
@@ -629,8 +629,8 @@ export const siteNavigation = {
                     label: 'Reusable Bottles',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_1.jpg',
-                        original: '/assets/images/category/collection_1.jpg',
+                        thumbnail: '/assets/images/category/navbar/4.1.jpg',
+                        original: '/assets/images/category/navbar/4.1.jpg',
                     },
 
                 },
@@ -640,8 +640,8 @@ export const siteNavigation = {
                     label: 'Eco Mugs with Lids',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_2.jpg',
-                        original: '/assets/images/category/collection_2.jpg',
+                        thumbnail: '/assets/images/category/navbar/4.2.jpg',
+                        original: '/assets/images/category/navbar/4.2.jpg',
                     },
 
                 },
@@ -651,8 +651,8 @@ export const siteNavigation = {
                     label: 'Stainless Steel Tumblers',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_3.jpg',
-                        original: '/assets/images/category/collection_3.jpg',
+                        thumbnail: '/assets/images/category/navbar/4.3.jpg',
+                        original: '/assets/images/category/navbar/4.3.jpg',
                     },
 
                 },
@@ -662,8 +662,8 @@ export const siteNavigation = {
                     label: 'Sippers with Straps',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_4.jpg',
-                        original: '/assets/images/category/collection_4.jpg',
+                        thumbnail: '/assets/images/category/navbar/4.4.jpg',
+                        original: '/assets/images/category/navbar/4.4.jpg',
                     },
 
                 },
@@ -673,8 +673,8 @@ export const siteNavigation = {
                 //     label: 'TV & Video',
                 //     image: {
                 //         id: 1,
-                //         thumbnail: '/assets/images/category/collection_5.jpg',
-                //         original: '/assets/images/category/collection_5.jpg',
+                //         thumbnail: '/assets/images/category/navbar/collection_5.jpg',
+                //         original: '/assets/images/category/navbar/collection_5.jpg',
                 //     },
 
                 // },
@@ -699,8 +699,8 @@ export const siteNavigation = {
                     label: 'Welcome Kits',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_1.jpg',
-                        original: '/assets/images/category/collection_1.jpg',
+                        thumbnail: '/assets/images/category/navbar/5.1.jpg',
+                        original: '/assets/images/category/navbar/5.1.jpg',
                     },
 
                 },
@@ -710,8 +710,8 @@ export const siteNavigation = {
                     label: 'Festive Gift Sets',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_2.jpg',
-                        original: '/assets/images/category/collection_2.jpg',
+                        thumbnail: '/assets/images/category/navbar/5.2.jpg',
+                        original: '/assets/images/category/navbar/5.2.jpg',
                     },
 
                 },
@@ -721,8 +721,8 @@ export const siteNavigation = {
                     label: 'Corporate Combo Packs',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_3.jpg',
-                        original: '/assets/images/category/collection_3.jpg',
+                        thumbnail: '/assets/images/category/navbar/5.3.jpg',
+                        original: '/assets/images/category/navbar/5.3.jpg',
                     },
 
                 },
@@ -732,8 +732,8 @@ export const siteNavigation = {
                     label: 'Custom Bundles (Build Your Own)',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_4.jpg',
-                        original: '/assets/images/category/collection_4.jpg',
+                        thumbnail: '/assets/images/category/navbar/5.4.jpg',
+                        original: '/assets/images/category/navbar/5.4.jpg',
                     },
 
                 },
@@ -743,8 +743,8 @@ export const siteNavigation = {
                 //     label: 'TV & Video',
                 //     image: {
                 //         id: 1,
-                //         thumbnail: '/assets/images/category/collection_5.jpg',
-                //         original: '/assets/images/category/collection_5.jpg',
+                //         thumbnail: '/assets/images/category/navbar/collection_5.jpg',
+                //         original: '/assets/images/category/navbar/collection_5.jpg',
                 //     },
 
                 // },
@@ -769,8 +769,8 @@ export const siteNavigation = {
                     label: 'Bamboo Cutlery Sets',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_1.jpg',
-                        original: '/assets/images/category/collection_1.jpg',
+                        thumbnail: '/assets/images/category/navbar/6.1.jpg',
+                        original: '/assets/images/category/navbar/6.1.jpg',
                     },
 
                 },
@@ -780,8 +780,8 @@ export const siteNavigation = {
                     label: 'Eco Coasters',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_2.jpg',
-                        original: '/assets/images/category/collection_2.jpg',
+                        thumbnail: '/assets/images/category/navbar/6.2.jpg',
+                        original: '/assets/images/category/navbar/6.2.jpg',
                     },
 
                 },
@@ -791,8 +791,8 @@ export const siteNavigation = {
                     label: 'Cork & Wheat Straw Accessories',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_3.jpg',
-                        original: '/assets/images/category/collection_3.jpg',
+                        thumbnail: '/assets/images/category/navbar/6.3.jpg',
+                        original: '/assets/images/category/navbar/6.3.jpg',
                     },
 
                 },
@@ -802,8 +802,8 @@ export const siteNavigation = {
                     label: 'Recycled Material Goods',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_4.jpg',
-                        original: '/assets/images/category/collection_4.jpg',
+                        thumbnail: '/assets/images/category/navbar/6.4.jpg',
+                        original: '/assets/images/category/navbar/6.4.jpg',
                     },
 
                 },
@@ -813,8 +813,8 @@ export const siteNavigation = {
                 //     label: 'TV & Video',
                 //     image: {
                 //         id: 1,
-                //         thumbnail: '/assets/images/category/collection_5.jpg',
-                //         original: '/assets/images/category/collection_5.jpg',
+                //         thumbnail: '/assets/images/category/navbar/collection_5.jpg',
+                //         original: '/assets/images/category/navbar/collection_5.jpg',
                 //     },
 
                 // },
@@ -839,8 +839,8 @@ export const siteNavigation = {
                     label: 'Biodegradable Lanyards',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_1.jpg',
-                        original: '/assets/images/category/collection_1.jpg',
+                        thumbnail: '/assets/images/category/navbar/7.1.jpg',
+                        original: '/assets/images/category/navbar/7.1.jpg',
                     },
 
                 },
@@ -850,8 +850,8 @@ export const siteNavigation = {
                     label: 'Name Card Holders (future)',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_2.jpg',
-                        original: '/assets/images/category/collection_2.jpg',
+                        thumbnail: '/assets/images/category/navbar/7.2.jpg',
+                        original: '/assets/images/category/navbar/7.2.jpg',
                     },
 
                 },
@@ -861,8 +861,8 @@ export const siteNavigation = {
                     label: 'Eco Folders',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_3.jpg',
-                        original: '/assets/images/category/collection_3.jpg',
+                        thumbnail: '/assets/images/category/navbar/7.3.jpg',
+                        original: '/assets/images/category/navbar/7.3.jpg',
                     },
 
                 },
@@ -872,8 +872,8 @@ export const siteNavigation = {
                     label: 'Conference Giveaways',
                     image: {
                         id: 1,
-                        thumbnail: '/assets/images/category/collection_4.jpg',
-                        original: '/assets/images/category/collection_4.jpg',
+                        thumbnail: '/assets/images/category/navbar/7.4.jpg',
+                        original: '/assets/images/category/navbar/7.4.jpg',
                     },
 
                 },
@@ -883,8 +883,8 @@ export const siteNavigation = {
                 //     label: 'TV & Video',
                 //     image: {
                 //         id: 1,
-                //         thumbnail: '/assets/images/category/collection_5.jpg',
-                //         original: '/assets/images/category/collection_5.jpg',
+                //         thumbnail: '/assets/images/category/navbar/collection_5.jpg',
+                //         original: '/assets/images/category/navbar/collection_5.jpg',
                 //     },
 
                 // },
@@ -916,12 +916,12 @@ export const siteNavigation = {
         //                 },
         //                 {
         //                     id: 2,
-        //                     path: '/category/category-hori',
+        //                     path: '/category/navbar/category-hori',
         //                     label: 'Filter Horizontal',
         //                 },
         //                 {
         //                     id: 3,
-        //                     path: '/category/category-canvas',
+        //                     path: '/category/navbar/category-canvas',
         //                     label: 'Off Canvas Filter',
         //                 },
         //                 {
@@ -937,7 +937,7 @@ export const siteNavigation = {
         //                 },
         //                 {
         //                     id: 7,
-        //                     path: '/category/phone-tablets',
+        //                     path: '/category/navbar/phone-tablets',
         //                     label: 'Pagination',
         //                 },
         //             ],

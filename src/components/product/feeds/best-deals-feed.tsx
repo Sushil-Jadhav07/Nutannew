@@ -5,6 +5,9 @@ import ProductsCarousel from '@/components/product/feeds/products-carousel';
 import { LIMITS } from '@/services/utils/limits';
 import cn from 'classnames';
 import Image from '@/components/shared/image';
+import { ClockIcon } from "lucide-react";
+import SectionHeader from "@/components/common/section-header";
+import ProductCountdownTimer from "@/components/shared/productCountdownTimer";
 
 interface ProductFeedProps {
     className?: string;
@@ -13,7 +16,7 @@ interface ProductFeedProps {
     variant?: string;
 }
 
-const backgroundThumbnail = '/assets/images/banner/home1/hotdeals.png';
+const backgroundThumbnail = '/assets/images/banner/home1/Special.jpg';
 
 const BestDealsFeed: FC<ProductFeedProps> = ({
     className = '',
@@ -69,21 +72,21 @@ const BestDealsFeed: FC<ProductFeedProps> = ({
     return (
         <div className={`mb-8 lg:mb-12 ${className}`}>
             {/* Optional header with countdown timer */}
-            {/* <div className={cn('md:flex justify-between mb-1.5  py-2.5 rounded ',
+            <div className={cn('md:flex justify-between mb-1.5  py-2.5 rounded ',
                 showBanner && 'bg-white px-5'
             )}>
                 <div className='flex items-center gap-2'>
                     <ClockIcon opacity="1"/>
-                    <SectionHeader headingPosition="hotdeal" sectionHeading="HOT DEALS!"
+                    <SectionHeader headingPosition="hotdeal" sectionHeading="BEST DEALS!"
                                    sectionSubHeading="GET OUR BEST PRICES"
                                    className="flex gap-2 items-center uppercase"/>
                 </div>
 
-                <div className='flex items-center gap-2'>
+                {/* <div className='flex items-center gap-2'>
                     <h2 className="text-skin-base  text-[14px]"> Hurry Up! Offer ends in:</h2>
                     <ProductCountdownTimer date={date} variant={"heading"} />
-                </div>
-            </div> */}
+                </div> */}
+            </div>
             
             <div className="xl:flex gap-1 relative heightFull">
                 {showBanner && (
@@ -92,7 +95,7 @@ const BestDealsFeed: FC<ProductFeedProps> = ({
                             src={backgroundThumbnail}
                             alt={'Best Deals Banner'}
                             width={465}
-                            height={380}
+                            height={350}
                         />
                     </div>
                 )}
@@ -103,7 +106,7 @@ const BestDealsFeed: FC<ProductFeedProps> = ({
                         : 'main-content w-full',
                 )}>
                     <ProductsCarousel
-                        sectionHeading="Best Deals"
+                        
                         className=""
                         products={data ?? []}
                         loading={isLoading}

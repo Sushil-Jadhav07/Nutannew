@@ -21,6 +21,7 @@ const ProductView: React.FC<ViewProps> = ({ data, className, variant, onColorCha
 	const [selectedQuantity, setSelectedQuantity] = useState(1);
 	const [isCartVisible, setCartVisible] = useState<boolean>(false);
 	const [selectedColor, setSelectedColor] = useState<string>('');
+	const [selectedSize, setSelectedSize] = useState<string>('');
 	const targetButtonRef = useRef<HTMLButtonElement>(null);
 
 	// Extract available colors from Firebase variation data with color names
@@ -34,6 +35,40 @@ const ProductView: React.FC<ViewProps> = ({ data, className, variant, onColorCha
 		}));
 	}, [data?.variation, data?.name]);
 
+	// Extract available sizes from Firebase variation data based on selected color
+	const availableSizes = useMemo(() => {
+		if (!data?.variation || !Array.isArray(data.variation)) return [];
+		
+		// If no color is selected, return all available sizes
+		if (!selectedColor) {
+			const allSizes = data.variation.flatMap(v => {
+				if (Array.isArray(v.size)) {
+					return v.size;
+				} else if (typeof v.size === 'string' && v.size.trim()) {
+					return [v.size];
+				}
+				return [];
+			});
+			
+			const uniqueSizes = [...new Set(allSizes)].filter(Boolean);
+			return uniqueSizes.map(size => ({ value: size, label: size }));
+		}
+		
+		// Filter sizes based on selected color
+		const colorVariation = data.variation.find(v => v.color === selectedColor);
+		if (!colorVariation) return [];
+		
+		// Get sizes for the selected color
+		const sizes = colorVariation.size;
+		if (Array.isArray(sizes)) {
+			return sizes.filter(Boolean).map(size => ({ value: size, label: size }));
+		} else if (typeof sizes === 'string' && sizes.trim()) {
+			return [{ value: sizes, label: sizes }];
+		}
+		
+		return [];
+	}, [data?.variation, selectedColor]);
+
 	// Create selectedVariation object for cart functionality
 	const selectedVariation = useMemo(() => {
 		if (!selectedColor || !data?.variation) return undefined;
@@ -41,29 +76,46 @@ const ProductView: React.FC<ViewProps> = ({ data, className, variant, onColorCha
 		const matchingVariation = data.variation.find((v: any) => v.color === selectedColor);
 		if (matchingVariation) {
 			const colorInfo = createColorInfo(matchingVariation.color, matchingVariation.colorName);
+			const options = [{ 
+				name: 'color', 
+				value: selectedColor, 
+				displayValue: colorInfo.displayName,
+				colorInfo: colorInfo // Store complete color info for cart
+			}];
+			
+			// Add size option if selected
+			if (selectedSize) {
+				options.push({
+					name: 'size',
+					value: selectedSize,
+					displayValue: selectedSize
+				});
+			}
+			
 			return {
 				id: 1,
-				title: colorInfo.displayName, // Use display name instead of hex
+				title: `${colorInfo.displayName}${selectedSize ? ` - ${selectedSize}` : ''}`.trim(),
 				price: matchingVariation.price || data.price,
 				sale_price: matchingVariation.price || data.price,
 				quantity: matchingVariation.quantity || 0,
 				is_disable: matchingVariation.quantity === 0 ? 1 : 0,
 				sku: data.sku || '',
-				options: [{ 
-					name: 'color', 
-					value: selectedColor, 
-					displayValue: colorInfo.displayName,
-					colorInfo: colorInfo // Store complete color info for cart
-				}]
+				options: options
 			};
 		}
 		return undefined;
-	}, [selectedColor, data]);
+	}, [selectedColor, selectedSize, data]);
 
 	// Handle color selection
 	const handleColorSelect = (color: string) => {
 		setSelectedColor(color);
+		setSelectedSize(''); // Reset size when color changes
 		onColorChange?.(color);
+	};
+
+	// Handle size selection
+	const handleSizeSelect = (size: string) => {
+		setSelectedSize(size);
 	};
 
 	const { addToCart, addToCartLoader, isInStock, isInCart, getItemFromCart } = useCartActions(
@@ -109,6 +161,41 @@ const ProductView: React.FC<ViewProps> = ({ data, className, variant, onColorCha
 					</div>
 				</div>
 			)}
+
+			{/* Size Selector */}
+			<div className="pb-4">
+				<div className="flex items-center gap-2 mb-3">
+					<h3 className="text-sm font-medium text-gray-900">Size:</h3>
+					{selectedSize && (
+						<span className="text-sm text-gray-600 font-medium">
+							{selectedSize}
+						</span>
+					)}
+				</div>
+				
+				{!selectedColor ? (
+					<p className="text-sm text-gray-500 italic">Please select a color first</p>
+				) : availableSizes.length > 0 ? (
+					<div className="flex flex-wrap gap-2">
+						{availableSizes.map((sizeOption, index) => (
+							<button
+								key={index}
+								onClick={() => handleSizeSelect(sizeOption.value)}
+								className={cn(
+									"px-4 py-2 text-sm font-medium border transition-all duration-200 rounded-md",
+									selectedSize === sizeOption.value
+										? "bg-gray-800 text-white border-gray-800"
+										: "bg-white text-gray-800 border-gray-300 hover:border-gray-400"
+								)}
+							>
+								{sizeOption.label}
+							</button>
+						))}
+					</div>
+				) : (
+					<p className="text-sm text-gray-500 italic">No sizes available for this color</p>
+				)}
+			</div>
 			
 			<ProductQuantity
 				data={data}

@@ -119,14 +119,14 @@ export function PriceRangeFilter({ min, max, value, onChange }: PriceRangeFilter
                         Min Price
                     </label>
                     <div className="relative">
-                        <span className="absolute inset-y-0 start-0 flex items-center ps-3 text-gray-500">$</span>
+                        <span className="absolute inset-y-0 start-0 flex items-center ps-3 text-gray-500">AED</span>
                         <input
                             type="text"
                             id="min-price"
                             value={inputMin}
                             onChange={handleMinChange}
                             onBlur={handleMinBlur}
-                            className="block w-full rounded-md border border-gray-300 ps-7 pe-3 py-2 text-sm focus:border-blue-500 focus:ring-blue-500"
+                            className="block w-full rounded-md border border-gray-300 ps-12 pe-3 py-2 text-sm focus:border-blue-500 focus:ring-blue-500"
                         />
                     </div>
                 </div>
@@ -136,14 +136,14 @@ export function PriceRangeFilter({ min, max, value, onChange }: PriceRangeFilter
                         Max Price
                     </label>
                     <div className="relative">
-                        <span className="absolute inset-y-0 start-0 flex items-center ps-3 text-gray-500">$</span>
+                        <span className="absolute inset-y-0 start-0 flex items-center ps-3 text-gray-500">AED</span>
                         <input
                             type="text"
                             id="max-price"
                             value={inputMax}
                             onChange={handleMaxChange}
                             onBlur={handleMaxBlur}
-                            className="block w-full rounded-md border border-gray-300 ps-7 pe-3 py-2 text-sm focus:border-blue-500 focus:ring-blue-500"
+                            className="block w-full rounded-md border border-gray-300 ps-12 pe-3 py-2 text-sm focus:border-blue-500 focus:ring-blue-500"
                         />
                     </div>
                 </div>

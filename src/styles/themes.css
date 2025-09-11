@@ -212,7 +212,7 @@ input:checked + .slider:before {
     }
 
     .sticky-header.is-scrolling .navbar-logo{
-        min-width: 200px;
+        min-width: 40px;
     }
     .sticky-header.is-scrolling .navbar-logo,
     .sticky-header.is-scrolling .navbar .navbar-right {

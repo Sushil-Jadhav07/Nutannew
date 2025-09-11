@@ -59,7 +59,14 @@ const ProductCardList: React.FC<ProductProps> = ({product, className,variant = "
                
                 <ProductPricing product={product} variant={variant} />
                 
-                <p className="hidden lg:block text-sm text-skin-base line-clamp-3 leading-7 opacity-80">
+                <p className="hidden lg:block text-sm text-skin-base leading-7 opacity-80 overflow-hidden" 
+                   style={{
+                       display: '-webkit-box',
+                       WebkitLineClamp: 3,
+                       WebkitBoxOrient: 'vertical',
+                       lineHeight: '1.75rem',
+                       maxHeight: '5.25rem'
+                   }}>
                     {formatDescription(description || '')}
                 </p>
                 

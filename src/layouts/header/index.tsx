@@ -89,12 +89,14 @@ const Header: React.FC<HeaderProps> = ({className, variant}) => {
                                         <MenuIcon/>
                                     </button>
                                 </div>
+                                <Link to="/">
                                 <div className="flex items-center space-x-3">
                                     <Logo  className="logo"/>
                                     <Text className="text-brand-dark font-bold text-lg hidden sm:block">
                                         Nutan Overseas
                                     </Text>
                                 </div>
+                                </Link>
                                 {/* End of logo */}
                                 
                                 <Search
@@ -114,11 +116,16 @@ const Header: React.FC<HeaderProps> = ({className, variant}) => {
                     </div>
                     <div className="hidden navbar  lg:block bg-white border-b border-border-base ">
                         <Container>
-                            <div className="flex justify-between items-center">
+                        <div className="flex justify-between items-center">
+                            <Link to="/">
+                            <div className="flex justify-start items-center">
                                 <Logo
-                                    className="navbar-logo w-0 opacity-0 transition-all duration-200 ease-in-out"
+                                    className="navbar-logo w-12 opacity-0 transition-all duration-200 ease-in-out"
                                 />
+                                <p className='navbar-logo pl-2 w-0 opacity-0 transition-all duration-200 ease-in-out text-15px leading-7 text-brand-dark font-bold text-lg'>Nutan Overseas</p>
                                 {/* End of logo */}
+                            </div>  
+                            </Link>
                                 
                                 <div className="categories-header-button relative  flex-shrink-0 w-52 xl:w-60">
                                     <Link to="/categories">

@@ -78,6 +78,14 @@ export function CartItem({ item }: CartItemProps) {
                                     </span>
                                 </div>
                             )}
+                            {/* Show size if the item has size variation */}
+                            {item?.size && (
+                                <div className="flex items-center gap-2">
+                                    <span className="text-xs text-gray-600">
+                                        Size: {item?.sizeDisplayName || item?.size}
+                                    </span>
+                                </div>
+                            )}
                         </div>
                     </Link>
 

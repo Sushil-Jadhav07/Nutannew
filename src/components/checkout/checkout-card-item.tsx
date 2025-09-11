@@ -36,6 +36,14 @@ export const CheckoutItem: React.FC<{ item: Item }> = ({ item }) => {
                         </span>
                     </div>
                 )}
+                {/* Show size if the item has size variation */}
+                {item?.size && (
+                    <div className="flex items-center gap-1">
+                        <span className="text-xs text-gray-500">
+                            Size: {item?.sizeDisplayName || item?.size}
+                        </span>
+                    </div>
+                )}
             </div>
         </h6>
         <div className="w-24 text-end font-semibold ltr:ml-auto rtl:mr-auto text-15px text-brand-dark ltr:pl-2 rtl:pr-2 shrink-0">

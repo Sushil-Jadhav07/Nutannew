@@ -23,6 +23,10 @@ export function constructCartItem(item: Item, variation: VariationOption) {
     const colorOption = variation.options?.find(opt => opt.name === 'color');
     const colorInfo = colorOption?.colorInfo as ColorInfo;
     
+    // Get size information from variation options
+    const sizeOption = variation.options?.find(opt => opt.name === 'size');
+    const size = sizeOption?.value || sizeOption?.displayValue || '';
+    
     // Enhanced color name extraction using product name parsing
     const enhancedColorName = colorInfo?.displayName || 
       getColorNameWithProductParsing(
@@ -47,6 +51,8 @@ export function constructCartItem(item: Item, variation: VariationOption) {
       color: color, // Hex color for visual display
       colorName: enhancedColorName || cleanTitle, // Enhanced human-readable color name
       colorDisplayName: enhancedColorName || cleanTitle, // Enhanced display name
+      size: size, // Size information
+      sizeDisplayName: size, // Size display name
       slug,
       unit,
       stock: variation.quantity,
@@ -58,6 +64,8 @@ export function constructCartItem(item: Item, variation: VariationOption) {
         color: color,
         colorName: enhancedColorName,
         displayName: enhancedColorName,
+        size: size,
+        sizeDisplayName: size,
         options: variation.options
       }
     };

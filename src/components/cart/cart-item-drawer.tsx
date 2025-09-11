@@ -63,6 +63,14 @@ const CartItemDrawer: React.FC<CartItemProps> = ({item}) => {
                                     </span>
                                 </div>
                             )}
+                            {/* Show size if the item has size variation */}
+                            {item?.size && (
+                                <div className="flex items-center gap-2">
+                                    <span className="text-xs text-gray-500">
+                                        Size: {item?.sizeDisplayName || item?.size}
+                                    </span>
+                                </div>
+                            )}
                         </div>
                     </Link>
                     <div className="text-sm font-semibold text-brand-dark mt-2 block mb-2">

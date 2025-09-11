@@ -36,6 +36,9 @@ export default function OrderConfirmationContent() {
       color: p.color || '',
       colorName: p.colorName || '',
       colorDisplayName: p.colorDisplayName || p.colorName || '',
+      // Preserve size information from cart items
+      size: p.p_size || p.size || '',
+      sizeDisplayName: p.p_size || p.size || '',
     };
   });
 
@@ -73,78 +76,86 @@ export default function OrderConfirmationContent() {
 
   return (
       <Container>
-      <div className="py-10">
-        <div className="grid grid-cols-1 xl:grid-cols-[1fr_420px] gap-6">
+      <div className="py-4 md:py-10">
+        <div className="grid grid-cols-1 xl:grid-cols-[1fr_420px] gap-4 md:gap-6">
           {/* Left - Thank You */}
-          <div className="bg-white border border-border-base rounded-md p-6 md:p-8">
-            <h1 className="text-xl md:text-2xl font-semibold text-brand-dark mb-2">Thank you {customerName}!</h1>
+          <div className="bg-white border border-border-base rounded-md p-4 md:p-6 lg:p-8">
+            <h1 className="text-lg md:text-xl lg:text-2xl font-semibold text-brand-dark mb-2">Thank you {customerName}!</h1>
             {orderId && (
-              <p className="text-sm text-brand-dark/80 mb-6">
-                Your order number is <span className="font-medium">{orderId}</span>
+              <p className="text-sm text-brand-dark/80 mb-4 md:mb-6">
+                Your order number is <span className="font-medium break-all">{orderId}</span>
               </p>
             )}
-            <p className="text-sm leading-7 text-brand-dark/80 mb-10">
+            <p className="text-sm leading-6 md:leading-7 text-brand-dark/80 mb-6 md:mb-10">
               An email will be sent containing information about your purchase. If you have any questions about your
-              purchase, email us at <a href="mailto:yourexample@email.com" className="text-[#3B3310] hover:underline">nutanoverseas@email.com</a>
+              purchase, email us at <a href="mailto:nutanoverseas@email.com" className="text-[#3B3310] hover:underline break-all">nutanoverseas@email.com</a>
               {' '}or call us at <a href="tel:(1800)-000-6890" className="text-[#3B3310] hover:underline">(1800)-000-6890</a>.
             </p>
-            <div className="mt-2">
-              <Link to={ROUTES.HOME} className="py-3 px-4 ml-3 bg-[#3B3310] text-white hover:text-white rounded-lg">CONTINUE SHOPPING</Link>
-              <Link to={ROUTES.ORDERS} className="py-3 px-4 ml-3 border-gray-300 border-1 text-black hover:text-black rounded-lg">My Orders</Link>
+            <div className="flex flex-col sm:flex-row gap-3 mt-2">
+              <Link to={ROUTES.HOME} className="py-3 px-4 bg-[#3B3310] text-white hover:text-white rounded-lg text-center font-medium">CONTINUE SHOPPING</Link>
+              <Link to={ROUTES.ORDERS} className="py-3 px-4 border-gray-300 border text-black hover:text-black rounded-lg text-center font-medium">My Orders</Link>
             </div>
           </div>
 
           {/* Right - Order Summary */}
           <div ref={summaryRef} className="bg-white border border-border-base rounded-md p-0">
-            <div className="flex items-center justify-between w-full border-b px-5 md:px-6 py-3 border-border-base">
-              <h2 className="text-base font-medium text-brand-dark">Order Summary</h2>
-              <button onClick={onPrint} className="text-sm px-3 py-1 rounded bg-[#3B3310] text-white inline-flex items-center"><IoPrint className="w-4 h-4 mr-2"/>Print</button>
+            <div className="flex items-center justify-between w-full border-b px-4 md:px-5 lg:px-6 py-3 border-border-base">
+              <h2 className="text-sm md:text-base font-medium text-brand-dark">Order Summary</h2>
+              <button onClick={onPrint} className="text-xs md:text-sm px-2 md:px-3 py-1 rounded bg-[#3B3310] text-white inline-flex items-center"><IoPrint className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2"/>Print</button>
             </div>
-            <div className="p-5 md:p-6 space-y-4">
+            <div className="p-4 md:p-5 lg:p-6 space-y-3 md:space-y-4">
               {products.map((p: any, idx: number) => (
-                <div key={idx} className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
+                <div key={idx} className="flex items-start justify-between gap-2">
+                  <div className="flex items-start gap-2 md:gap-3 flex-1 min-w-0">
                     {p.image ? (
-                      <img src={p.image} alt={p.name} width={48} height={48} className="w-12 h-12 rounded object-cover" />
+                      <img src={p.image} alt={p.name} width={40} height={40} className="w-10 h-10 md:w-12 md:h-12 rounded object-cover flex-shrink-0" />
                     ) : (
-                      <div className="w-12 h-12 rounded bg-gray-200"/>
+                      <div className="w-10 h-10 md:w-12 md:h-12 rounded bg-gray-200 flex-shrink-0"/>
                     )}
-                    <div className="text-sm text-brand-dark">
-                      <div className="font-medium">{p.qty} x {p.name}</div>
+                    <div className="text-xs md:text-sm text-brand-dark flex-1 min-w-0">
+                      <div className="font-medium break-words">{p.qty} x {p.name}</div>
                       {/* Show color name and circle if the item has color variation */}
                       {p.color && (
                         <div className="flex items-center gap-1 mt-1">
                           <span
-                            className="inline-block w-2 h-2 rounded-full border border-brand-dark/10"
+                            className="inline-block w-2 h-2 rounded-full border border-brand-dark/10 flex-shrink-0"
                             style={{ backgroundColor: p.color.toLowerCase() }}
                           />
-                          <span className="text-xs text-gray-500">
+                          <span className="text-xs text-gray-500 break-words">
                             {p.colorDisplayName || p.colorName || p.color}
+                          </span>
+                        </div>
+                      )}
+                      {/* Show size if the item has size variation */}
+                      {p.size && (
+                        <div className="flex items-center gap-1 mt-1">
+                          <span className="text-xs text-gray-500 break-words">
+                            Size: {p.sizeDisplayName || p.size}
                           </span>
                         </div>
                       )}
                     </div>
                   </div>
-                  <div className="text-sm font-semibold text-brand-dark">{format(p.price * p.qty)}</div>
+                  <div className="text-xs md:text-sm font-semibold text-brand-dark flex-shrink-0">{format(p.price * p.qty)}</div>
                 </div>
               ))}
 
-              <div className="border-t pt-4 space-y-2 text-brand-dark">
-                <div className="flex justify-between">
+              <div className="border-t pt-3 md:pt-4 space-y-2 text-brand-dark">
+                <div className="flex justify-between text-sm md:text-base">
                   <span className="opacity-70">Subtotal</span>
                   <span className="font-medium">{format(subtotal)}</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex justify-between text-sm md:text-base">
                   <span className="opacity-70">Shipping</span>
                   <span className="font-medium">{format(shipping)}</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex justify-between text-sm md:text-base">
                   <span className="opacity-70">Delivery time</span>
-                  <span className="font-medium">{deliveryTimeStr}</span>
+                  <span className="font-medium text-xs md:text-sm">{deliveryTimeStr}</span>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="font-bold">Order total</span>
-                  <span className="text-2xl font-bold">{format(orderTotal)}</span>
+                <div className="flex justify-between items-center pt-2 border-t">
+                  <span className="font-bold text-sm md:text-base">Order total</span>
+                  <span className="text-lg md:text-2xl font-bold">{format(orderTotal)}</span>
                 </div>
               </div>
             </div>

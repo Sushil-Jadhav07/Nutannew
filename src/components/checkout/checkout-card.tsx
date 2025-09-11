@@ -123,9 +123,11 @@ const CheckoutCard: React.FC = () => {
                 
                 // Product dimensions array
                 dimensions: items.map(item => {
-                    // Extract size from product name (e.g., "Giftset Product - M" -> size: "M")
-                    const sizeMatch = item.name?.match(/- ([A-Z]+)$/);
-                    const size = sizeMatch ? sizeMatch[1] : 'Standard';
+                    // Use the size from the cart item if available, otherwise extract from name
+                    const size = item.size || item.sizeDisplayName || (() => {
+                        const sizeMatch = item.name?.match(/- ([A-Z]+)$/);
+                        return sizeMatch ? sizeMatch[1] : 'Standard';
+                    })();
                     
                     // Use the already clean product name (color names are now handled separately)
                     const cleanName = item.name || 'Unknown Product';
@@ -141,6 +143,9 @@ const CheckoutCard: React.FC = () => {
                         color: item.color || '',
                         colorName: item.colorName || '',
                         colorDisplayName: item.colorDisplayName || item.colorName || '',
+                        // Preserve all size information for order confirmation
+                        size: size,
+                        sizeDisplayName: size,
                         image: imgThumb ? { thumbnail: imgThumb, original: imgThumb } : undefined,
                     };
                 }),

@@ -10,7 +10,7 @@ import {FilterPopover} from "@/components/filter/facets/filter-popover";
 import cn from "classnames";
 import {colorMap} from "@/data/color-settings";
 import {usePanel} from "@/contexts/usePanel";
-import {useFilterControls} from "@/hooks/use-filter-hooks";
+import {useFilterContext} from "@/contexts/FilterContext";
 
 
 export default function HorizontalFilter() {
@@ -23,11 +23,11 @@ export default function HorizontalFilter() {
         handlePriceChange,
         clearFilter,
         hasSelectedFilters,
-        isPriceRangeSelected,
         getPriceRangeLabel,
         MIN_PRICE,
         MAX_PRICE,
-    } = useFilterControls();
+        availableColors,
+    } = useFilterContext();
 
     return (
         <div className="w-full px-4 py-4 bg-white  rounded">
@@ -55,7 +55,7 @@ export default function HorizontalFilter() {
                     label="Price"
                     selectedLabel={getPriceRangeLabel()}
                     icon={<DollarSign className="h-4 w-4" />}
-                    isSelected={isPriceRangeSelected()}
+                    isSelected={hasSelectedFilters("price")}
                     onClear={() => clearFilter("price")}
                 >
                     <div className="mb-4">
@@ -75,7 +75,7 @@ export default function HorizontalFilter() {
                         <h3 className="font-semibold text-base  text-brand-dark">Colors</h3>
                     </div>
                     <ColorsFilter
-                        colors={colorsData}
+                        colors={availableColors.length > 0 ? availableColors : colorsData}
                         selectedColors={selectedFilters.colors}
                         onColorChange={(id, checked) => handleFilterChange("colors", id, checked)}
                     />

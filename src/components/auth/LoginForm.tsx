@@ -58,13 +58,48 @@ const LoginForm: React.FC = () => {
     try {
       setLoading(true);
       setError(null);
+      
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
+      // Add additional scopes if needed
+      provider.addScope('email');
+      provider.addScope('profile');
+      
+      // Set custom parameters
+      provider.setCustomParameters({
+        prompt: 'select_account'
+      });
+      
+      const result = await signInWithPopup(auth, provider);
+      console.log('Google login successful:', result);
       showToast('Successfully logged in with Google!', 'success');
       // Success - user will be redirected automatically via AuthProvider
     } catch (error: any) {
       console.error('Google login failed:', error);
-      setError(error.message || 'Google login failed. Please try again.');
+      
+      // Handle specific Firebase errors
+      let errorMessage = 'Google login failed. Please try again.';
+      
+      switch (error.code) {
+        case 'auth/operation-not-allowed':
+          errorMessage = 'Google authentication is not enabled. Please contact support.';
+          break;
+        case 'auth/popup-closed-by-user':
+          errorMessage = 'Sign-in popup was closed. Please try again.';
+          break;
+        case 'auth/popup-blocked':
+          errorMessage = 'Sign-in popup was blocked. Please allow popups and try again.';
+          break;
+        case 'auth/network-request-failed':
+          errorMessage = 'Network error. Please check your connection and try again.';
+          break;
+        case 'auth/too-many-requests':
+          errorMessage = 'Too many failed attempts. Please try again later.';
+          break;
+        default:
+          errorMessage = error.message || errorMessage;
+      }
+      
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -205,7 +240,7 @@ const LoginForm: React.FC = () => {
                 href="/register"
                 className="font-medium text-blue-600 hover:text-blue-500 transition-colors"
               >
-                Sign up here
+                Register here
               </a>
             </p>
           </div>

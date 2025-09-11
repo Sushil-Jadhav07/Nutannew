@@ -7,6 +7,7 @@ import {useState} from "react";
 import cn from "classnames";
 import {usePanel} from "@/contexts/usePanel";
 import {colorMap} from "@/data/color-settings";
+import {useUI} from "@/contexts/useUI";
 
 interface Props {
 	data: any;
@@ -30,6 +31,7 @@ const AddToCart = ({
     const addItemToCart = useAddToCart();
     const isInCart = useIsInCart();
     const isInStock = useIsInStock();
+    const { openDrawer, setDrawerView } = useUI();
 
     // Get cart item
 	const item = constructCartItem(data!, variation);
@@ -39,6 +41,11 @@ const AddToCart = ({
 	) => {
 		e.stopPropagation();
 		addItemToCart(item, 1);
+		
+		// Open cart sidebar after adding item
+		setDrawerView('CART_SIDEBAR');
+		openDrawer();
+		
 		// to show btn feedback while product carting
 		setAddToCartLoader(true);
 		setTimeout(() => {

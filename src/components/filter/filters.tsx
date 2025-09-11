@@ -12,24 +12,44 @@ import {
 } from "@/components/filter/data";
 import {SizesFilter} from "@/components/filter/facets/sizes-filter";
 import {PriceRangeFilter} from "@/components/filter/facets/price-range-filter";
-import {useFilters} from "@/hooks/use-filter-hooks";
+import { useFilterContext } from "@/contexts/FilterContext";
+import { useState } from "react";
 
 
 const Filters = () => {
     const {
         isOnSale,
         setIsOnSale,
-        sectionsOpen,
-        toggleSection,
         selectedFilters,
         handleFilterChange,
-        priceRange,
-        handlePriceRangeChange,
-        expandedCategories,
-        toggleCategoryExpand,
+        handlePriceChange,
         MIN_PRICE,
         MAX_PRICE,
-    } = useFilters();
+        availableColors,
+    } = useFilterContext();
+    
+    const [sectionsOpen, setSectionsOpen] = useState({
+        categories: true,
+        colors: true,
+        sizes: true,
+        price: true,
+    });
+    
+    const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
+    
+    const toggleSection = (section: 'categories' | 'colors' | 'sizes' | 'price') => {
+        setSectionsOpen((prev) => ({
+            ...prev,
+            [section]: !prev[section],
+        }));
+    };
+    
+    const toggleCategoryExpand = (id: string) => {
+        setExpandedCategories((prev) => ({
+            ...prev,
+            [id]: !prev[id],
+        }));
+    };
 
 
     return (
@@ -48,13 +68,13 @@ const Filters = () => {
             
             {/* Price Range Filter */}
             <FilterSection title="Price range" isOpen={sectionsOpen.price} onToggle={() => toggleSection("price")}>
-                <PriceRangeFilter min={MIN_PRICE} max={MAX_PRICE} value={priceRange} onChange={handlePriceRangeChange}/>
+                <PriceRangeFilter min={MIN_PRICE} max={MAX_PRICE} value={selectedFilters.price} onChange={handlePriceChange}/>
             </FilterSection>
             
             {/* Colors Filter */}
             <FilterSection title="Colors" isOpen={sectionsOpen.colors} onToggle={() => toggleSection("colors")}>
                 <ColorsFilter
-                    colors={colorsData}
+                    colors={availableColors.length > 0 ? availableColors : colorsData}
                     selectedColors={selectedFilters.colors}
                     onColorChange={(id, checked) => handleFilterChange("colors", id, checked)}
                 />

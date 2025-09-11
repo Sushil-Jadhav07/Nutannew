@@ -16,29 +16,29 @@ export const footerSettings = {
                 },
                 {
                     id: 3,
-                    title: 'Privacy Policy',
-                    path: '/privacy',
+                    title: 'FAQ',
+                    path: '/faq-2',
                 },
                 {
                     id: 4,
-                    title: 'Return Policy',
-                    path: '/return-policy',
+                    title: 'Help',
+                    path: '/contact-us',
                 },
-                {
-                    id: 5,
-                    title: 'Terms & Condition',
-                    path: '/terms',
-                },
-                {
-                    id: 6,
-                    title: 'Checkout',
-                    path: '/checkout',
-                },
-                {
-                    id: 7,
-                    title: 'Faq',
-                    path: '/faq',
-                },
+                // {
+                //     id: 5,
+                //     title: 'Terms & Condition',
+                //     path: '/terms',
+                // },
+                // {
+                //     id: 6,
+                //     title: 'Checkout',
+                //     path: '/checkout',
+                // },
+                // {
+                //     id: 7,
+                //     title: 'Faq',
+                //     path: '/faq',
+                // },
             ],
         },
         {
@@ -47,33 +47,38 @@ export const footerSettings = {
             lists: [
                 {
                     id: 1,
-                    title: 'Electronic & Digital',
-                    path: '/categories',
+                    title: 'Bags & Carry Items',
+                    path: '/category/bags-carry-items',
                 },
                 {
                     id: 2,
-                    title: 'Health & Beauty',
-                    path: '/categories',
+                    title: 'Tech & Gadgets',
+                    path: '/category/tech-gadgets',
                 },
                 {
                     id: 3,
-                    title: 'Return Policy',
-                    path: '/categories',
+                    title: 'Office & Stationery',
+                    path: '/category/office-stationery',
                 },
                 {
                     id: 4,
-                    title: 'Top 10 Offers',
-                    path: '/categories',
+                    title: 'Drinkware',
+                    path: '/category/drinkware',
                 },
                 {
                     id: 5,
-                    title: 'Jewelry & Watches',
-                    path: '/categories',
+                    title: 'Gift Sets & Kits',
+                    path: '/category/gift-sets-kits',
                 },
                 {
                     id: 6,
-                    title: 'Book & Office',
-                    path: '/categories',
+                    title: 'Eco Lifestyle',
+                    path: '/category/eco-lifestyle',
+                },
+                {
+                    id: 7,
+                    title: 'Events & Conference Essentials',
+                    path: '/category/events-conference-essentials',
                 },
             ],
         },
@@ -83,45 +88,41 @@ export const footerSettings = {
             lists: [
                 {
                     id: 1,
-                    title: 'Common Good',
+                    title: 'Customer',
                     path: '/',
                 },
                 {
                     id: 2,
-                    title: 'OFS',
-                    path: '/',
+                    title: 'My Account',
+                    path: '/account',
                 },
                 {
                     id: 3,
-                    title: 'Sagaform',
-                    path: '/',
+                    title: 'My Orders',
+                    path: '/account-order',
                 },
                 {
                     id: 4,
-                    title: 'Feugiat nulla',
-                    path: '/',
+                    title: 'Wishlist',
+                    path: '/account-savelists',
                 },
                 {
                     id: 5,
-                    title: 'Vulputate velit',
-                    path: '/',
+                    title: 'Checkout',
+                    path: '/checkout',
                 },
-                {
-                    id: 6,
-                    title: 'Samsung Galaxy',
-                    path: '/',
-                },
+                
             ],
         },
         {
             id: 4,
-            widgetTitle: 'Our Services',
+            widgetTitle: 'Consumer Policies',
             lists: [
-                {
-                    id: 1,
-                    title: 'About us',
-                    path: '/about-us',
-                },
+                // {
+                //     id: 1,
+                //     title: 'About us',
+                //     path: '/about-us',
+                // },
                 
                 {
                     id: 2,
@@ -138,16 +139,16 @@ export const footerSettings = {
                     title: 'Return Policy',
                     path: '/return-policy',
                 },
-                {
-                    id: 5,
-                    title: 'Checkout',
-                    path: '/checkout',
-                },
-                {
-                    id: 6,
-                    title: 'Faq',
-                    path: '/faq-2',
-                },
+                // {
+                //     id: 5,
+                //     title: 'Checkout',
+                //     path: '/checkout',
+                // },
+                // {
+                //     id: 6,
+                //     title: 'Faq',
+                //     path: '/faq-2',
+                // },
             ],
         }
     ],

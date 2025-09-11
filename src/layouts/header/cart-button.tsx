@@ -54,7 +54,7 @@ const CartButton: React.FC<CartButtonProps> = ({
                     })}>
                     <CartIcon className={cn(iconClassName, sizeIcon)}/>
                     </div>
-                    <span className="cart-counter-badge  h-[18px] min-w-[18px] rounded-full flex items-center justify-center bg-red-600 text-brand-light absolute -top-1 ltr:left-3 rtl:right-3 text-11px">
+                    <span className="cart-counter-badge  h-[18px] min-w-[18px] rounded-full flex items-center justify-center bg-[#3B3310] text-brand-light absolute -top-1 ltr:left-3 rtl:right-3 text-11px">
                       {totalItems}
                     </span>
                 </div>

@@ -18,6 +18,7 @@ import HeaderMenutop from '@/layouts/header/header-menutop';
 import CategoryDropdownNav from '@/components/category/category-dropdown-nav';
 import AuthDropdown from "@/layouts/header/auth-dropdown";
 import { MainMenuType } from '@/services/types';
+import { Link } from 'react-router-dom';
 
 const CartButton = React.lazy(() => import('@/layouts/header/cart-button'));
 
@@ -65,7 +66,7 @@ const Header: React.FC<HeaderProps> = ({className, variant}) => {
                         <Container>
                             <div className="h-11 flex justify-between items-center ">
                                 <Text className={`hidden md:block truncate m-0 text-brand-muted`} variant={"small"}>
-                                     You are a student  get 20% discount.
+                                New beginning-Explore our brand now!
                                 </Text>
                                 <div className="flex flex-shrink-0 smx-auto pace-s-5">
                                     <HeaderMenutop
@@ -120,14 +121,16 @@ const Header: React.FC<HeaderProps> = ({className, variant}) => {
                                 {/* End of logo */}
                                 
                                 <div className="categories-header-button relative  flex-shrink-0 w-52 xl:w-60">
+                                    <Link to="/categories">
                                     <button
                                         className="text-brand-dark text-sm border-border-base min-h-[48px] focus:outline-none w-full font-semibold py-2 flex items-center"
-                                        onClick={handleCategoryMenu}
+                                        // onClick={handleCategoryMenu}
                                     >
                                         <FiMenu className="text-2xl me-3"/>
                                         All Categories
                                     </button>
-                                    {toggleAllCategory && <CategoryDropdownNav/>}
+                                    </Link>
+                                    {/* {toggleAllCategory && <CategoryDropdownNav/>} */}
                                 </div>
                                 
                                 <MainMenu

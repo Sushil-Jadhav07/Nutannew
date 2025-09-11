@@ -65,7 +65,7 @@ const Header: React.FC<HeaderProps> = ({className, variant}) => {
                         <Container>
                             <div className="h-11 flex justify-between items-center ">
                                 <Text className={`hidden md:block truncate m-0 text-brand-muted`} variant={"small"}>
-                                     You are a student and students get 20% discount.
+                                     You are a student  get 20% discount.
                                 </Text>
                                 <div className="flex flex-shrink-0 smx-auto pace-s-5">
                                     <HeaderMenutop

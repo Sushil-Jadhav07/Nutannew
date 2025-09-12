@@ -45,7 +45,7 @@ const WidgetLink: React.FC<Props> = ({  className, data,variant }) => {
                       <Link
                           to={`${list.path ? list.path : ''}`}
                           className={cn("leading-7 transition-colors duration-200 block ", 
-                              variant === 'default' ? 'text-white hover:text-gray-300 dark:text-black dark:hover:text-gray-600' : colorMap[selectedColor].hoverLink
+                              variant === 'default' ? 'text-white hover:text-white dark:text-black dark:hover:text-gray-600' : colorMap[selectedColor].hoverLink
                           )}
                       >
                           {list.title}

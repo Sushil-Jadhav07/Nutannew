@@ -38,7 +38,7 @@ const Copyright: React.FC<CopyrightProps> = ({
                         &copy;&nbsp;Copyright {year}&nbsp;
                         <a
                             className={cn("transition-colors duration-200 ease-in-out  ", 
-                                variant === 'default' ? 'text-white hover:text-gray-300 dark:text-black dark:hover:text-gray-600' : colorMap[selectedColor].link
+                                variant === 'default' ? 'text-white hover:text-white dark:text-black dark:hover:text-gray-600' : colorMap[selectedColor].link
                             )}
                             href={siteSettings.author.websiteUrl}
                         >

@@ -84,13 +84,13 @@ export const footerSettings = {
         },
         {
             id: 3,
-            widgetTitle: 'Brands',
+            widgetTitle: 'customer',
             lists: [
-                {
-                    id: 1,
-                    title: 'Customer',
-                    path: '/',
-                },
+                // {
+                //     id: 1,
+                //     title: 'Customer',
+                //     path: '/',
+                // },
                 {
                     id: 2,
                     title: 'My Account',

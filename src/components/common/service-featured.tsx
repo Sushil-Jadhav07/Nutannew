@@ -45,12 +45,13 @@ const ServiceFeature: React.FC<Props> = ({
                                              uniqueKey='services',
                                               className = 'mb-8 md:mb-10',
                                           }) => {
-    const { selectedColor } = usePanel();
+    const { selectedColor, theme } = usePanel();
+    const iconColor = theme === 'dark' ? 'white' : colorMap[selectedColor].link;
     const data = [
         {
             id: 1,
             icon: (
-                <DeliveryIcon color={colorMap[selectedColor].link}/>
+                <DeliveryIcon color={iconColor}/>
             ),
             title: 'Fast Delivery',
             description: 'Deliver in 24 hours max!',
@@ -59,7 +60,7 @@ const ServiceFeature: React.FC<Props> = ({
         {
             id: 2,
             icon: (
-                <CardIcon color={colorMap[selectedColor].link} />
+                <CardIcon color={iconColor} />
             ),
             title: 'safe payment',
             description: '100% secure payment',
@@ -68,7 +69,7 @@ const ServiceFeature: React.FC<Props> = ({
         {
             id: 3,
             icon: (
-                <FeedbackIcon color={colorMap[selectedColor].link} />
+                <FeedbackIcon color={iconColor} />
             ),
             title: 'Online Discount',
             description: 'Add multi-buy discount',
@@ -77,7 +78,7 @@ const ServiceFeature: React.FC<Props> = ({
         {
             id: 4,
             icon: (
-                <SupportIcon color={colorMap[selectedColor].link} />
+                <SupportIcon color={iconColor} />
             ),
             title: 'Help Center',
             description: 'Dedicated 24/7 support',
@@ -86,7 +87,7 @@ const ServiceFeature: React.FC<Props> = ({
         {
             id: 5,
             icon: (
-                <LicenseIcon color={colorMap[selectedColor].link} />
+                <LicenseIcon color={iconColor} />
             ),
             title: 'Curated items',
             description: 'From handpicked sellers',

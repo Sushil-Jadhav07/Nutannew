@@ -37,9 +37,21 @@ export interface FirebaseProduct {
   createdAtDate: any;
 }
 
+// Helper function to check if product status is valid for display
+const isValidProductStatus = (status: string): boolean => {
+  const validStatuses = ['Published', 'Active'];
+  return validStatuses.includes(status);
+};
+
 // Transform Firebase data to match existing Product interface
-const transformFirebaseProduct = (doc: DocumentData): Product => {
+const transformFirebaseProduct = (doc: DocumentData): Product | null => {
   const data = doc.data();
+  
+  // Check if product status is valid for display
+  if (!isValidProductStatus(data.productStatus)) {
+    console.log(`⚠️ Skipping product ${doc.id} with status: ${data.productStatus}`);
+    return null;
+  }
   
   // Get the first product image as the main image
   const mainImage = data.productImages && data.productImages.length > 0 ? data.productImages[0] : '';
@@ -136,12 +148,14 @@ export const fetchBestSellerProductsFromFirebase = async (limitCount: number = 1
       return [];
     }
     
-    // Convert to array and shuffle
+    // Convert to array and shuffle, filtering out null products
     const allProducts: Product[] = [];
     allProductsSnapshot.forEach((doc) => {
       const product = transformFirebaseProduct(doc);
-      console.log(`✅ Transformed product: ${product.name} (ProductID: ${product.id}, SKU: ${product.sku})`);
-      allProducts.push(product);
+      if (product) {
+        console.log(`✅ Transformed product: ${product.name} (ProductID: ${product.id}, SKU: ${product.sku})`);
+        allProducts.push(product);
+      }
     });
     
     // Shuffle the products array
@@ -176,12 +190,14 @@ export const fetchPopularProductsFromFirebase = async (limitCount: number = 10):
       return [];
     }
     
-    // Convert to array and shuffle
+    // Convert to array and shuffle, filtering out null products
     const allProducts: Product[] = [];
     allProductsSnapshot.forEach((doc) => {
       const product = transformFirebaseProduct(doc);
-      console.log(`✅ Transformed popular product: ${product.name} (ProductID: ${product.id}, SKU: ${product.sku})`);
-      allProducts.push(product);
+      if (product) {
+        console.log(`✅ Transformed popular product: ${product.name} (ProductID: ${product.id}, SKU: ${product.sku})`);
+        allProducts.push(product);
+      }
     });
     
     // Shuffle the products array
@@ -216,12 +232,14 @@ export const fetchFeaturedProductsFromFirebase = async (limitCount: number = 10)
       return [];
     }
     
-    // Convert to array and shuffle
+    // Convert to array and shuffle, filtering out null products
     const allProducts: Product[] = [];
     allProductsSnapshot.forEach((doc) => {
       const product = transformFirebaseProduct(doc);
-      console.log(`✅ Transformed featured product: ${product.name} (ProductID: ${product.id}, SKU: ${product.sku})`);
-      allProducts.push(product);
+      if (product) {
+        console.log(`✅ Transformed featured product: ${product.name} (ProductID: ${product.id}, SKU: ${product.sku})`);
+        allProducts.push(product);
+      }
     });
     
     // Shuffle the products array
@@ -271,8 +289,10 @@ export const fetchAllProductsFromFirebase = async (
     const products: Product[] = [];
     querySnapshot.forEach((doc) => {
       const product = transformFirebaseProduct(doc);
-      console.log(`✅ Transformed product: ${product.name} (ProductID: ${product.id}, SKU: ${product.sku})`);
-      products.push(product);
+      if (product) {
+        console.log(`✅ Transformed product: ${product.name} (ProductID: ${product.id}, SKU: ${product.sku})`);
+        products.push(product);
+      }
     });
     
     console.log(`🎯 Returning ${products.length} products using ProductID as primary identifier`);
@@ -311,8 +331,10 @@ export const fetchProductsByCategoryFromFirebase = async (
     const products: Product[] = [];
     querySnapshot.forEach((doc) => {
       const product = transformFirebaseProduct(doc);
-      console.log(`✅ Transformed product: ${product.name} (Category: ${product.category[0]?.name})`);
-      products.push(product);
+      if (product) {
+        console.log(`✅ Transformed product: ${product.name} (Category: ${product.category[0]?.name})`);
+        products.push(product);
+      }
     });
     
     console.log(`🎯 Returning ${products.length} products for category: ${category}`);
@@ -371,12 +393,15 @@ export const fetchProductsBySubCategoryFromFirebase = async (
       console.log(`🔍 Raw Firebase data for ${doc.id}:`, {
         productName: data.productName,
         productSubCategory: data.productSubCategory,
-        productCategory: data.productCategory
+        productCategory: data.productCategory,
+        productStatus: data.productStatus
       });
       
       const product = transformFirebaseProduct(doc);
-      console.log(`✅ Transformed product: ${product.name} (Subcategory: ${subcategory})`);
-      products.push(product);
+      if (product) {
+        console.log(`✅ Transformed product: ${product.name} (Subcategory: ${subcategory})`);
+        products.push(product);
+      }
     });
     
     console.log(`🎯 Returning ${products.length} products for subcategory: "${subcategory}"`);
@@ -397,7 +422,9 @@ export const fetchProductsBySubCategoryFromFirebase = async (
         const data = doc.data();
         if (data.productSubCategory === subcategory) {
           const product = transformFirebaseProduct(doc);
-          matchingProducts.push(product);
+          if (product) {
+            matchingProducts.push(product);
+          }
         }
       });
       

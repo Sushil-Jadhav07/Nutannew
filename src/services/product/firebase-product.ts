@@ -46,15 +46,28 @@ export interface FirebaseProduct {
   createdAtDate: any;
 }
 
+// Helper function to check if product status is valid for display
+const isValidProductStatus = (status: string): boolean => {
+  const validStatuses = ['Published', 'Active'];
+  return validStatuses.includes(status);
+};
+
 // Transform Firebase data to match existing Product interface
-const transformFirebaseProduct = (doc: any): Product => {
+const transformFirebaseProduct = (doc: any): Product | null => {
   const data = doc.data();
+  
+  // Check if product status is valid for display
+  if (!isValidProductStatus(data.productStatus)) {
+    console.log(`⚠️ Skipping product ${doc.id} with status: ${data.productStatus}`);
+    return null;
+  }
   
   // Debug: Log the raw Firebase data
   console.log('🔍 Raw Firebase data:', {
     productDimension: data.productDimension,
     customDimensions: data.customDimensions,
-    variation: data.variation
+    variation: data.variation,
+    productStatus: data.productStatus
   });
   
   // Get the first product image as the main image
@@ -190,6 +203,12 @@ export const fetchProductFromFirebase = async (productId: string): Promise<Produ
     }
     
     const product = transformFirebaseProduct(productSnapshot);
+    
+    if (!product) {
+      console.log('❌ Product not available due to status:', productSnapshot.data().productStatus);
+      return null;
+    }
+    
     console.log('✅ Transformed product:', product.name, '(ProductID:', product.id, ', SKU:', product.sku, ')');
     
     return product;

@@ -16,7 +16,7 @@ const Footer: React.FC<FooterProps> = ({variant = 'default',className,showWidget
     return (
         <footer className={cn(
             'footer-one border-t  border-border-base ',{
-                'bg-white': variant === 'default',
+                'bg-[#3B3310] dark:bg-white': variant === 'default',
                 'bg-background': variant === 'home3',
                 'bg-[#1f2024]': variant === 'home6',
             },

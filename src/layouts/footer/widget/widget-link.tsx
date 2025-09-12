@@ -25,12 +25,14 @@ const WidgetLink: React.FC<Props> = ({  className, data,variant }) => {
   return (
       <div className={cn( {
               'text-fill-footer': variant === 'home5' || variant === 'home6' || variant === 'home7' || variant === 'home8',
+              'text-white dark:text-black': variant === 'default',
           },
           className
       )}
       >
           <Heading variant="base" className={cn('uppercase mb-4 lg:mb-5', {
                   'text-brand-light': variant === 'home5' || variant === 'home6' || variant === 'home7' || variant === 'home8',
+                  'text-white dark:text-black': variant === 'default',
               })}>
               {widgetTitle}
           </Heading>
@@ -42,7 +44,9 @@ const WidgetLink: React.FC<Props> = ({  className, data,variant }) => {
                     
                       <Link
                           to={`${list.path ? list.path : ''}`}
-                          className={cn("leading-7 transition-colors duration-200 block ", colorMap[selectedColor].hoverLink)}
+                          className={cn("leading-7 transition-colors duration-200 block ", 
+                              variant === 'default' ? 'text-white hover:text-gray-300 dark:text-black dark:hover:text-gray-600' : colorMap[selectedColor].hoverLink
+                          )}
                       >
                           {list.title}
                       </Link>

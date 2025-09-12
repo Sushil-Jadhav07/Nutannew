@@ -27,6 +27,7 @@ const Copyright: React.FC<CopyrightProps> = ({
         <div className={cn('border-t border-black/10  pt-5 pb-16 sm:pb-20 md:pb-20 lg:pb-3 mb-2 sm:mb-0',
             {
                 'text-fill-footer xs:border-white/10 dark:border-black/10': variant === 'home5' ||variant === 'home6' ||  variant === 'home7'|| variant === 'home8',
+                'text-white dark:text-black border-white/20 dark:border-black/10': variant === 'default',
             },
         )}>
             <Container className={cn(
@@ -36,7 +37,9 @@ const Copyright: React.FC<CopyrightProps> = ({
                     <p className="text-sm leading-7 lg:leading-[27px]">
                         &copy;&nbsp;Copyright {year}&nbsp;
                         <a
-                            className={cn("transition-colors duration-200 ease-in-out  ", colorMap[selectedColor].link)}
+                            className={cn("transition-colors duration-200 ease-in-out  ", 
+                                variant === 'default' ? 'text-white hover:text-gray-300 dark:text-black dark:hover:text-gray-600' : colorMap[selectedColor].link
+                            )}
                             href={siteSettings.author.websiteUrl}
                         >
                             {siteSettings.author.name}

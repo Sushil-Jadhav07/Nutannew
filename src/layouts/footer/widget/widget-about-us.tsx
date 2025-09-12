@@ -23,6 +23,7 @@ const WidgetAbout: React.FC<AboutProps> = ({ social, className,variant}) => {
         <div className={cn(
                  'pb-10 sm:pb-0 ',{
                      'text-fill-footer': variant === 'home5' || variant === 'home6' || variant === 'home7'|| variant === 'home8',
+                     'text-white dark:text-black': variant === 'default',
                  },
                  className
              )}
@@ -32,6 +33,7 @@ const WidgetAbout: React.FC<AboutProps> = ({ social, className,variant}) => {
                 <Heading variant="base" className={cn('uppercase mb-4 lg:mb-5',
                     {
                         'text-brand-light': variant === 'home5' || variant === 'home6' || variant === 'home7'|| variant === 'home8',
+                        'text-white dark:text-black': variant === 'default',
                     })}>
                     About The Store
                 </Heading>

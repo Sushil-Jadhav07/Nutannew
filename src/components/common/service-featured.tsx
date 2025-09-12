@@ -45,13 +45,14 @@ const ServiceFeature: React.FC<Props> = ({
                                              uniqueKey='services',
                                               className = 'mb-8 md:mb-10',
                                           }) => {
-    const { selectedColor, theme } = usePanel();
-    const iconColor = theme === 'dark' ? 'white' : colorMap[selectedColor].link;
+    const iconColor = 'white';
     const data = [
         {
             id: 1,
             icon: (
-                <DeliveryIcon color={iconColor}/>
+                <div className="text-white dark:text-white" style={{ color: 'white' }}>
+                    <DeliveryIcon color={iconColor}/>
+                </div>
             ),
             title: 'Fast Delivery',
             description: 'Deliver in 24 hours max!',
@@ -60,7 +61,9 @@ const ServiceFeature: React.FC<Props> = ({
         {
             id: 2,
             icon: (
-                <CardIcon color={iconColor} />
+                <div className="text-white dark:text-white" style={{ color: 'white' }}>
+                    <CardIcon color={iconColor} />
+                </div>
             ),
             title: 'safe payment',
             description: '100% secure payment',
@@ -69,7 +72,9 @@ const ServiceFeature: React.FC<Props> = ({
         {
             id: 3,
             icon: (
-                <FeedbackIcon color={iconColor} />
+                <div className="text-white dark:text-white" style={{ color: 'white' }}>
+                    <FeedbackIcon color={iconColor} />
+                </div>
             ),
             title: 'Online Discount',
             description: 'Add multi-buy discount',
@@ -78,7 +83,9 @@ const ServiceFeature: React.FC<Props> = ({
         {
             id: 4,
             icon: (
-                <SupportIcon color={iconColor} />
+                <div className="text-white dark:text-white" style={{ color: 'white' }}>
+                    <SupportIcon color={iconColor} />
+                </div>
             ),
             title: 'Help Center',
             description: 'Dedicated 24/7 support',
@@ -87,7 +94,9 @@ const ServiceFeature: React.FC<Props> = ({
         {
             id: 5,
             icon: (
-                <LicenseIcon color={iconColor} />
+                <div className="text-white dark:text-white" style={{ color: 'white' }}>
+                    <LicenseIcon color={iconColor} />
+                </div>
             ),
             title: 'Curated items',
             description: 'From handpicked sellers',

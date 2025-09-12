@@ -74,13 +74,13 @@ const FeaturedCard: React.FC<Props> = ({ item, className, variant }) => {
 		<div className="ps-0 text-center">
 		  <Heading
 			variant="base"
-			className="sm:text-[12px] sm:leading-4 uppercase font-bold"
+			className="sm:text-[12px] sm:leading-4 uppercase font-bold text-white dark:text-black"
 		  >
 			{title}
 		  </Heading>
 		  <Text
 			variant="small"
-			className="sm:leading-4 font-normal sm:text-[13px]"
+			className="sm:leading-4 font-normal sm:text-[13px] text-white dark:text-black"
 		  >
 			{description}
 		  </Text>

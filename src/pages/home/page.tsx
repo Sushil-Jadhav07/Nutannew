@@ -23,14 +23,14 @@ const Homepage: React.FC = () => {
                 <div className="grid xl:gap-[5px] grid-cols-1 xl:grid-cols-12">
                     <HeroSliderBlock
                         useFirebase={true}
-                        fallbackBanners={heroSlider}
+                        // fallbackBanners={heroSlider}
                         showHeroContent={true}
                         className={`xl:col-span-8 mb-5 xl:mb-12`}
                         contentClassName="p-7 sm:py-18 xl:py-16 sm:px-16 xl:px-24 md:min-h-[270px] xl:min-h-[375px] rounded"
                     />
                     <BannerGrid
                         useFirebase={true}
-                        fallbackData={bannerSlider}
+                        // fallbackData={bannerSlider}
                         grid={1}
                         girdClassName="xl:gap-[5px]"
                         className="xl:col-span-4 mb-5 xl:mb-12"

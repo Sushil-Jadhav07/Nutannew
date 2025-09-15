@@ -36,7 +36,7 @@ const HeaderMenutop: React.FC<MenuProps> = ({data, className, classNameLink}) =>
                 >
                     <Link
                         to={item.path}
-                        className={`${classNameLink ? classNameLink : 'text-brand-muted'} inline-flex items-center py-2 font-normal relative `}
+                        className={`${classNameLink ? classNameLink : 'text-brand-muted'}  inline-flex items-center py-2 font-normal relative `}
                     >
                         {item.label}
                         {item.label === 'Wishlist' && mounted && [` (${wishlistList.length})`] }

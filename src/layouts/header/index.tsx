@@ -66,7 +66,7 @@ const Header: React.FC<HeaderProps> = ({className, variant}) => {
                         <Container>
                             <div className="h-11 flex justify-between items-center ">
                                 <Text className={`hidden md:block truncate m-0 text-brand-muted`} variant={"small"}>
-                                New beginning-Explore our brand now!
+                                New beginning-Explore
                                 </Text>
                                 <div className="flex flex-shrink-0 smx-auto pace-s-5">
                                     <HeaderMenutop

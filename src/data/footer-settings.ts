@@ -103,6 +103,11 @@ export const footerSettings = {
                 },
                 {
                     id: 4,
+                    title: 'Compare',
+                    path: '/compare',
+                },
+                {
+                    id: 4,
                     title: 'Wishlist',
                     path: '/account-savelists',
                 },

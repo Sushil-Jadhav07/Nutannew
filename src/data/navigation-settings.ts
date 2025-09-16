@@ -10,6 +10,11 @@ export const siteNavigation = {
             path: '/checkout',
             label: 'Checkout',
         },
+        {
+            id: 3,
+            path: '/compare',
+            label: 'Compare',
+        }
         // {
         //     id: 3,
         //     path: '/',

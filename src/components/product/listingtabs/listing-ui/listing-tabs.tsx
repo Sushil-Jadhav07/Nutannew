@@ -1,10 +1,8 @@
 "use client";
 import cn from 'classnames';
-import {ROUTES} from '@/utils/routes';
 import useWindowSize from "@/utils/use-window-size";
 import {useMemo} from "react";
 
-import Link from "@/components/shared/link";
 import DesktopTabs from "@/components/product/listingtabs/listing-ui/desktopTabs";
 import MobileDropdownTabs from "@/components/product/listingtabs/listing-ui/mobileDropdownTabs";
 
@@ -25,9 +23,7 @@ const ListingTabs = ({ className, data, onNavClick, activeTab, variant }: any) =
             )}
         >
             <h3 className="text-base text-[16px] uppercase text-brand-dark font-semibold border-0  xl:basis-[20%]">
-                <Link to={`${ROUTES.CATEGORY}/${data?.slug}`}>
-                    {data?.name}
-                </Link>
+                {data?.name}
             </h3>
 
             {Array.isArray(data?.children) && (

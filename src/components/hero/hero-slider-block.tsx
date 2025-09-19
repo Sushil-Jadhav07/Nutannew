@@ -71,6 +71,42 @@ const HeroSliderBlock: React.FC<Props> = ({
             </div>
         );
     }
+
+    const bannersToRender = (finalBanners ?? []).map((banner: any) => {
+        if (!banner) {
+            return banner;
+        }
+
+        const desktopUrl =
+            banner?.image?.desktop?.url ||
+            banner?.desktopImageUrl ||
+            banner?.imageUrl ||
+            banner?.mobileImageUrl ||
+            '';
+        const mobileUrl =
+            banner?.image?.mobile?.url ||
+            banner?.mobileImageUrl ||
+            desktopUrl;
+
+        if (
+            banner?.image?.mobile?.url === mobileUrl &&
+            banner?.image?.desktop?.url === desktopUrl
+        ) {
+            return banner;
+        }
+
+        return {
+            ...banner,
+            image: {
+                mobile: {
+                    url: mobileUrl,
+                },
+                desktop: {
+                    url: desktopUrl,
+                },
+            },
+        };
+    });
     
     return (
         <div className={`${className}`}>
@@ -82,7 +118,7 @@ const HeroSliderBlock: React.FC<Props> = ({
                 prevActivateId={`prevActivateId`}
                 nextActivateId={`nextActivateId`}
             >
-                {finalBanners?.map((banner: never,index:number) => (
+                {bannersToRender.map((banner: never,index:number) => (
                     <SwiperSlide key={`hero-slider${index}`}>
                         <HeroSliderCard
                             banner={banner}
@@ -98,3 +134,4 @@ const HeroSliderBlock: React.FC<Props> = ({
 };
 
 export default HeroSliderBlock;
+

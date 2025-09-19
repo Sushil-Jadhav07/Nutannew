@@ -31,7 +31,7 @@ export default function HeroSliderCard({
         <div
             className={cn(
                 'w-full relative bg-no-repeat bg-cover bg-center flex items-center ',
-                {'min-h-[320px] md:min-h-[367px]':variant === 'hero',
+                {'min-h-[350px] md:min-h-[400px]':variant === 'hero',
                 },
                 {
                     'bg-fill-thumbnail': variant !== 'hero-3',

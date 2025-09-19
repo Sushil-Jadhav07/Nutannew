@@ -7,6 +7,7 @@ interface FirebaseBanner {
   title: string;
   subtitle: string;
   imageUrl: string;
+  mobileImageUrl?: string;
   path: string;
   status: string;
   createdAt: any;
@@ -26,6 +27,7 @@ interface TransformedBanner {
       url: string;
     };
   };
+  mobileImageUrl?: string;
   // Keep all existing banner properties for compatibility
   [key: string]: any;
 }
@@ -65,12 +67,13 @@ export const useFirebaseBanners = () => {
               // Transform image to match expected structure
               image: {
                 mobile: {
-                  url: data.imageUrl,
+                  url: data.mobileImageUrl || data.imageUrl,
                 },
                 desktop: {
                   url: data.imageUrl,
                 },
               },
+              mobileImageUrl: data.mobileImageUrl,
               // Add any additional Firebase fields
               status: data.status,
               createdAt: data.createdAt,

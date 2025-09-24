@@ -12,12 +12,12 @@
     }
   ],
   "env": {
-    "VITE_PUBLIC_API_BASE_URL": "https://react19-uminex.vercel.app/api",
+    "VITE_PUBLIC_API_BASE_URL": "/api",
     "VITE_PUBLIC_WEBSITE_URL": "https://react19-uminex.vercel.app/"
   },
   "build": {
     "env": {
-      "VITE_PUBLIC_API_BASE_URL": "https://react19-uminex.vercel.app/api",
+      "VITE_PUBLIC_API_BASE_URL": "/api",
       "VITE_PUBLIC_WEBSITE_URL": "https://react19-uminex.vercel.app"
     }
   },

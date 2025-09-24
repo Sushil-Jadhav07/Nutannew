@@ -64,8 +64,8 @@ export const CategoriesContainer: FC<blogGridProps> = ({categories, className = 
                                         <Image
                                             src={image?.original ?? productPlaceholder}
                                             alt={name || 'Product Image'}
-                                            width={340}
-                                            height={210}
+                                            width={295}
+                                            height={200}
                                             className="rounded duration-2000 ease-in-expo hover:scale-109"
                                         />
                                     </div>

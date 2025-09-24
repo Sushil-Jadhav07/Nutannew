@@ -8,7 +8,7 @@
       "image": {
         "id": 1,
         "thumbnail": "/assets/images/category/cate1.png",
-        "original": "/assets/images/category/collection_1.jpg"
+        "original": "/assets/images/category/navbar/1.1.jpg"
       },
       "children": [
         {
@@ -214,7 +214,7 @@
       "image": {
         "id": 1,
         "thumbnail": "/assets/images/category/cate2.png",
-        "original": "/assets/images/category/collection_2.jpg"
+        "original": "/assets/images/category/navbar/2.4.jpg"
       },
       "children": [
         {
@@ -324,7 +324,7 @@
       "image": {
         "id": 1,
         "thumbnail": "/assets/images/category/cate3.png",
-        "original": "/assets/images/category/collection_3.jpg"
+        "original": "/assets/images/category/navbar/3.1.jpg"
       },
       "children": [
         {
@@ -529,7 +529,7 @@
       "image": {
         "id": 1,
         "thumbnail": "/assets/images/category/cate4.png",
-        "original": "/assets/images/category/collection_4.jpg"
+        "original": "/assets/images/category/navbar/4.1.jpg"
       },
       "children": [
         {
@@ -567,7 +567,7 @@
       "image": {
         "id": 1,
         "thumbnail": "/assets/images/category/cate5.png",
-        "original": "/assets/images/category/collection_5.jpg"
+        "original": "/assets/images/category/navbar/5.1.jpg"
       },
       "children": [
         {
@@ -605,7 +605,7 @@
       "image": {
         "id": 1,
         "thumbnail": "/assets/images/category/cate6.png",
-        "original": "/assets/images/category/collection_6.jpg"
+        "original": "/assets/images/category/navbar/6.2.jpg"
       },
       "children": [
         {
@@ -643,7 +643,7 @@
       "image": {
         "id": 1,
         "thumbnail": "/assets/images/category/cate7.png",
-        "original": "/assets/images/category/collection_6.jpg"
+        "original": "/assets/images/category/navbar/7.4.jpg"
       },
       "children": [
         {
@@ -670,43 +670,6 @@
           "id": 5,
           "name": "Montemous",
           "slug": "montemous"
-        }
-      ]
-    },
-    {
-      "id": 8,
-      "name": "Top 10 Offers",
-      "slug": "quality-milk",
-      "productCount": "350",
-      "image": {
-        "id": 1,
-        "thumbnail": "/assets/images/category/cate8.png"
-      },
-      "children": [
-        {
-          "id": 1,
-          "name": "Footwear",
-          "slug": "footwear"
-        },
-        {
-          "id": 2,
-          "name": "Digital",
-          "slug": "digital"
-        },
-        {
-          "id": 3,
-          "name": "Davenport",
-          "slug": "davenport"
-        },
-        {
-          "id": 4,
-          "name": "Punch",
-          "slug": "punch"
-        },
-        {
-          "id": 5,
-          "name": "Bedside",
-          "slug": "bedside"
         }
       ]
     }

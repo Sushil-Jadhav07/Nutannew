@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getToken } from './get-token';
 
-const baseURL = import.meta.env.VITE_PUBLIC_API_BASE_URL;
+const baseURL = import.meta.env.VITE_PUBLIC_API_BASE_URL || '/api';
 
 const http = axios.create({
   baseURL: baseURL,  // Use import.meta.env instead

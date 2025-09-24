@@ -6,6 +6,7 @@ import DrawerFilter from '@/components/category/drawer-filter';
 import { LIMITS } from '@/services/utils/limits';
 import { ProductMain } from '@/components/product/productListing/product-main';
 import { useFirebaseProductsBySubCategory } from '@/hooks/useFirebaseProducts';
+import { FilterProvider } from '@/contexts/FilterContext';
 import { useParams } from 'react-router-dom';
 
 export default function SubCategoryContent() {
@@ -81,19 +82,21 @@ export default function SubCategoryContent() {
   });
 
   return (
-    <Element name="subcategory" className="flex products-category">
-      <div className="sticky hidden lg:block h-full shrink-0 ltr:pr-7 rtl:pl-7   w-[300px] top-16 ">
-        <Filters />
-      </div>
-      <div className="w-full">
-        <div className="mb-4">
-          <h2 className="text-lg font-semibold text-brand-dark capitalize">{String(subslug).replace(/-/g,' ')}</h2>
+    <FilterProvider products={Array.isArray(data) ? data : []}>
+      <Element name="subcategory" className="flex products-category">
+        <div className="sticky hidden lg:block h-full shrink-0 ltr:pr-7 rtl:pl-7   w-[300px] top-16 ">
+          <Filters />
         </div>
-        <DrawerFilter />
-        <TopBar viewAs={viewAs} setViewAs={setViewAs} />
-        <ProductMain data={data} isLoading={isLoading} viewAs={viewAs} />
-      </div>
-    </Element>
+        <div className="w-full">
+          <div className="mb-4">
+            <h2 className="text-lg font-semibold text-brand-dark capitalize">{String(subslug).replace(/-/g,' ')}</h2>
+          </div>
+          <DrawerFilter />
+          <TopBar viewAs={viewAs} setViewAs={setViewAs} />
+          <ProductMain data={data} isLoading={isLoading} viewAs={viewAs} />
+        </div>
+      </Element>
+    </FilterProvider>
   );
 }
 
